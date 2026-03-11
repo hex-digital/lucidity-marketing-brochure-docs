@@ -1,0 +1,11 @@
+/* packages/brand/tokens.css */
+@theme {
+    --color-primary: oklch(55% 0.2 250);
+    --color-primary-foreground: oklch(98% 0 0);
+    --color-neutral-50: oklch(98% 0 0);
+    --color-neutral-900: oklch(15% 0 0);
+    --font-sans: 'Geist', sans-serif;
+    --font-mono: 'Geist Mono', monospace;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+}

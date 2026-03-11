@@ -1,0 +1,71 @@
+{
+  "name": "@pkg/eslint-plugin",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "My ESLint config",
+  "license": "MIT",
+  "main": "./index.js",
+  "scripts": {
+    "lint": "eslint . && pnpm prettier",
+    "lint:fix": "eslint --fix . && pnpm prettier:fix",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write ."
+  },
+  "peerDependencies": {
+    "@eslint-react/eslint-plugin": "catalog:dev",
+    "eslint": "catalog:dev",
+    "eslint-plugin-format": "catalog:dev",
+    "eslint-plugin-import-x": "catalog:dev",
+    "eslint-plugin-react-compiler": "catalog:dev",
+    "eslint-plugin-react-hooks": "catalog:dev",
+    "eslint-plugin-react-refresh": "catalog:dev",
+    "eslint-plugin-unused-imports": "catalog:dev",
+    "eslint-plugin-jsx-a11y": "catalog:dev"
+  },
+  "peerDependenciesMeta": {
+    "@eslint-react/eslint-plugin": {
+      "optional": true
+    },
+    "eslint-plugin-format": {
+      "optional": true
+    },
+    "eslint-plugin-react-hooks": {
+      "optional": true
+    },
+    "eslint-plugin-react-refresh": {
+      "optional": true
+    },
+    "eslint-plugin-react-compiler": {
+      "optional": true
+    },
+    "eslint-config-next": {
+      "optional": true
+    },
+    "eslint-plugin-jsx-a11y": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@clack/prompts": "latest",
+    "@typescript-eslint/eslint-plugin": "catalog:dev",
+    "@typescript-eslint/parser": "catalog:dev",
+    "eslint-flat-config-utils": "catalog:dev",
+    "globals": "catalog:dev",
+    "local-pkg": "catalog:dev"
+  },
+  "devDependencies": {
+    "@eslint-react/eslint-plugin": "catalog:dev",
+    "@types/node": "catalog:dev",
+    "eslint": "catalog:dev",
+    "eslint-config-next": "catalog:dev",
+    "eslint-config-prettier": "catalog:dev",
+    "eslint-plugin-format": "catalog:dev",
+    "eslint-plugin-import-x": "catalog:dev",
+    "eslint-plugin-react-compiler": "catalog:dev",
+    "eslint-plugin-react-hooks": "catalog:dev",
+    "eslint-plugin-react-refresh": "catalog:dev",
+    "eslint-plugin-unused-imports": "catalog:dev",
+    "eslint-plugin-jsx-a11y": "catalog:dev",
+    "lint-staged": "catalog:dev"
+  }
+}

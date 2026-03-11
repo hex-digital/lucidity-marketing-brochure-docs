@@ -1,0 +1,23 @@
+
+
+> @pkg/eslint-plugin@0.0.1 lint /Users/g/sites/ci/ci-app/packages/eslint-plugin
+> eslint . && pnpm prettier
+
+Rule                             | Time (ms) | Relative
+:--------------------------------|----------:|--------:
+unused-imports/no-unused-imports |   377.099 |    31.1%
+react/no-useless-forward-ref     |   103.105 |     8.5%
+import-x/no-self-import          |    85.454 |     7.1%
+no-unused-vars                   |    81.159 |     6.7%
+react/no-unstable-context-value  |    61.409 |     5.1%
+react-hooks/rules-of-hooks       |    53.636 |     4.4%
+no-loss-of-precision             |    49.758 |     4.1%
+one-var                          |    40.327 |     3.3%
+import-x/no-duplicates           |    31.120 |     2.6%
+no-unsafe-negation               |    29.260 |     2.4%
+
+> @pkg/eslint-plugin@0.0.1 prettier /Users/g/sites/ci/ci-app/packages/eslint-plugin
+> prettier --check .
+
+Checking formatting...
+.turbo/turbo-lint.log[2K[1G.turbo/turbo-lint$colon$fix.log[2K[1Gconfigs/ignores.js[2K[1Gconfigs/imports.js[2K[1Gconfigs/index.js[2K[1Gconfigs/javascript.js[2K[1Gconfigs/jsx.js[2K[1Gconfigs/prettier.js[2K[1Gconfigs/react.js[2K[1Gconfigs/typescript.js[2K[1Geslint.config.mjs[2K[1Gfactory.js[2K[1Gglobs.js[2K[1Gindex.js[2K[1GLICENSE[2K[1Glint-staged.config.cjs[2K[1Gpackage.json[2K[1Gplugins.js[2K[1Gutils.js[2K[1GAll matched files use Prettier code style!

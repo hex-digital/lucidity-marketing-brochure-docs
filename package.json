@@ -1,0 +1,12 @@
+{
+  "name": "lucidity-enterprise-starter-brochure",
+  "private": "true",
+  "scripts": {
+    "g:dev": "turbo dev --color",
+    "g:build": "turbo build"
+  },
+  "packageManager": "pnpm@10.17.1",
+  "devDependencies": {
+    "turbo": "^2.8.16"
+  }
+}

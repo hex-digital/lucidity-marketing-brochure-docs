@@ -1,0 +1,40 @@
+
+
+> @pkg/eslint-plugin@0.0.1 lint:fix /Users/g/sites/ci/ci-app/packages/eslint-plugin
+> eslint --fix .; pnpm prettier:fix
+
+
+Oops! Something went wrong! :(
+
+ESLint: 9.30.1
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@pkg/eslint-plugin' imported from /Users/g/sites/ci/ci-app/packages/eslint-plugin/eslint.config.mjs
+Did you mean to import "file:///Users/g/sites/ci/ci-app/packages/eslint-plugin/index.js"?
+    at packageResolve (node:internal/modules/esm/resolve:873:9)
+    at moduleResolve (node:internal/modules/esm/resolve:946:18)
+    at defaultResolve (node:internal/modules/esm/resolve:1188:11)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:642:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:591:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:574:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:236:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:130:49)
+
+> @pkg/eslint-plugin@0.0.1 prettier:fix /Users/g/sites/ci/ci-app/packages/eslint-plugin
+> prettier --write .
+
+.turbo/turbo-lint.log[2K[1G.turbo/turbo-lint$colon$fix.log[2K[1Gconfigs/ignores.js[2K[1G[90mconfigs/ignores.js[39m 97ms (unchanged)
+configs/imports.js[2K[1G[90mconfigs/imports.js[39m 4ms (unchanged)
+configs/index.js[2K[1G[90mconfigs/index.js[39m 3ms (unchanged)
+configs/javascript.js[2K[1G[90mconfigs/javascript.js[39m 44ms (unchanged)
+configs/jsx.js[2K[1G[90mconfigs/jsx.js[39m 36ms (unchanged)
+configs/prettier.js[2K[1G[90mconfigs/prettier.js[39m 6ms (unchanged)
+configs/react.js[2K[1G[90mconfigs/react.js[39m 26ms (unchanged)
+configs/typescript.js[2K[1G[90mconfigs/typescript.js[39m 33ms (unchanged)
+eslint.config.mjs[2K[1G[90meslint.config.mjs[39m 8ms (unchanged)
+factory.js[2K[1G[90mfactory.js[39m 30ms (unchanged)
+globs.js[2K[1G[90mglobs.js[39m 41ms (unchanged)
+index.js[2K[1G[90mindex.js[39m 1ms (unchanged)
+LICENSE[2K[1Glint-staged.config.cjs[2K[1G[90mlint-staged.config.cjs[39m 5ms (unchanged)
+package.json[2K[1G[90mpackage.json[39m 5ms (unchanged)
+plugins.js[2K[1G[90mplugins.js[39m 1ms (unchanged)
+utils.js[2K[1G[90mutils.js[39m 16ms (unchanged)

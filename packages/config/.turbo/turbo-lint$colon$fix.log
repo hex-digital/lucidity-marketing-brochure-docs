@@ -1,0 +1,18 @@
+
+
+> @pkg/config@0.0.1 lint:fix /Users/g/sites/ci/ci-app/packages/config
+> eslint --fix .; pnpm prettier:fix
+
+
+> @pkg/config@0.0.1 prettier:fix /Users/g/sites/ci/ci-app/packages/config
+> prettier --write .
+
+.gitignore[2K[1G.prettierrc.js[2K[1G[90m.prettierrc.js[39m 187ms (unchanged)
+.turbo/turbo-lint.log[2K[1G.turbo/turbo-lint$colon$fix.log[2K[1Geslint.config.mjs[2K[1G[90meslint.config.mjs[39m 23ms (unchanged)
+LICENSE[2K[1Glint-staged.config.js[2K[1G[90mlint-staged.config.js[39m 11ms (unchanged)
+package.json[2K[1G[90mpackage.json[39m 2ms (unchanged)
+tooling/helpers/getDefaultIgnorePatterns.js[2K[1G[90mtooling/helpers/getDefaultIgnorePatterns.js[39m 2ms (unchanged)
+tooling/helpers/getPrettierConfig.js[2K[1G[90mtooling/helpers/getPrettierConfig.js[39m 30ms (unchanged)
+tooling/helpers/index.js[2K[1G[90mtooling/helpers/index.js[39m 30ms (unchanged)
+tooling/prettier.base.config.js[2K[1G[90mtooling/prettier.base.config.js[39m 12ms (unchanged)
+tsconfig.json[2K[1G[90mtsconfig.json[39m 2ms (unchanged)
