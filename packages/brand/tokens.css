@@ -1,11 +1,21 @@
 /* packages/brand/tokens.css */
 @theme {
-    --color-primary: oklch(55% 0.2 250);
-    --color-primary-foreground: oklch(98% 0 0);
-    --color-neutral-50: oklch(98% 0 0);
-    --color-neutral-900: oklch(15% 0 0);
-    --font-sans: 'Geist', sans-serif;
-    --font-mono: 'Geist Mono', monospace;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
+    --color-rose: #f2c4ce;
+    --color-blush: #e8c8e4;
+    --color-iris: #cbbff0;
+    --color-haze: #b8d4f8;
+    --color-mist: #a8e8e8;
+    --color-dew: #b8edd4;
+    --color-ink: #171614;
+    --color-white: #fafaf8;
+    --color-paper: #f4f3ef;
+    --color-cartridge: #b8b4ac;
+    --color-muted: #8c897f;
+    --color-ash: #56534e;
+    --color-stone: #2e2c29;
+    --color-char: #171614;
+
+    --font-heading: navigo, sans-serif;
+    --font-body: "Figtree", sans-serif;
+    --font-mono: "Martian Mono", sans-serif;
 }
