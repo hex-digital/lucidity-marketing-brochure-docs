@@ -30,7 +30,7 @@
     "@vitest/coverage-v8": "catalog:testing",
     "@vitest/ui": "catalog:testing",
     "eslint": "catalog:lint",
-    "postcss": "catalog:lint",
+    "postcss": "catalog:dev",
     "prettier": "catalog:lint",
     "typescript": "catalog:dev",
     "vitest": "catalog:testing"

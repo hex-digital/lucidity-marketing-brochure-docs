@@ -6,29 +6,29 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
-    "types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
+    "typecheck": "fumadocs-mdx && next typegen && tsc --noEmit",
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
-    "fumadocs-core": "16.6.15",
-    "fumadocs-mdx": "14.2.9",
-    "fumadocs-ui": "16.6.15",
-    "lucide-react": "^0.577.0",
-    "next": "16.1.6",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "tailwind-merge": "^3.5.0",
-    "@takumi-rs/image-response": "^0.71.7",
-    "@pkg/brand": "workspace:*"
+    "@pkg/brand": "workspace:*",
+    "@takumi-rs/image-response": "catalog:utility",
+    "fumadocs-core": "catalog:docs",
+    "fumadocs-mdx": "catalog:docs",
+    "fumadocs-ui": "catalog:docs",
+    "lucide-react": "catalog:docs",
+    "next": "catalog:frontend",
+    "react": "catalog:frontend",
+    "react-dom": "catalog:frontend",
+    "tailwind-merge": "catalog:utility"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.2.1",
-    "@types/mdx": "^2.0.13",
-    "@types/node": "^25.4.0",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "postcss": "^8.5.8",
-    "tailwindcss": "^4.2.1",
-    "typescript": "^5.9.3"
+    "@tailwindcss/postcss": "catalog:frontend",
+    "@types/mdx": "catalog:types",
+    "@types/node": "catalog:types",
+    "@types/react": "catalog:types",
+    "@types/react-dom": "catalog:types",
+    "postcss": "catalog:dev",
+    "tailwindcss": "catalog:frontend",
+    "typescript": "catalog:dev"
   }
 }
