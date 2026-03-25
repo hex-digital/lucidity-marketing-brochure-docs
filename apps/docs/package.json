@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "dev": "next dev --port 3003",
     "build": "next build",
-    "dev": "next dev",
-    "start": "next start",
+    "start": "next start --port 3003",
     "typecheck": "fumadocs-mdx && next typegen && tsc --noEmit",
     "postinstall": "fumadocs-mdx"
   },
