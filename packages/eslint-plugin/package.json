@@ -12,15 +12,15 @@
     "prettier:fix": "prettier --write ."
   },
   "peerDependencies": {
-    "@eslint-react/eslint-plugin": "catalog:dev",
-    "eslint": "catalog:dev",
-    "eslint-plugin-format": "catalog:dev",
-    "eslint-plugin-import-x": "catalog:dev",
-    "eslint-plugin-react-compiler": "catalog:dev",
-    "eslint-plugin-react-hooks": "catalog:dev",
-    "eslint-plugin-react-refresh": "catalog:dev",
-    "eslint-plugin-unused-imports": "catalog:dev",
-    "eslint-plugin-jsx-a11y": "catalog:dev"
+    "@eslint-react/eslint-plugin": "catalog:lint",
+    "eslint": "catalog:lint",
+    "eslint-plugin-format": "catalog:lint",
+    "eslint-plugin-import-x": "catalog:lint",
+    "eslint-plugin-react-compiler": "catalog:lint",
+    "eslint-plugin-react-hooks": "catalog:lint",
+    "eslint-plugin-react-refresh": "catalog:lint",
+    "eslint-plugin-unused-imports": "catalog:lint",
+    "eslint-plugin-jsx-a11y": "catalog:lint"
   },
   "peerDependenciesMeta": {
     "@eslint-react/eslint-plugin": {
@@ -47,25 +47,25 @@
   },
   "dependencies": {
     "@clack/prompts": "latest",
-    "@typescript-eslint/eslint-plugin": "catalog:dev",
-    "@typescript-eslint/parser": "catalog:dev",
-    "eslint-flat-config-utils": "catalog:dev",
-    "globals": "catalog:dev",
+    "@typescript-eslint/eslint-plugin": "catalog:lint",
+    "@typescript-eslint/parser": "catalog:lint",
+    "eslint-flat-config-utils": "catalog:lint",
+    "globals": "catalog:lint",
     "local-pkg": "catalog:dev"
   },
   "devDependencies": {
-    "@eslint-react/eslint-plugin": "catalog:dev",
-    "@types/node": "catalog:dev",
-    "eslint": "catalog:dev",
-    "eslint-config-next": "catalog:dev",
-    "eslint-config-prettier": "catalog:dev",
-    "eslint-plugin-format": "catalog:dev",
-    "eslint-plugin-import-x": "catalog:dev",
-    "eslint-plugin-react-compiler": "catalog:dev",
-    "eslint-plugin-react-hooks": "catalog:dev",
-    "eslint-plugin-react-refresh": "catalog:dev",
-    "eslint-plugin-unused-imports": "catalog:dev",
-    "eslint-plugin-jsx-a11y": "catalog:dev",
+    "@eslint-react/eslint-plugin": "catalog:lint",
+    "@types/node": "catalog:types",
+    "eslint": "catalog:lint",
+    "eslint-config-next": "catalog:lint",
+    "eslint-config-prettier": "catalog:lint",
+    "eslint-plugin-format": "catalog:lint",
+    "eslint-plugin-import-x": "catalog:lint",
+    "eslint-plugin-react-compiler": "catalog:lint",
+    "eslint-plugin-react-hooks": "catalog:lint",
+    "eslint-plugin-react-refresh": "catalog:lint",
+    "eslint-plugin-unused-imports": "catalog:lint",
+    "eslint-plugin-jsx-a11y": "catalog:lint",
     "lint-staged": "catalog:dev"
   }
 }

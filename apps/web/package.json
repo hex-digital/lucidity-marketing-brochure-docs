@@ -9,10 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "@pkg/brand": "workspace:*"
+    "@pkg/brand": "workspace:*",
+    "next": "catalog:frontend",
+    "react": "catalog:frontend",
+    "react-dom": "catalog:frontend"
   },
   "devDependencies": {
     "@pkg/eslint-plugin": "workspace:*",
