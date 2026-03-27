@@ -2,31 +2,38 @@ import { createMDX } from 'fumadocs-mdx/next';
 import type { NextConfig } from 'next';
 import { env } from '@/env';
 import { config, withAnalyzer } from '@pkg/next-config';
+import { withLogging, withSentry } from '@pkg/observability/next-config';
 
 const withMDX = createMDX();
 
-let nextConfig: NextConfig = {
-  ...config,
-  serverExternalPackages: ['@takumi-rs/image-response'],
-  reactStrictMode: true,
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/get-started',
-        permanent: false,
-      },
-    ];
-  },
-  async rewrites() {
-    return [
-      {
-        source: '/:path*.mdx',
-        destination: '/llms.mdx/docs/:path*',
-      },
-    ];
-  },
-};
+let nextConfig: NextConfig = withLogging(
+  withMDX({
+    ...config,
+    serverExternalPackages: ['@takumi-rs/image-response'],
+    reactStrictMode: true,
+    async redirects() {
+      return [
+        {
+          source: '/',
+          destination: '/get-started',
+          permanent: false,
+        },
+      ];
+    },
+    async rewrites() {
+      return [
+        {
+          source: '/:path*.mdx',
+          destination: '/llms.mdx/docs/:path*',
+        },
+      ];
+    },
+  }),
+);
+
+if (env.VERCEL) {
+  nextConfig = withSentry(nextConfig);
+}
 
 if (env.ANALYZE === 'true') {
   nextConfig = withAnalyzer(nextConfig);

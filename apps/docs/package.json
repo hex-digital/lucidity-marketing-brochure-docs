@@ -14,9 +14,13 @@
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
+    "@pkg/analytics": "workspace:*",
     "@pkg/brand": "workspace:*",
+    "@pkg/observability": "workspace:*",
     "@pkg/next-config": "workspace:*",
     "@takumi-rs/image-response": "catalog:utility",
+    "@t3-oss/env-nextjs": "catalog:dev",
+    "@vercel/speed-insights": "catalog:observability",
     "fumadocs-core": "catalog:docs",
     "fumadocs-mdx": "catalog:docs",
     "fumadocs-ui": "catalog:docs",
@@ -24,9 +28,9 @@
     "next": "catalog:frontend",
     "react": "catalog:frontend",
     "react-dom": "catalog:frontend",
+    "@sentry/nextjs": "catalog:observability",
     "tailwind-merge": "catalog:utility",
-    "zod": "catalog:types",
-    "@t3-oss/env-nextjs": "catalog:dev"
+    "zod": "catalog:types"
   },
   "devDependencies": {
     "@pkg/eslint-plugin": "workspace:*",
@@ -42,7 +46,9 @@
     "postcss": "catalog:dev",
     "prettier": "catalog:lint",
     "tailwindcss": "catalog:frontend",
-    "typescript": "catalog:dev"
+    "typescript": "catalog:dev",
+    "@vitejs/plugin-react": "catalog:bundling",
+    "vitest": "catalog:testing"
   },
   "dependency": {
     "fumadocs-ui": "npm:@fumadocs/base-ui@latest"

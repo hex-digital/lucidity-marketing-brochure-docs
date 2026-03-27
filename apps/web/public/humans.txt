@@ -1,0 +1,18 @@
+# https://humanstxt.org/
+
+/* TEAM */
+  Developer: Jamie Warburton (Hex Digital)
+  Contact: jamie [at] hexdigital.com
+  Twitter: jamiewarb
+  GitHub: github.com/jamiewarb
+  From: London, England, United Kingdom
+
+  Developer: Giuseppe Castiglione (Hex Digital)
+  Contact: g [at] hexdigital.com
+  GitHub: github.com/giuseppe-hex
+  From: London, England, United Kingdom
+
+  Agency: Hex Digital
+  Contact: hello [at] hexdigital.com
+  Twitter: hexdigital
+  From: London, England, United Kingdom
