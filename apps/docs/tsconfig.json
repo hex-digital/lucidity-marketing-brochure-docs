@@ -27,7 +27,8 @@
       "@/config/*": ["./config/*"],
       "@/env": ["./env.ts"],
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["vitest/globals"]
   },
   "include": [
     ".eslintrc.*",

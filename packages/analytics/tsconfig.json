@@ -2,18 +2,21 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "./src",
     "target": "esnext",
     "module": "esnext",
+    "moduleResolution": "bundler",
+    "strictNullChecks": true,
     "lib": ["dom", "dom.iterable", "esnext"],
-    "jsx": "react-jsx",
-    "noEmit": false,
-    "incremental": true,
-    "types": ["node", "vitest/globals"]
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "types": ["@types/node", "vitest/globals"],
+    "plugins": [{ "name": "next" }]
   },
-  "exclude": ["**/node_modules", "**/.*/*"],
+  "exclude": ["node_modules"],
   "include": [
     ".eslintrc.*",
+    "next-env.d.ts",
+    "./config/tests/setupVitest.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.mts",
@@ -22,7 +25,6 @@
     "**/*.mjs",
     "**/*.jsx",
     "**/*.json",
-    "../eslint-plugin/globs.js",
-    "../eslint-plugin/utils.js"
+    ".next/types/**/*.ts"
   ]
 }

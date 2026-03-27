@@ -1,32 +1,41 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import './global.css';
-import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import { appConfig } from '@/config/app';
 import { seoConfig } from '@/config/seo';
-
-const inter = Inter({
-  subsets: ['latin'],
-});
+import { env } from '@/env';
+import { fonts } from '@pkg/brand/fonts';
+import { AnalyticsProvider } from '@pkg/analytics/provider';
+import { PerformanceMonitorProvider } from '@pkg/observability/provider';
 
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen">
+    <html lang="en" className={fonts.inter.className} suppressHydrationWarning>
+      <body className="flex flex-col min-h-screen touch-manipulation">
+        <ProductionOnlyProviders />
         <RootProvider>{children}</RootProvider>
       </body>
     </html>
   );
 }
 
-const siteTitle = 'Docs for Lucidity, the Enterprise Starter Kit for Sanity CMS';
+function ProductionOnlyProviders() {
+  return (
+    !!env.VERCEL && (
+      <>
+        <PerformanceMonitorProvider />
+        <AnalyticsProvider />
+      </>
+    )
+  );
+}
 
 export const metadata: Metadata = {
   title: {
-    template: `%s — ${siteTitle}`,
-    default: siteTitle,
+    template: `%s — ${seoConfig.title}`,
+    default: seoConfig.title,
   },
-  description: 'The best way to start building with Sanity CMS',
+  description: seoConfig.description,
   authors: { url: `${appConfig.baseUrl}/humans.txt` },
   robots: { index: !seoConfig.noIndex },
   icons: {
