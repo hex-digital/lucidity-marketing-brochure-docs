@@ -13,4 +13,4 @@ export const analytics =
         flushAt: 1,
         flushInterval: 0,
       })
-    : undefined;
+    : { capture: () => {} };

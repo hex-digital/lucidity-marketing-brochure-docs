@@ -41,6 +41,7 @@
     "@types/react": "catalog:types",
     "@types/react-dom": "catalog:types",
     "@types/rss": "catalog:types",
+    "@vitejs/plugin-react": "catalog:bundling",
     "eslint": "catalog:lint",
     "eslint-config-next": "catalog:lint",
     "eslint-config-prettier": "catalog:lint",
