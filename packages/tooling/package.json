@@ -1,11 +1,14 @@
 {
-  "name": "@pkg/config",
+  "name": "@pkg/tooling",
   "version": "0.0.1",
   "private": true,
   "sideEffects": false,
   "type": "commonjs",
   "main": "./src/index.js",
-  "license": "MIT",
+  "author": {
+    "name": "Jamie Warburton",
+    "url": "https://github.com/jamiewarb"
+  },
   "scripts": {
     "lint": "eslint . && pnpm prettier",
     "lint:fix": "eslint --fix . && pnpm prettier:fix",
@@ -14,7 +17,7 @@
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "peerDependencies": {
-    "prettier": "catalog:dev"
+    "prettier": "catalog:lint"
   },
   "peerDependenciesMeta": {
     "prettier": {
@@ -23,11 +26,11 @@
   },
   "devDependencies": {
     "@pkg/eslint-plugin": "workspace:*",
-    "@pkg/tooling": "workspace:*",
     "@types/node": "catalog:types",
     "@vitest/coverage-v8": "catalog:testing",
     "@vitest/ui": "catalog:testing",
     "eslint": "catalog:lint",
+    "postcss": "catalog:dev",
     "prettier": "catalog:lint",
     "typescript": "catalog:dev",
     "vitest": "catalog:testing"

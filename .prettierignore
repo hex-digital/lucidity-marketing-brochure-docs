@@ -1,0 +1,14 @@
+.backups
+.env
+.next
+.cache
+package-lock.json
+public
+node_modules
+next-env.d.ts
+yarn.lock
+pnpm.lock
+tsconfig.tsbuildinfo
+.lintstagedrc.cjs
+postcss.config.mjs
+pnpm-lock.yaml
