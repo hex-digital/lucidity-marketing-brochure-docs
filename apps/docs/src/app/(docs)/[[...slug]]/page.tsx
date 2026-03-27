@@ -11,7 +11,7 @@ import { notFound } from 'next/navigation';
 import { getMDXComponents } from '@/components/mdx';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
-import { gitConfig } from '@/lib/layout.shared';
+import { appConfig } from '@/config/app';
 
 export default async function Page(props: PageProps<'/[[...slug]]'>) {
   const params = await props.params;
@@ -28,7 +28,7 @@ export default async function Page(props: PageProps<'/[[...slug]]'>) {
         <MarkdownCopyButton markdownUrl={`${page.url}.mdx`} />
         <ViewOptionsPopover
           markdownUrl={`${page.url}.mdx`}
-          githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/content/docs/${page.path}`}
+          githubUrl={`https://github.com/${appConfig.git.user}/${appConfig.git.repo}/blob/${appConfig.git.branch}/content/docs/${page.path}`}
         />
       </div>
       <DocsBody>
@@ -53,7 +53,7 @@ export async function generateMetadata(props: PageProps<'/[[...slug]]'>): Promis
   if (!page) notFound();
 
   return {
-    title: page.data.title,
+    title: page.data.pageTitle ?? page.data.title,
     description: page.data.description,
     openGraph: {
       images: getPageImage(page).url,

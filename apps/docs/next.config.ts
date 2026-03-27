@@ -1,9 +1,12 @@
 import { createMDX } from 'fumadocs-mdx/next';
+import type { NextConfig } from 'next';
+import { env } from '@/env';
+import { config, withAnalyzer } from '@pkg/next-config';
 
 const withMDX = createMDX();
 
-/** @type {import('next').NextConfig} */
-const config = {
+let nextConfig: NextConfig = {
+  ...config,
   serverExternalPackages: ['@takumi-rs/image-response'],
   reactStrictMode: true,
   async redirects() {
@@ -25,4 +28,8 @@ const config = {
   },
 };
 
-export default withMDX(config);
+if (env.ANALYZE === 'true') {
+  nextConfig = withAnalyzer(nextConfig);
+}
+
+export default withMDX(nextConfig);

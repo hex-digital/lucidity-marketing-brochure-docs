@@ -1,6 +1,5 @@
 {
   "title": "Guides",
-  "root": true,
   "pages": [
     "project-setup",
     "configuration",

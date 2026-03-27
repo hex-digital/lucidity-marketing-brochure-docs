@@ -5,30 +5,18 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "strict": true,
     "strictNullChecks": true,
-    "incremental": true,
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/config/*": ["./config/*"],
-      "@/*": ["./src/*"]
-    }
+    "types": ["vitest/globals"],
+    "plugins": [{ "name": "typescript-plugin-css-modules" }, { "name": "next" }]
   },
+  "exclude": ["node_modules"],
   "include": [
     ".eslintrc.*",
     "next-env.d.ts",
+    "./config/tests/setupVitest.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.mts",
@@ -38,6 +26,5 @@
     "**/*.jsx",
     "**/*.json",
     ".next/types/**/*.ts"
-  ],
-  "exclude": ["node_modules"]
+  ]
 }

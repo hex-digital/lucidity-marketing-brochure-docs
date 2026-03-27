@@ -1,14 +1,20 @@
 import { source } from '@/lib/source';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
-import { baseOptions } from '@/lib/layout.shared';
-import { DocsSectionBar } from '@/components/docs-section-bar';
+import { SectionLinksBar } from '@/components/SectionLinksBar/SectionLinksBar';
+import { appConfig } from '@/config/app';
+import { SidebarLogo } from '@/components/SidebarLogo';
 
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
     <>
       <DocsLayout
         tree={source.getPageTree()}
-        {...baseOptions()}
+        sidebar={{ prefetch: false }}
+        nav={{
+          title: <SidebarLogo />,
+          component: <SectionLinksBar />,
+        }}
+        githubUrl={`https://github.com/${appConfig.git.user}/${appConfig.git.repo}`}
         containerProps={{
           style: {
             gridTemplate: `

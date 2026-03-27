@@ -3,14 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3003",
+    "dev": "next dev --port 3001",
     "build": "next build",
-    "start": "next start --port 3003",
+    "start": "next start",
     "typecheck": "fumadocs-mdx && next typegen && tsc --noEmit",
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
     "@pkg/brand": "workspace:*",
+    "@pkg/next-config": "workspace:*",
     "@takumi-rs/image-response": "catalog:utility",
     "fumadocs-core": "catalog:docs",
     "fumadocs-mdx": "catalog:docs",
@@ -19,15 +20,23 @@
     "next": "catalog:frontend",
     "react": "catalog:frontend",
     "react-dom": "catalog:frontend",
-    "tailwind-merge": "catalog:utility"
+    "tailwind-merge": "catalog:utility",
+    "zod": "catalog:types",
+    "@t3-oss/env-nextjs": "catalog:dev"
   },
   "devDependencies": {
+    "@pkg/eslint-plugin": "workspace:*",
     "@tailwindcss/postcss": "catalog:frontend",
     "@types/mdx": "catalog:types",
     "@types/node": "catalog:types",
     "@types/react": "catalog:types",
     "@types/react-dom": "catalog:types",
+    "eslint": "catalog:lint",
+    "eslint-config-next": "catalog:lint",
+    "eslint-config-prettier": "catalog:lint",
+    "eslint-plugin-react-compiler": "catalog:lint",
     "postcss": "catalog:dev",
+    "prettier": "catalog:lint",
     "tailwindcss": "catalog:frontend",
     "typescript": "catalog:dev"
   },
