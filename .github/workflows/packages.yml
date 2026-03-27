@@ -95,8 +95,3 @@ jobs:
 
       - name: 🏗 Build packages if needed
         run: pnpm g:build --filter="./packages/*"
-
-      - name: Build storybook 🧐
-        run: pnpm g:build-storybook --filter="./packages/*"
-        env:
-          STORYBOOK_DISABLE_TELEMETRY: 1
