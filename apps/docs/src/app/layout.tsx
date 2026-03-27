@@ -3,6 +3,7 @@ import './global.css';
 import type { Metadata } from 'next';
 import { appConfig } from '@/config/app';
 import { seoConfig } from '@/config/seo';
+import { env } from '@/env';
 import { fonts } from '@pkg/brand/fonts';
 import { AnalyticsProvider } from '@pkg/analytics/provider';
 import { PerformanceMonitorProvider } from '@pkg/observability/provider';
@@ -10,14 +11,22 @@ import { PerformanceMonitorProvider } from '@pkg/observability/provider';
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={fonts.inter.className} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen">
-        <AnalyticsProvider>
-          <PerformanceMonitorProvider>
-            <RootProvider>{children}</RootProvider>
-          </PerformanceMonitorProvider>
-        </AnalyticsProvider>
+      <body className="flex flex-col min-h-screen touch-manipulation">
+        <ProductionOnlyProviders />
+        <RootProvider>{children}</RootProvider>
       </body>
     </html>
+  );
+}
+
+function ProductionOnlyProviders() {
+  return (
+    !!env.VERCEL && (
+      <>
+        <PerformanceMonitorProvider />
+        <AnalyticsProvider />
+      </>
+    )
   );
 }
 

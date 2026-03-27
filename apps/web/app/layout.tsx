@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { appConfig } from '@/config/app';
 import { seoConfig } from '@/config/seo';
+import { env } from '@/env';
 import { AnalyticsProvider } from '@pkg/analytics/provider';
 import { PerformanceMonitorProvider } from '@pkg/observability/provider';
 
@@ -23,12 +24,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <AnalyticsProvider>
-          <PerformanceMonitorProvider>{children}</PerformanceMonitorProvider>
-        </AnalyticsProvider>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased touch-manipulation`}
+      >
+        <ProductionOnlyProviders />
+        {children}
       </body>
     </html>
+  );
+}
+
+function ProductionOnlyProviders() {
+  return (
+    !!env.VERCEL && (
+      <>
+        <PerformanceMonitorProvider />
+        <AnalyticsProvider />
+      </>
+    )
   );
 }
 

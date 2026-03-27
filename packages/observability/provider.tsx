@@ -1,19 +1,13 @@
-import type { ReactNode } from 'react';
 import { env } from './env';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { BetterStackWebVitals } from '@logtail/next/webVitals';
 
-interface PerformanceMonitorProviderProps {
-  readonly children: ReactNode;
-}
-
 const { NEXT_PUBLIC_BETTER_STACK_SOURCE_TOKEN, NEXT_PUBLIC_BETTER_STACK_INGESTING_URL } =
   env();
 
-export function PerformanceMonitorProvider({ children }: PerformanceMonitorProviderProps) {
+export function PerformanceMonitorProvider() {
   return (
     <>
-      {children}
       <SpeedInsights />
       {!!NEXT_PUBLIC_BETTER_STACK_SOURCE_TOKEN && !!NEXT_PUBLIC_BETTER_STACK_INGESTING_URL && (
         <BetterStackWebVitals />

@@ -1,7 +1,0 @@
-{
-  "title": "Introduction",
-  "description": "The Enterprise-ready SanityCMS starter kit",
-  "icon": "Home",
-  "pages": ["../help", "what-is-lucidity"],
-  "defaultOpen": true
-}
