@@ -30,5 +30,8 @@
     "postcss": "catalog:dev",
     "tailwindcss": "catalog:frontend",
     "typescript": "catalog:dev"
+  },
+  "dependency": {
+    "fumadocs-ui": "npm:@fumadocs/base-ui@latest"
   }
 }

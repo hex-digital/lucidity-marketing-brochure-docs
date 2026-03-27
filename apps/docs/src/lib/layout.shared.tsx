@@ -1,17 +1,46 @@
+import { DocsSectionBar } from '@/components/docs-section-bar';
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 
-// fill this with your actual GitHub info, for example:
 export const gitConfig = {
-  user: 'fuma-nama',
-  repo: 'fumadocs',
+  user: 'hex-digital',
+  repo: 'lucidity-marketing-brochure-docs',
   branch: 'main',
 };
 
 export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
-      title: 'My App',
+      title: 'Lucidity',
+      component: (
+        <div className="[grid-area:header]">
+          <DocsSectionBar />
+        </div>
+      ),
     },
     githubUrl: `https://github.com/${gitConfig.user}/${gitConfig.repo}`,
   };
 }
+
+export type DocsSectionLink = {
+  text: string;
+  url: string;
+};
+
+export const docsSectionLinks: DocsSectionLink[] = [
+  {
+    text: 'Get Started',
+    url: '/get-started',
+  },
+  {
+    text: 'Features',
+    url: '/features',
+  },
+  {
+    text: 'Reference',
+    url: '/reference',
+  },
+  {
+    text: 'Enterprise',
+    url: '/enterprise',
+  },
+];

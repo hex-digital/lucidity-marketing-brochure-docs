@@ -6,10 +6,19 @@ const withMDX = createMDX();
 const config = {
   serverExternalPackages: ['@takumi-rs/image-response'],
   reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/get-started',
+        permanent: false,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {
-        source: '/docs/:path*.mdx',
+        source: '/:path*.mdx',
         destination: '/llms.mdx/docs/:path*',
       },
     ];

@@ -1,0 +1,17 @@
+{
+  "title": "Guides",
+  "root": true,
+  "pages": [
+    "project-setup",
+    "configuration",
+    "content-modelling",
+    "editorial-workflows",
+    "frontend-development",
+    "enterprise-workflows",
+    "deployment-and-operations",
+    "extension-patterns",
+    "upgrading",
+    "changing-integrations"
+  ],
+  "icon": "BookMarked"
+}
