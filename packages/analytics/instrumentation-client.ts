@@ -16,5 +16,6 @@ export const initializeAnalytics = () => {
     api_host: NEXT_PUBLIC_POSTHOG_HOST,
     ui_host: NEXT_PUBLIC_POSTHOG_UI_HOST ?? NEXT_PUBLIC_POSTHOG_HOST,
     defaults: '2026-01-30',
+    person_profiles: 'always',
   });
 };
