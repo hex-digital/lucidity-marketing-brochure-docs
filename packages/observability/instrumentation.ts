@@ -1,4 +1,3 @@
-// biome-ignore lint/performance/noNamespaceImport: Sentry SDK convention
 import * as Sentry from '@sentry/nextjs';
 
 export const onRequestError = Sentry.captureRequestError;
