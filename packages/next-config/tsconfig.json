@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "strictNullChecks": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "types": ["vitest/globals"],
+    "plugins": [{ "name": "typescript-plugin-css-modules" }, { "name": "next" }]
+  },
+  "exclude": ["node_modules"],
+  "include": [
+    ".eslintrc.*",
+    "next-env.d.ts",
+    "./config/tests/setupVitest.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.mts",
+    "**/*.js",
+    "**/*.cjs",
+    "**/*.mjs",
+    "**/*.jsx",
+    "**/*.json",
+    ".next/types/**/*.ts"
+  ]
+}

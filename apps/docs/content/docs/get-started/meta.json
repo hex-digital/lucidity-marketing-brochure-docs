@@ -1,0 +1,18 @@
+{
+  "title": "Get Started",
+  "root": true,
+  "pages": [
+    "---Introduction---",
+    "index",
+    "philosophy",
+    "faq",
+    "enterprise",
+    "---Usage---",
+    "quickstart",
+    "structure",
+    "guides",
+    "deploy",
+    "---Help---",
+    "...help"
+  ]
+}
