@@ -15,6 +15,7 @@ export default function Layout({ children }: LayoutProps<'/'>) {
       <DocsLayout
         tree={source.getPageTree()}
         sidebar={{ prefetch: false }}
+        themeSwitch={{ mode: 'light-dark-system' }}
         nav={{
           title: <SidebarLogo />,
           component: <SectionLinksBar />,
