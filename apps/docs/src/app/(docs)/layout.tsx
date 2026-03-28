@@ -3,10 +3,15 @@ import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { SectionLinksBar } from '@/components/SectionLinksBar/SectionLinksBar';
 import { appConfig } from '@/config/app';
 import { SidebarLogo } from '@/components/SidebarLogo';
+import Image from 'next/image';
+import starryBg from '../../../public/starry-bg.png';
 
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
-    <>
+    <div className="relative isolate">
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 hidden dark:block">
+        <Image src={starryBg} alt="" priority className="h-auto w-full" />
+      </div>
       <DocsLayout
         tree={source.getPageTree()}
         sidebar={{ prefetch: false }}
@@ -32,6 +37,6 @@ export default function Layout({ children }: LayoutProps<'/'>) {
       >
         {children}
       </DocsLayout>
-    </>
+    </div>
   );
 }
