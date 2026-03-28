@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useWindowScrollPosition } from 'rooks';
 import { appConfig } from '@/config/app';
 import { SectionLink } from '@/components/SectionLinksBar/SectionLink';
 import { cn } from '@/lib/cn';
@@ -8,25 +9,16 @@ import { cn } from '@/lib/cn';
 const SCROLL_THRESHOLD = 25;
 
 export function SectionLinksBar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useWindowScrollPosition();
+  const isScrolled = scrollY >= SCROLL_THRESHOLD;
 
   useEffect(() => {
-    const handleScroll = () => {
-      const nextIsScrolled = window.scrollY >= SCROLL_THRESHOLD;
-
-      setIsScrolled(nextIsScrolled);
-      document.documentElement.dataset.docsScrolled = String(nextIsScrolled);
-    };
-
-    handleScroll();
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.documentElement.dataset.docsScrolled = String(isScrolled);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       delete document.documentElement.dataset.docsScrolled;
     };
-  }, []);
+  }, [isScrolled]);
 
   return (
     <div className="[grid-area:header] sticky top-(--fd-docs-row-1) z-30">

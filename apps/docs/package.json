@@ -28,6 +28,7 @@
     "next": "catalog:frontend",
     "react": "catalog:frontend",
     "react-dom": "catalog:frontend",
+    "rooks": "catalog:utility",
     "@sentry/nextjs": "catalog:observability",
     "tailwind-merge": "catalog:utility",
     "zod": "catalog:types"
