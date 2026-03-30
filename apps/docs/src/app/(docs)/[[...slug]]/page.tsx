@@ -13,6 +13,7 @@ import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { appConfig } from '@/config/app';
 import { HexDigitalTocAd } from '@/components/HexDigitalTocAd';
+import { DocsFooter } from '@/components/DocsFooter';
 
 export default async function Page(props: PageProps<'/[[...slug]]'>) {
   const params = await props.params;
@@ -48,6 +49,11 @@ export default async function Page(props: PageProps<'/[[...slug]]'>) {
             })}
           />
         </DocsBody>
+        <DocsFooter
+          className="mb-2"
+          githubUrl={`https://github.com/${appConfig.git.user}/${appConfig.git.repo}/blob/${appConfig.git.branch}/content/docs/${page.path}`}
+          lastModified={page.data.lastModified}
+        />
       </DocsPage>
     </>
   );
