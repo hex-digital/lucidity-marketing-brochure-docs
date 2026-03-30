@@ -12,34 +12,44 @@ import { getMDXComponents } from '@/components/mdx';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { appConfig } from '@/config/app';
+import { HexDigitalTocAd } from '@/components/HexDigitalTocAd';
 
 export default async function Page(props: PageProps<'/[[...slug]]'>) {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
-  const MDX = page.data.body;
+  const Mdx = page.data.body;
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
-      <DocsTitle>{page.data.pageTitle ?? page.data.title}</DocsTitle>
-      <DocsDescription className="mb-0">{page.data.description}</DocsDescription>
-      <div className="flex flex-row gap-2 items-center border-b pb-6">
-        <MarkdownCopyButton markdownUrl={`${page.url}.mdx`} />
-        <ViewOptionsPopover
-          markdownUrl={`${page.url}.mdx`}
-          githubUrl={`https://github.com/${appConfig.git.user}/${appConfig.git.repo}/blob/${appConfig.git.branch}/content/docs/${page.path}`}
-        />
-      </div>
-      <DocsBody>
-        <MDX
-          components={getMDXComponents({
-            // this allows you to link to other pages with relative file paths
-            a: createRelativeLink(source, page),
-          })}
-        />
-      </DocsBody>
-    </DocsPage>
+    <>
+      <div id="main-content" tabIndex={-1} className="outline-none" />
+      <DocsPage
+        toc={page.data.toc}
+        full={page.data.full}
+        tableOfContent={{ footer: <HexDigitalTocAd /> }}
+        id="nd-page"
+        tabIndex={-1}
+      >
+        <DocsTitle>{page.data.pageTitle ?? page.data.title}</DocsTitle>
+        <DocsDescription className="mb-0">{page.data.description}</DocsDescription>
+        <div className="flex flex-row gap-2 items-center border-b pb-6">
+          <MarkdownCopyButton markdownUrl={`${page.url}.mdx`} />
+          <ViewOptionsPopover
+            markdownUrl={`${page.url}.mdx`}
+            githubUrl={`https://github.com/${appConfig.git.user}/${appConfig.git.repo}/blob/${appConfig.git.branch}/content/docs/${page.path}`}
+          />
+        </div>
+        <DocsBody>
+          <Mdx
+            components={getMDXComponents({
+              // this allows you to link to other pages with relative file paths
+              a: createRelativeLink(source, page),
+            })}
+          />
+        </DocsBody>
+      </DocsPage>
+    </>
   );
 }
 

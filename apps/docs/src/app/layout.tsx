@@ -13,7 +13,9 @@ export default function Layout({ children }: LayoutProps<'/'>) {
     <html lang="en" className={fonts.inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen touch-manipulation">
         <ProductionOnlyProviders />
-        <RootProvider>{children}</RootProvider>
+        <RootProvider theme={{ defaultTheme: 'system', enableSystem: true }}>
+          {children}
+        </RootProvider>
       </body>
     </html>
   );

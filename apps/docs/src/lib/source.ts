@@ -1,12 +1,26 @@
 import { docs } from 'collections/server';
 import { type InferPageType, loader } from 'fumadocs-core/source';
-import { lucideIconsPlugin } from 'fumadocs-core/source/lucide-icons';
+import { icons } from 'lucide-react';
+import { createElement } from 'react';
+import { HexDigitalSidebarIcon } from '@/components/HexDigitalSidebarIcon';
+
+const localIcons = {
+  HexLogo: HexDigitalSidebarIcon,
+} as const;
 
 // See https://fumadocs.dev/docs/headless/source-api for more info
 export const source = loader({
   baseUrl: '/',
   source: docs.toFumadocsSource(),
-  plugins: [lucideIconsPlugin()],
+  icon(icon) {
+    if (!icon) return;
+
+    const LocalIcon = localIcons[icon as keyof typeof localIcons];
+    if (LocalIcon) return createElement(LocalIcon);
+
+    const LucideIcon = icons[icon as keyof typeof icons];
+    if (LucideIcon) return createElement(LucideIcon);
+  },
 });
 
 export function getPageImage(page: InferPageType<typeof source>) {

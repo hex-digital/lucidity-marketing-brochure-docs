@@ -4,10 +4,14 @@ import { z } from 'zod';
 export const env = () =>
   createEnv({
     client: {
-      NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: z.string().startsWith('phc_').optional(),
-      NEXT_PUBLIC_POSTHOG_HOST: z.url().optional(),
-      NEXT_PUBLIC_POSTHOG_UI_HOST: z.url().optional(),
-      NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().startsWith('G-').optional(),
+      NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: z
+        .string()
+        .startsWith('phc_')
+        .optional()
+        .or(z.literal('')),
+      NEXT_PUBLIC_POSTHOG_HOST: z.url().optional().or(z.literal('')),
+      NEXT_PUBLIC_POSTHOG_UI_HOST: z.url().optional().or(z.literal('')),
+      NEXT_PUBLIC_GA_MEASUREMENT_ID: z.string().startsWith('G-').optional().or(z.literal('')),
     },
     runtimeEnv: {
       NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN,
