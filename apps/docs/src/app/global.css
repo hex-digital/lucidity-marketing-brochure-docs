@@ -9,6 +9,14 @@
     --fd-header-height: var(--docs-section-links-height);
   }
 
+  /**
+   * [1] Override Fumadocs' default dark sidebar fill with the requested translucent background.
+   */
+  .dark #nd-docs-layout #nd-sidebar,
+  html[data-theme='dark'] #nd-docs-layout #nd-sidebar {
+    background-color: rgba(22, 22, 22, 0.3) !important; /* [1] */
+  }
+
   #nd-docs-layout #nd-toc {
     top: var(--fd-docs-row-2);
     height: calc(var(--fd-docs-height) - var(--fd-docs-row-2));
@@ -44,4 +52,14 @@ html[data-docs-scrolled='true'] #nd-docs-layout [data-toc-popover] > header,
     transparent
   ) !important;
   backdrop-filter: blur(12px) !important;
+}
+
+/**
+ * [1] Remove the default Fumadocs border treatment from the TOC promo card in both desktop and popover variants.
+ */
+#nd-docs-layout #nd-toc .rounded-lg.border.bg-fd-card.p-3.text-xs.text-fd-muted-foreground,
+#nd-docs-layout
+  [data-toc-popover-content]
+  .rounded-lg.border.bg-fd-card.p-3.text-xs.text-fd-muted-foreground {
+  border-color: transparent !important; /* [1] */
 }

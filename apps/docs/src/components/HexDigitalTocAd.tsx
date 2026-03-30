@@ -9,7 +9,7 @@ export function HexDigitalTocAd({ className }: HexDigitalTocAdProps) {
   return (
     <aside
       className={cn(
-        'mt-auto space-y-4 rounded-2xl border border-fd-border/80 bg-fd-background/80 p-4 text-sm shadow-sm backdrop-blur-sm',
+        'mt-auto mb-2 space-y-4 rounded-2xl border border-fd-border/80 bg-fd-background/80 p-4 text-sm shadow-sm backdrop-blur-sm',
         className,
       )}
     >

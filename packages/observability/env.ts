@@ -10,10 +10,10 @@ export const env = () =>
     },
     client: {
       NEXT_PUBLIC_BETTER_STACK_SOURCE_TOKEN: z.string().optional(),
-      NEXT_PUBLIC_BETTER_STACK_INGESTING_URL: z.url().optional(),
+      NEXT_PUBLIC_BETTER_STACK_INGESTING_URL: z.url().optional().or(z.literal('')),
 
       // Added by Sentry Integration, Vercel Marketplace, if using
-      NEXT_PUBLIC_SENTRY_DSN: z.url().optional(),
+      NEXT_PUBLIC_SENTRY_DSN: z.url().optional().or(z.literal('')),
     },
     runtimeEnv: {
       NEXT_PUBLIC_BETTER_STACK_SOURCE_TOKEN: process.env.NEXT_PUBLIC_BETTER_STACK_SOURCE_TOKEN,
