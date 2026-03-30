@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useWindowScrollPosition } from 'rooks';
 import { appConfig } from '@/config/app';
-import { SectionLink } from '@/components/SectionLinksBar/SectionLink';
+import { SectionLink } from '@/components/SectionLinksBar/SectionLink/SectionLink';
 import { cn } from '@/lib/cn';
 
 const SCROLL_THRESHOLD = 25;

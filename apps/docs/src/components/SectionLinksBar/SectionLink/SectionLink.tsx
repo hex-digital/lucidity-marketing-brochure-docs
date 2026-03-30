@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/cn';
+import styles from './styles.module.css';
 
 function isActive(pathname: string, url: string) {
   return pathname === url || pathname.startsWith(`${url}/`);
@@ -14,20 +15,13 @@ interface Props {
 
 export function SectionLink({ link }: Props) {
   const pathname = usePathname();
+  const active = isActive(pathname, link.url);
 
   return (
     <Link
       key={link.url}
       href={link.url}
-      className={cn(
-        'rounded-md px-3 py-2 text-sm font-medium text-fd-muted-foreground transition-colors hover:text-fd-accent-foreground',
-        isActive(pathname, link.url) && 'text-fd-primary',
-      )}
-      style={{
-        background: isActive(pathname, link.url)
-          ? 'color-mix(in oklab, var(--color-fd-primary) 10%, transparent)'
-          : undefined,
-      }}
+      className={cn(styles.link, active ? styles.active : styles.inactive)}
     >
       {link.text}
     </Link>
