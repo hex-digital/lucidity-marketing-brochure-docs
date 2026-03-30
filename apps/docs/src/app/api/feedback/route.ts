@@ -9,6 +9,7 @@ import {
   postSlackMessage,
   updateSlackMessage,
 } from '@pkg/notifications/server';
+import type { SlackBlock } from '@pkg/notifications';
 
 const feedbackRequestSchema = z.object({
   rating: z.enum(['very-unhelpful', 'unhelpful', 'helpful', 'very-helpful']),
@@ -33,6 +34,32 @@ function buildPayload(input: FeedbackRequest, comment: string) {
   };
 }
 
+function buildBlocks(input: FeedbackRequest, comment: string): SlackBlock[] {
+  const blocks: SlackBlock[] = [
+    {
+      type: 'section',
+      text: {
+        type: 'mrkdwn',
+        verbatim: true,
+        text: buildSlackFeedbackInitialText(buildPayload(input, '')),
+      },
+    },
+  ];
+
+  if (comment) {
+    blocks.push({
+      type: 'section',
+      text: {
+        type: 'mrkdwn',
+        verbatim: true,
+        text: buildSlackFeedbackCommentText(comment),
+      },
+    });
+  }
+
+  return blocks;
+}
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as unknown;
@@ -48,6 +75,7 @@ export async function POST(request: Request) {
       const result = await postSlackMessage({
         channel,
         text: buildSlackFeedbackInitialText(buildPayload(input, '')),
+        blocks: buildBlocks(input, ''),
       });
 
       return Response.json({
@@ -64,10 +92,12 @@ export async function POST(request: Request) {
           channel,
           ts: input.ts,
           text,
+          blocks: buildBlocks(input, comment),
         })
       : await postSlackMessage({
           channel,
           text,
+          blocks: buildBlocks(input, comment),
         });
 
     return Response.json({
