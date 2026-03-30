@@ -1,6 +1,6 @@
 {
   "title": "Introduction",
   "description": "The Enterprise-ready SanityCMS starter kit",
-  "pages": ["get-started", "features", "reference", "enterprise", "about"],
+  "pages": ["get-started", "features", "reference", "enterprise"],
   "defaultOpen": true
 }
