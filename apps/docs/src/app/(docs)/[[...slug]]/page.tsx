@@ -53,6 +53,7 @@ export default async function Page(props: PageProps<'/[[...slug]]'>) {
           className="mb-2"
           githubUrl={`https://github.com/${appConfig.git.user}/${appConfig.git.repo}/blob/${appConfig.git.branch}/content/docs/${page.path}`}
           lastModified={page.data.lastModified}
+          pageTitle={page.data.pageTitle ?? page.data.title}
         />
       </DocsPage>
     </>

@@ -16,6 +16,7 @@
   "dependencies": {
     "@pkg/analytics": "workspace:*",
     "@pkg/brand": "workspace:*",
+    "@pkg/notifications": "workspace:*",
     "@pkg/observability": "workspace:*",
     "@pkg/next-config": "workspace:*",
     "@takumi-rs/image-response": "catalog:utility",

@@ -62,3 +62,29 @@ html[data-docs-scrolled='true'] #nd-docs-layout [data-toc-popover] > header,
   .rounded-lg.border.bg-fd-card.p-3.text-xs.text-fd-muted-foreground {
   border-color: transparent !important; /* [1] */
 }
+
+.docs-feedback-widget {
+  overflow: clip;
+  transition:
+    max-height 220ms ease,
+    opacity 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.docs-feedback-widget[data-expanded='false'] .docs-feedback-widget__details {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.docs-feedback-widget[data-expanded='true'] .docs-feedback-widget__details {
+  max-height: 24rem;
+  opacity: 1;
+}
+
+.docs-feedback-widget[data-success='true'] {
+  border-color: color-mix(in oklab, var(--color-green-500) 35%, var(--color-fd-border));
+  background-color: color-mix(in oklab, var(--color-green-500) 6%, var(--color-fd-card));
+}
