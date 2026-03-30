@@ -10,11 +10,10 @@
   }
 
   /**
-   * [1] Override Fumadocs' default dark sidebar fill with the requested translucent background.
+   * [1] Override Fumadocs' default sidebar fill to make it transparent.
    */
-  .dark #nd-docs-layout #nd-sidebar,
-  html[data-theme='dark'] #nd-docs-layout #nd-sidebar {
-    background-color: rgba(22, 22, 22, 0.3) !important; /* [1] */
+  #nd-docs-layout #nd-sidebar {
+    background-color: transparent !important; /* [1] */
   }
 
   #nd-docs-layout #nd-toc {
