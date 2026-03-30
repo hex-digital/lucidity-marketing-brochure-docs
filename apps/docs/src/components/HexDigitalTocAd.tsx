@@ -42,10 +42,11 @@ export function HexDigitalTocAd({ className }: HexDigitalTocAdProps) {
         <h3 className="text-base font-semibold text-fd-foreground">
           Need a Sanity specialist?
         </h3>
-        <p className="text-sm leading-6 text-fd-muted-foreground">
+        <p className="text-sm leading-6 text-fd-foreground">
           Hex Digital are certified Sanity experts and a preferred partner.
-          <br />
-          <br /> See how we can help you build your next Sanity project.
+        </p>
+        <p className="text-sm leading-6 text-fd-foreground">
+          See how we can help you build your next Sanity project.
         </p>
       </div>
 

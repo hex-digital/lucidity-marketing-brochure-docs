@@ -8,14 +8,14 @@ export function HexDigitalSidebarIcon(props: React.SVGProps<SVGSVGElement>) {
       {...props}
     >
       <path
-        d="M14.56 22.11h-4.49V14.5c0-1.88-.8-2.83-2.36-2.83-1.41 0-2.1.72-2.1 2.14v8.3H1.15V1.82h4.46V8.7c.58-.58 1.52-.87 2.83-.87 4.06 0 6.09 2.1 6.09 6.38v7.9h.03Z"
+        d="M14.41,21.4h-4.12v-7.09c0-1.75-.75-2.64-2.2-2.64-1.31,0-1.96.67-1.96,1.99v7.74H1.97V2.49h4.16v6.41c.54-.54,1.42-.81,2.64-.81,3.78,0,5.68,1.96,5.68,5.95v7.36h-.04Z"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M17.24 19.83c0-1.52 1.09-2.65 2.83-2.65s2.79 1.12 2.79 2.65-1.05 2.61-2.79 2.61-2.83-1.12-2.83-2.61"
+        d="M17.7,19.22c0-1.42,1.02-2.47,2.64-2.47s2.6,1.04,2.6,2.47-.98,2.43-2.6,2.43-2.64-1.04-2.64-2.43"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
