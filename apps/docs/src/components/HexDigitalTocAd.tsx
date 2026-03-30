@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/cn';
 
@@ -14,11 +15,26 @@ export function HexDigitalTocAd({ className }: HexDigitalTocAdProps) {
       )}
     >
       <div className="space-y-2">
-        <p className="hidden text-[11px] font-medium uppercase tracking-[0.18em] text-fd-muted-foreground">
+        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-fd-muted-foreground">
           Hex Digital
         </p>
-        <div className="flex aspect-video w-full items-center justify-center rounded-xl border border-dashed border-fd-border bg-fd-muted/10 text-[11px] font-medium uppercase tracking-[0.18em] text-fd-muted-foreground">
-          Image
+        <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-fd-border bg-fd-muted/10">
+          <Image
+            src="/hex-digital-team-group.png"
+            alt="Hex Digital team group photo outdoors in the city"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 320px"
+          />
+          <div className="absolute bottom-2 left-2 w-full max-w-[30px]">
+            <Image
+              src="/hex-digital-logo-white.png"
+              alt="Hex Digital logo"
+              width={30}
+              height={30}
+              className="h-auto w-full"
+            />
+          </div>
         </div>
       </div>
 
@@ -37,7 +53,7 @@ export function HexDigitalTocAd({ className }: HexDigitalTocAdProps) {
         href="https://www.hexdigital.com/specialism/sanity-cms-agency?utm_source=lucidity&utm_medium=documentation-corner-ad"
         target="_blank"
         rel="noreferrer"
-        className="inline-flex w-full items-center justify-center rounded-xl border border-fd-border bg-fd-accent px-3 py-2 font-medium text-fd-accent-foreground transition-colors hover:bg-fd-accent/80"
+        className="inline-flex w-full items-center justify-center rounded-xl border border-fd-border bg-fd-accent px-3 py-2 font-medium text-sm text-fd-accent-foreground transition-colors hover:bg-fd-accent/80"
       >
         Talk to Hex Digital
       </Link>

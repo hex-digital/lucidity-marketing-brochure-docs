@@ -23,6 +23,7 @@ export function SectionLinksBar() {
   return (
     <div className="[grid-area:header] sticky top-(--fd-docs-row-1) z-30">
       <div
+        suppressHydrationWarning
         className={cn(
           'hidden h-(--docs-section-links-height) border-b transition-[background-color,border-color,backdrop-filter] duration-[180ms] lg:block',
           isScrolled
