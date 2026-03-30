@@ -53,7 +53,7 @@ export function HexDigitalTocAd({ className }: HexDigitalTocAdProps) {
         href="https://www.hexdigital.com/specialism/sanity-cms-agency?utm_source=lucidity&utm_medium=documentation-corner-ad"
         target="_blank"
         rel="noreferrer"
-        className="inline-flex w-full items-center justify-center rounded-xl border border-fd-border bg-fd-accent px-3 py-2 font-medium text-sm text-fd-accent-foreground transition-colors hover:bg-fd-accent/80"
+        className="inline-flex w-full items-center justify-center rounded-xl border border-fd-border bg-fd-accent px-3 py-2 font-medium text-sm text-fd-accent-foreground transition-colors hover:bg-fd-accent/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring focus-visible:ring-offset-2 focus-visible:ring-offset-fd-background"
       >
         Talk to Hex Digital
       </Link>
