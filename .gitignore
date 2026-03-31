@@ -79,3 +79,5 @@ pnpm-error.log*
 
 # Sentry
 .sentryclirc
+# next-agents-md
+.next-docs/
