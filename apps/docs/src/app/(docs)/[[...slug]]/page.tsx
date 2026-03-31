@@ -16,6 +16,8 @@ import { HexDigitalTocAd } from '@/components/HexDigitalTocAd';
 import { DocsFooter } from '@/components/DocsFooter';
 import { DocsFeedbackWidget } from '@/features/feedback/components/DocsFeedbackWidget';
 
+export const dynamic = 'force-static';
+
 export default async function Page(props: PageProps<'/[[...slug]]'>) {
   const params = await props.params;
   const page = source.getPage(params.slug);
