@@ -37,7 +37,7 @@ export default async function Page(props: PageProps<'/[[...slug]]'>) {
       >
         <DocsTitle>{page.data.pageTitle ?? page.data.title}</DocsTitle>
         <DocsDescription className="mb-0">{page.data.description}</DocsDescription>
-        <div className="flex flex-row gap-2 items-center border-b pb-6">
+        <div className="mb-3 flex flex-row gap-2 items-center border-b pb-6">
           <MarkdownCopyButton markdownUrl={`${page.url}.mdx`} />
           <ViewOptionsPopover
             markdownUrl={`${page.url}.mdx`}

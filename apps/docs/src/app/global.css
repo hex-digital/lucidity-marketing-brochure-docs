@@ -71,6 +71,10 @@ html[data-docs-scrolled='true'] #nd-docs-layout [data-toc-popover] > header,
   border-color: transparent !important; /* [1] */
 }
 
+.prose {
+  --tw-prose-headings: var(--color-fd-foreground);
+}
+
 .docs-feedback-widget {
   margin-left: auto;
   margin-right: auto;
