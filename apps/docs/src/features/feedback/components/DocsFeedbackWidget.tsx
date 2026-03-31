@@ -86,37 +86,37 @@ export function DocsFeedbackWidget({ className, pageTitle }: DocsFeedbackWidgetP
                 y: { duration: 0.22, ease: 'easeOut' },
               }}
             >
-              <div className="flex flex-col gap-2 pt-1">
-                <AnimatePresence mode="wait" initial={false}>
-                  {hasSucceeded ? (
-                    <motion.div
-                      key="success"
-                      className="flex flex-col items-center gap-3 rounded-[0.75rem] border border-fd-border/80 bg-fd-background/70 px-4 py-6 text-center"
-                      initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -6, scale: 0.98 }}
-                      transition={{ duration: 0.2, ease: 'easeOut' }}
-                    >
-                      <div className="flex size-14 items-center justify-center rounded-full bg-emerald-600 text-white">
-                        <Check className="size-8" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-xl font-semibold">
-                          {feedbackConfig.widget.successTitle}
-                        </p>
-                        <p className="text-sm text-fd-muted-foreground">
-                          {feedbackConfig.widget.successDescription}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="form"
-                      initial={{ opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -4 }}
-                      transition={{ duration: 0.18, ease: 'easeOut' }}
-                    >
+              <AnimatePresence mode="wait" initial={false}>
+                {hasSucceeded ? (
+                  <motion.div
+                    key="success"
+                    className="flex flex-col items-center gap-3 rounded-[0.75rem] border border-fd-border/80 bg-fd-background/70 px-4 py-6 text-center"
+                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                  >
+                    <div className="flex size-14 items-center justify-center rounded-full bg-emerald-600 text-white">
+                      <Check className="size-8" />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-xl font-semibold">
+                        {feedbackConfig.widget.successTitle}
+                      </p>
+                      <p className="text-sm text-fd-muted-foreground">
+                        {feedbackConfig.widget.successDescription}
+                      </p>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="form"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.18, ease: 'easeOut' }}
+                  >
+                    <div className="flex flex-col gap-2 pt-1">
                       <label className="space-y-2">
                         <textarea
                           value={comment}
@@ -172,10 +172,10 @@ export function DocsFeedbackWidget({ className, pageTitle }: DocsFeedbackWidgetP
                           <span>{feedbackConfig.widget.submitLabel}</span>
                         </button>
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ) : null}
         </AnimatePresence>
