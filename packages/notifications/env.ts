@@ -4,14 +4,15 @@ import { z } from 'zod';
 export const env = () =>
   createEnv({
     server: {
-      DOCS_FEEDBACK_SLACK_CHANNEL_ID: z.string().min(1).optional(),
-      DOCS_FEEDBACK_SLACK_CHANNEL_NAME: z.string().min(1).optional(),
       SLACK_BOT_TOKEN: z.string().min(1).optional(),
       SLACK_FEEDBACK_API_BASE_URL: z.url().optional(),
     },
+    client: {
+      NEXT_PUBLIC_DOCS_FEEDBACK_SLACK_CHANNEL_ID: z.string().min(1).optional(),
+    },
     runtimeEnv: {
-      DOCS_FEEDBACK_SLACK_CHANNEL_ID: process.env.DOCS_FEEDBACK_SLACK_CHANNEL_ID,
-      DOCS_FEEDBACK_SLACK_CHANNEL_NAME: process.env.DOCS_FEEDBACK_SLACK_CHANNEL_NAME,
+      NEXT_PUBLIC_DOCS_FEEDBACK_SLACK_CHANNEL_ID:
+        process.env.NEXT_PUBLIC_DOCS_FEEDBACK_SLACK_CHANNEL_ID,
       SLACK_BOT_TOKEN: process.env.SLACK_BOT_TOKEN,
       SLACK_FEEDBACK_API_BASE_URL: process.env.SLACK_FEEDBACK_API_BASE_URL,
     },

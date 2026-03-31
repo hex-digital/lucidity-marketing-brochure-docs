@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useWindowScrollPosition } from 'rooks';
+import { useEffect, useState } from 'react';
 import { appConfig } from '@/config/app';
 import { SectionLink } from '@/components/SectionLinksBar/SectionLink/SectionLink';
 import { cn } from '@/lib/cn';
@@ -9,8 +8,20 @@ import { cn } from '@/lib/cn';
 const SCROLL_THRESHOLD = 25;
 
 export function SectionLinksBar() {
-  const { scrollY } = useWindowScrollPosition();
-  const isScrolled = scrollY >= SCROLL_THRESHOLD;
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const syncScrolledState = () => {
+      setIsScrolled(window.scrollY >= SCROLL_THRESHOLD);
+    };
+
+    syncScrolledState();
+    window.addEventListener('scroll', syncScrolledState, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', syncScrolledState);
+    };
+  }, []);
 
   useEffect(() => {
     document.documentElement.dataset.docsScrolled = String(isScrolled);

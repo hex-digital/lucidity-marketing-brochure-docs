@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import type { ComponentPropsWithoutRef } from 'react';
 import { SquarePen } from 'lucide-react';
-import { DocsFeedbackWidget } from '@/components/DocsFeedbackWidget';
 import { cn } from '@/lib/cn';
 
 interface DocsFooterProps extends ComponentPropsWithoutRef<'div'> {
@@ -46,20 +45,17 @@ export function DocsFooter({
       )}
       {...props}
     >
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div className="flex flex-col gap-3">
-          <Link
-            href={githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 transition-colors hover:text-fd-foreground"
-          >
-            <SquarePen className="size-4" />
-            <span>Edit this page on GitHub</span>
-          </Link>
-          {formattedLastModified ? <p>Last updated: {formattedLastModified}</p> : null}
-        </div>
-        <DocsFeedbackWidget pageTitle={pageTitle} />
+      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <Link
+          href={githubUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 transition-colors hover:text-fd-foreground"
+        >
+          <SquarePen className="size-4" />
+          <span className="underline">Edit this page on GitHub</span>
+        </Link>
+        {formattedLastModified ? <p>Last updated: {formattedLastModified}</p> : null}
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ export default function Layout({ children }: LayoutProps<'/'>) {
       <DocsBackground />
       <DocsLayout
         tree={source.getPageTree()}
-        sidebar={{ prefetch: false }}
+        sidebar={{ prefetch: false, collapsible: false }}
         themeSwitch={{ mode: 'light-dark-system' }}
         nav={{
           title: <SidebarLogo />,
