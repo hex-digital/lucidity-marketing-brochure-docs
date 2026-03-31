@@ -9,13 +9,6 @@
     --fd-header-height: var(--docs-section-links-height);
   }
 
-  /**
-   * [1] Override Fumadocs' default sidebar fill to make it transparent.
-   */
-  #nd-docs-layout #nd-sidebar {
-    background-color: transparent !important; /* [1] */
-  }
-
   #nd-docs-layout #nd-toc {
     top: var(--fd-docs-row-2);
     height: calc(var(--fd-docs-height) - var(--fd-docs-row-2));
@@ -42,6 +35,21 @@
     box-shadow 180ms;
 }
 
+/**
+ * [1] Override Fumadocs' default sidebar fill to make it transparent.
+ */
+#nd-docs-layout #nd-sidebar {
+  background-color: transparent !important; /* [1] */
+}
+
+html[data-docs-scrolled='true'] #nd-docs-layout #nd-sidebar {
+  background-color: color-mix(
+    in oklab,
+    var(--color-fd-background) 80%,
+    transparent
+  ) !important;
+}
+
 html[data-docs-scrolled='true'] #nd-docs-layout [data-toc-popover] > header,
 #nd-docs-layout [data-toc-popover][data-state='open'] > header {
   border-color: var(--color-fd-border) !important;
@@ -61,4 +69,33 @@ html[data-docs-scrolled='true'] #nd-docs-layout [data-toc-popover] > header,
   [data-toc-popover-content]
   .rounded-lg.border.bg-fd-card.p-3.text-xs.text-fd-muted-foreground {
   border-color: transparent !important; /* [1] */
+}
+
+.docs-feedback-widget {
+  margin-left: auto;
+  margin-right: auto;
+  overflow: clip;
+  transition:
+    max-height 220ms ease,
+    opacity 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.docs-feedback-widget[data-expanded='false'] .docs-feedback-widget__details {
+  display: none;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.docs-feedback-widget[data-expanded='true'] .docs-feedback-widget__details {
+  max-height: 24rem;
+  opacity: 1;
+}
+
+.docs-feedback-widget[data-success='true'] {
+  border-color: color-mix(in oklab, var(--color-green-500) 35%, var(--color-fd-border));
+  background-color: color-mix(in oklab, var(--color-green-500) 6%, var(--color-fd-card));
 }

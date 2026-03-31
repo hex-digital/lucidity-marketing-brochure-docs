@@ -16,6 +16,7 @@
   "dependencies": {
     "@pkg/analytics": "workspace:*",
     "@pkg/brand": "workspace:*",
+    "@pkg/notifications": "workspace:*",
     "@pkg/observability": "workspace:*",
     "@pkg/next-config": "workspace:*",
     "@takumi-rs/image-response": "catalog:utility",
@@ -25,6 +26,7 @@
     "fumadocs-mdx": "catalog:docs",
     "fumadocs-ui": "catalog:docs",
     "lucide-react": "catalog:docs",
+    "motion": "catalog:frontend",
     "next": "catalog:frontend",
     "react": "catalog:frontend",
     "react-dom": "catalog:frontend",

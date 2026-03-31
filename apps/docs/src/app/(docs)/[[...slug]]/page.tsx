@@ -14,6 +14,7 @@ import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { appConfig } from '@/config/app';
 import { HexDigitalTocAd } from '@/components/HexDigitalTocAd';
 import { DocsFooter } from '@/components/DocsFooter';
+import { DocsFeedbackWidget } from '@/features/feedback/components/DocsFeedbackWidget';
 
 export default async function Page(props: PageProps<'/[[...slug]]'>) {
   const params = await props.params;
@@ -53,6 +54,11 @@ export default async function Page(props: PageProps<'/[[...slug]]'>) {
           className="mb-2"
           githubUrl={`https://github.com/${appConfig.git.user}/${appConfig.git.repo}/blob/${appConfig.git.branch}/content/docs/${page.path}`}
           lastModified={page.data.lastModified}
+          pageTitle={page.data.pageTitle ?? page.data.title}
+        />
+        <DocsFeedbackWidget
+          pageTitle={page.data.pageTitle ?? page.data.title}
+          className="mb-4"
         />
       </DocsPage>
     </>

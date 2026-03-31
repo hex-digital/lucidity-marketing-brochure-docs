@@ -5,6 +5,7 @@ import { cn } from '@/lib/cn';
 
 interface DocsFooterProps extends ComponentPropsWithoutRef<'div'> {
   githubUrl: string;
+  pageTitle: string;
   lastModified?: string | Date | null;
 }
 
@@ -27,27 +28,35 @@ function formatLastModified(value?: string | Date | null) {
   }).format(date);
 }
 
-export function DocsFooter({ githubUrl, lastModified, className, ...props }: DocsFooterProps) {
+export function DocsFooter({
+  githubUrl,
+  pageTitle,
+  lastModified,
+  className,
+  ...props
+}: DocsFooterProps) {
   const formattedLastModified = formatLastModified(lastModified);
 
   return (
     <div
       className={cn(
-        'mt-8 flex flex-col gap-3 border-t border-fd-border pt-6 text-sm text-fd-muted-foreground sm:flex-row sm:items-center sm:justify-between',
+        'mt-8 flex flex-col gap-6 border-t border-fd-border pt-6 text-sm text-fd-muted-foreground',
         className,
       )}
       {...props}
     >
-      <Link
-        href={githubUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center gap-2 transition-colors hover:text-fd-foreground"
-      >
-        <SquarePen className="size-4" />
-        <span>Edit this page on GitHub</span>
-      </Link>
-      {formattedLastModified ? <p>Last updated: {formattedLastModified}</p> : null}
+      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <Link
+          href={githubUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 transition-colors hover:text-fd-foreground"
+        >
+          <SquarePen className="size-4" />
+          <span className="underline">Edit this page on GitHub</span>
+        </Link>
+        {formattedLastModified ? <p>Last updated: {formattedLastModified}</p> : null}
+      </div>
     </div>
   );
 }
