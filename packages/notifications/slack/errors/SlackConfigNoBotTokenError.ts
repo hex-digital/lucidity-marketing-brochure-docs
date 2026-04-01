@@ -1,12 +1,11 @@
 import { NotificationError } from '../../errors/NotificationError';
 import { NOTIFICATION_ERROR_CODES } from '../../errors/codes';
-import type { ErrorOptions } from '@pkg/errors/BaseError';
 
-export class SlackNotificationError extends NotificationError {
+export class SlackConfigNoBotTokenError extends NotificationError {
   constructor(message: string, errorOptions: ErrorOptions = {}) {
     super(message, errorOptions);
 
-    this.name = 'SlackNotificationError';
+    this.name = 'SlackConfigNoBotTokenError';
     this.code = NOTIFICATION_ERROR_CODES.GENERIC;
   }
 }

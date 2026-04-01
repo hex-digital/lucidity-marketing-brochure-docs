@@ -1,5 +1,4 @@
 export interface ErrorOptions {
-  code: string;
   publicMessage?: string;
   statusCode?: number;
   details?: Record<string, unknown>;
@@ -7,15 +6,14 @@ export interface ErrorOptions {
 }
 
 export class BaseError extends Error {
-  public readonly code: string;
-  public readonly publicMessage: string;
-  public readonly statusCode: number;
-  public readonly details?: Record<string, unknown>;
+  code: string;
+  publicMessage: string;
+  statusCode: number;
+  details?: Record<string, unknown>;
 
   constructor(
     message: string,
     {
-      code,
       publicMessage = 'Something went wrong.',
       statusCode = 500,
       details,
@@ -23,8 +21,10 @@ export class BaseError extends Error {
     }: ErrorOptions,
   ) {
     super(message, { cause });
+
     this.name = 'NotificationError';
-    this.code = code;
+    this.code = '00000';
+
     this.publicMessage = publicMessage;
     this.statusCode = statusCode;
     this.details = details;

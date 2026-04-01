@@ -6,7 +6,9 @@ import type {
   SlackWriteResult,
 } from '../types';
 import { getConfig } from '../config';
-import { SlackNotificationError } from '../errors/SlackNotificationError';
+import { SlackConfigNoBotTokenError } from '../errors/SlackConfigNoBotTokenError';
+import { SlackApiRequestError } from '../errors/SlackApiRequestError';
+import { SlackApiResponseError } from '../errors/SlackApiResponseError';
 
 async function slackApi(
   method: 'chat.postMessage',
@@ -16,7 +18,7 @@ async function slackApi(
   const { token, apiBaseUrl } = getConfig(options);
 
   if (!token) {
-    throw new SlackNotificationError('Slack bot token is not configured.');
+    throw new SlackConfigNoBotTokenError('Slack bot token is not configured.');
   }
 
   const response = await fetch(`${apiBaseUrl}/${method}`, {
@@ -35,15 +37,17 @@ async function slackApi(
   });
 
   if (!response.ok) {
-    throw new SlackNotificationError(
-      `Slack API request failed with status ${response.status}.`,
-    );
+    throw new SlackApiRequestError(`Slack API request failed`, {
+      details: { response: response.status },
+    });
   }
 
   const data = (await response.json()) as SlackApiResponse;
 
   if (!data.ok || !data.ts || !data.channel) {
-    throw new SlackNotificationError(data.error ?? 'Slack API returned an invalid response.');
+    throw new SlackApiResponseError('Slack API returned an invalid response.', {
+      details: { error: data.error },
+    });
   }
 
   return {
