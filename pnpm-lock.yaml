@@ -320,6 +320,9 @@ importers:
         specifier: catalog:types
         version: 4.3.6
     devDependencies:
+      '@pkg/errors':
+        specifier: workspace:*
+        version: link:../../packages/errors
       '@pkg/eslint-plugin':
         specifier: workspace:*
         version: link:../../packages/eslint-plugin

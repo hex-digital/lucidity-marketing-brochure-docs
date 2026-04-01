@@ -5,7 +5,7 @@ export interface ErrorOptions {
   cause?: unknown;
 }
 
-export class BaseError extends Error {
+export class BaseUserError extends Error {
   code: string;
   publicMessage: string;
   statusCode: number;
@@ -14,16 +14,16 @@ export class BaseError extends Error {
   constructor(
     message: string,
     {
-      publicMessage = 'Something went wrong.',
-      statusCode = 500,
+      publicMessage = "We couldn't process your request.",
+      statusCode = 400,
       details,
       cause,
     }: ErrorOptions,
   ) {
     super(message, { cause });
 
-    this.name = 'BaseError';
-    this.code = '00000';
+    this.name = 'BaseUserError';
+    this.code = '00100';
 
     this.publicMessage = publicMessage;
     this.statusCode = statusCode;
