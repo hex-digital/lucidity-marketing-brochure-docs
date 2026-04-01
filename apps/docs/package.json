@@ -36,6 +36,7 @@
     "zod": "catalog:types"
   },
   "devDependencies": {
+    "@pkg/errors": "workspace:*",
     "@pkg/eslint-plugin": "workspace:*",
     "@tailwindcss/postcss": "catalog:frontend",
     "@types/mdx": "catalog:types",

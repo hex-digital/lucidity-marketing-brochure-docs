@@ -1,9 +1,15 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
     "moduleResolution": "node",
+    "lib": ["esnext"],
     "verbatimModuleSyntax": true,
     "strict": true,
+    "strictNullChecks": true,
     "useUnknownInCatchVariables": true,
     "noImplicitOverride": true,
     "noUncheckedIndexedAccess": true,
@@ -18,5 +24,16 @@
     "incremental": true,
     "newLine": "lf"
   },
+  "include": [
+    ".eslintrc.*",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.mts",
+    "**/*.js",
+    "**/*.cjs",
+    "**/*.mjs",
+    "**/*.jsx",
+    "**/*.json"
+  ],
   "exclude": ["**/node_modules", "**/.*/"]
 }

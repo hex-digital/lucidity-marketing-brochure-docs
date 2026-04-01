@@ -3,10 +3,11 @@ import type {
   FeedbackRequest,
 } from '@/features/feedback/api/validation/sendFeedback';
 import { feedbackConfig } from '@/config/feedback';
-import { SlackConfigError } from '@pkg/notifications/slack/errors/SlackConfigError';
-import { escapeSlackText, sanitizeSlackMrkdwn } from '@pkg/notifications/slack/utilities';
-import type { SlackBlock } from '@pkg/notifications/slack/types';
+import { NoFeedbackChannelError } from '@/features/feedback/api/errors/NoFeedbackChannelError';
 import { postSlackMessage } from '@pkg/notifications/slack/lib';
+import type { SlackBlock } from '@pkg/notifications/slack/types';
+import { escapeSlackText, sanitizeSlackMrkdwn } from '@pkg/notifications/slack/utilities';
+import { InvalidFeedbackError } from '@/features/feedback/api/errors/InvalidFeedbackError';
 
 export function feedbackService() {
   return {
@@ -24,7 +25,7 @@ async function sendFeedbackToSlack(input: FeedbackRequest) {
   const slackChannel = feedbackConfig.slack.slackChannel;
 
   if (!slackChannel) {
-    throw new SlackConfigError('Missing feedback slack channel ID');
+    throw new NoFeedbackChannelError('Missing feedback slack channel ID');
   }
 
   const comment = input.comment.trim().slice(0, feedbackConfig.widget.commentMaxLength);
@@ -34,7 +35,7 @@ async function sendFeedbackToSlack(input: FeedbackRequest) {
   );
 
   if (!rating) {
-    throw new SlackConfigError('Incorrect feedback rating label');
+    throw new InvalidFeedbackError('Incorrect feedback rating label');
   }
 
   const text = [

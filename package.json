@@ -40,5 +40,8 @@
     "prettier": "catalog:lint",
     "turbo": "catalog:dev",
     "typescript": "catalog:dev"
+  },
+  "dependencies": {
+    "node-plop": "catalog:dev"
   }
 }

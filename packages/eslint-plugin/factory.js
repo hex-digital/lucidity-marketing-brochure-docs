@@ -39,7 +39,7 @@ export function eslintPlugin(options = {}, ...userConfigs) {
   const {
     componentExts = [],
     jsx: enableJsx = true,
-    react: enableReact = false,
+    react: enableReact = isPackageExists('react'),
     typescript: enableTypeScript = isPackageExists('typescript'),
     prettier: usingPrettier = isPackageExists('prettier'),
     nextjs: usingNextjs = isPackageExists('next'),

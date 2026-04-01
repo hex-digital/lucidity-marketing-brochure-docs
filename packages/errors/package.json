@@ -1,5 +1,5 @@
 {
-  "name": "@pkg/notifications",
+  "name": "@pkg/errors",
   "version": "0.0.1",
   "private": true,
   "sideEffects": false,
@@ -17,7 +17,6 @@
     "react": "catalog:frontend"
   },
   "devDependencies": {
-    "@pkg/errors": "workspace:*",
     "@pkg/eslint-plugin": "workspace:*",
     "@types/node": "catalog:types",
     "@types/react": "catalog:types",
