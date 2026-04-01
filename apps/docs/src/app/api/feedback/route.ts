@@ -6,6 +6,7 @@ import { postSlackMessage } from '@pkg/notifications/slack/lib';
 import type { SlackBlock } from '@pkg/notifications/slack/types';
 import { escapeSlackText, sanitizeSlackMrkdwn } from '@pkg/notifications/slack/utilities';
 import { SlackConfigError } from '@pkg/notifications/slack/errors/SlackConfigError';
+import { SlackConfigNoFeedbackChannelError } from '@pkg/notifications/slack/errors/SlackConfigNoFeedbackChannelError';
 
 const feedbackRequestSchema = z.object({
   rating: z.enum(feedbackRatings),
@@ -56,7 +57,7 @@ async function sendFeedbackToSlack(input: FeedbackRequest) {
   const slackChannel = feedbackConfig.slack.slackChannel;
 
   if (!slackChannel) {
-    throw new SlackConfigError('Missing feedback slack channel ID');
+    throw new SlackConfigNoFeedbackChannelError('Missing feedback slack channel ID');
   }
 
   const comment = input.comment.trim().slice(0, feedbackConfig.widget.commentMaxLength);
