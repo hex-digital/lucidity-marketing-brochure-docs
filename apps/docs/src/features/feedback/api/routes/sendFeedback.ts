@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { SlackNotificationError } from '@pkg/notifications/slack/errors/SlackNotificationError';
 import { SlackConfigError } from '@pkg/notifications/slack/errors/SlackConfigError';
-import { feedbackService } from '@/features/feedback/server/services/feedbackService';
-import { feedbackRequestSchema } from '@/features/feedback/server/validation/sendFeedback';
+import { feedbackService } from '@/features/feedback/api/services/feedbackService';
+import { feedbackRequestSchema } from '@/features/feedback/api/validation/sendFeedback';
 
 export const sendFeedback = {
   post: async (rawRequest: Request) => {

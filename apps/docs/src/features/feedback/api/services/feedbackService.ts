@@ -1,7 +1,7 @@
 import type {
   FeedbackItem,
   FeedbackRequest,
-} from '@/features/feedback/server/validation/sendFeedback';
+} from '@/features/feedback/api/validation/sendFeedback';
 import { feedbackConfig } from '@/config/feedback';
 import { SlackConfigError } from '@pkg/notifications/slack/errors/SlackConfigError';
 import { escapeSlackText, sanitizeSlackMrkdwn } from '@pkg/notifications/slack/utilities';
