@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { ExternalLink, FileText, Link2 } from 'lucide-react';
+import { ExternalLink, Link2 as LinkIcon } from 'lucide-react';
 import Link from 'next/link';
 import styles from './styles.module.css';
-import { cn } from '@/lib/cn';
 import { HoverPopup } from '@/components/HoverPopup/HoverPopup';
 import { useHoverPopup } from '@/components/HoverPopup/hooks/useHoverPopup';
+import { BaseLinkPopup } from '@/components/BaseLink/BaseLinkPopup';
 
 type BaseLinkKind = 'internal' | 'external' | 'same-page-anchor' | 'special';
 
@@ -77,7 +77,7 @@ export function BaseLink({
   }
 
   const displayTitle = title?.trim() || hostname;
-  const displayUrl = (absoluteUrl ?? href).split('?')[0];
+  const displayUrl = (absoluteUrl ?? href).split('?')[0] ?? href;
   const sanitizedRel = rel ?? (opensInNewTab ? 'noreferrer' : undefined);
   const faviconUrl = `https://www.google.com/s2/favicons?domain=${hostname}&sz=64`;
   const popupAriaLabel = isExternal
@@ -91,7 +91,7 @@ export function BaseLink({
         <ExternalLink className={styles.inlineLinkIcon} aria-hidden="true" />
       ) : null}
       {isSamePageAnchor ? (
-        <Link2 className={styles.inlineLinkIcon} aria-hidden="true" />
+        <LinkIcon className={styles.inlineLinkIcon} aria-hidden="true" />
       ) : null}
     </span>
   );
@@ -125,69 +125,17 @@ export function BaseLink({
           onMouseEnter={clearCloseTimer}
           onMouseLeave={scheduleClose}
         >
-          <div
-            className={cn(
-              'flex h-full flex-col justify-between gap-3 p-4',
-              styles.popupLinkGroup,
-            )}
-          >
-            <div className="flex flex-col">
-              {isExternal && (
-                <div className="flex items-center gap-1.5 mb-2">
-                  {isExternal ? (
-                    <span className={cn(styles.kicker)}>EXTERNAL LINK</span>
-                  ) : null}
-                  <ExternalLink className={styles.externalLinkIcon} aria-hidden="true" />
-                </div>
-              )}
-
-              <Link
-                href={href}
-                target={resolvedTarget}
-                rel={sanitizedRel}
-                className={cn('flex items-start gap-2', styles.hostname, styles.popupLink)}
-              >
-                {isExternal ? (
-                  <img
-                    src={faviconUrl}
-                    alt=""
-                    width={18}
-                    height={18}
-                    className={styles.favicon}
-                    aria-hidden="true"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <FileText className={styles.faviconIcon} aria-hidden="true" />
-                )}
-                {displayTitle}
-              </Link>
-
-              {!isExternal && description ? (
-                <p className={styles.description}>{description}</p>
-              ) : null}
-
-              <Link
-                href={href}
-                target={resolvedTarget}
-                rel={sanitizedRel}
-                className={cn(styles.url, styles.popupLink)}
-              >
-                {displayUrl}
-              </Link>
-            </div>
-            {opensInNewTab ? (
-              <Link
-                href={href}
-                target={resolvedTarget}
-                rel={sanitizedRel}
-                className={cn(styles.footerRow, styles.popupLink)}
-              >
-                <span className={styles.footer}>Opens in a new tab</span>
-              </Link>
-            ) : null}
-          </div>
+          <BaseLinkPopup
+            external={isExternal}
+            href={href}
+            target={resolvedTarget}
+            rel={sanitizedRel}
+            src={faviconUrl}
+            displayUrl={displayUrl}
+            displayTitle={displayTitle}
+            description={description}
+            opensInNewTab={opensInNewTab}
+          />
         </HoverPopup>
       ) : null}
     </>
