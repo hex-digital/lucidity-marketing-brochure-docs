@@ -8,35 +8,38 @@ import { DocsBackground } from '@/components/DocsBackground';
 
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
-    <div className="relative isolate">
-      <SkipToMainContent />
-      <DocsBackground />
-      <DocsLayout
-        tree={source.getPageTree()}
-        sidebar={{ prefetch: false, collapsible: false }}
-        themeSwitch={{ mode: 'light-dark-system' }}
-        nav={{
-          title: <SidebarLogo />,
-          component: <SectionLinksBar />,
-        }}
-        githubUrl={`https://github.com/${appConfig.git.user}/${appConfig.git.repo}`}
-        containerProps={{
-          style: {
-            gridTemplate: `
-              "sidebar sidebar header header header"
-              "sidebar sidebar toc-popover toc toc"
-              "sidebar sidebar main toc toc"
-              1fr /
-              1fr
-              var(--fd-sidebar-width)
-              minmax(0, calc(var(--fd-layout-width, 97rem) - var(--fd-sidebar-width) - var(--fd-toc-width)))
-              var(--fd-toc-width)
-              1fr`,
-          },
-        }}
-      >
-        {children}
-      </DocsLayout>
-    </div>
+    <>
+      {/*<Banner>Lucidity is now available. Talk to sales now</Banner>*/}
+      <div className="relative isolate">
+        <SkipToMainContent />
+        <DocsBackground />
+        <DocsLayout
+          tree={source.getPageTree()}
+          sidebar={{ prefetch: false, collapsible: false }}
+          themeSwitch={{ mode: 'light-dark-system' }}
+          nav={{
+            title: <SidebarLogo />,
+            component: <SectionLinksBar />,
+          }}
+          githubUrl={`https://github.com/${appConfig.git.user}/${appConfig.git.repo}`}
+          containerProps={{
+            style: {
+              gridTemplate: `
+                "sidebar sidebar header header header"
+                "sidebar sidebar toc-popover toc toc"
+                "sidebar sidebar main toc toc"
+                1fr /
+                1fr
+                var(--fd-sidebar-width)
+                minmax(0, calc(var(--fd-layout-width, 97rem) - var(--fd-sidebar-width) - var(--fd-toc-width)))
+                var(--fd-toc-width)
+                1fr`,
+            },
+          }}
+        >
+          {children}
+        </DocsLayout>
+      </div>
+    </>
   );
 }

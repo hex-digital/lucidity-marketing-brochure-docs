@@ -3,6 +3,7 @@ import { type InferPageType, loader } from 'fumadocs-core/source';
 import { icons } from 'lucide-react';
 import { createElement } from 'react';
 import { HexDigitalSidebarIcon } from '@/components/HexDigitalSidebarIcon';
+import { normalizePathname, slugFromPathname } from '@/helpers';
 
 const localIcons = {
   HexLogo: HexDigitalSidebarIcon,
@@ -23,6 +24,9 @@ export const source = loader({
   },
 });
 
+export type LucidityDocsSource = typeof source;
+export type LucidityDocsPage = InferPageType<typeof source>;
+
 export function getPageImage(page: InferPageType<typeof source>) {
   const segments = [...page.slugs, 'image.webp'];
 
@@ -38,4 +42,9 @@ export async function getLLMText(page: InferPageType<typeof source>) {
   return `# ${page.data.title}
 
 ${processed}`;
+}
+
+export function getDocsPageByPathname(pathname: string): InferPageType<typeof source> | null {
+  const slugs = slugFromPathname(normalizePathname(pathname));
+  return source.getPage(slugs) ?? null;
 }
