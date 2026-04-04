@@ -96,7 +96,6 @@ function buildWebPage(params: {
 
 /**
  * Builds a schema.org `@graph` for documentation pages: Organization, WebSite, WebPage, BreadcrumbList.
- * FAQ pages use `WebPage` here; pair with `<Accordions faqJsonLd>` for a separate FAQPage JSON-LD script.
  */
 export function buildDocsJsonLdGraph(options: {
   source: LucidityDocsSource;
