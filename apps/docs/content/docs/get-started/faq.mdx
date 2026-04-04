@@ -7,7 +7,13 @@ icon: CircleQuestionMark
 import { Accordion, Accordions } from '@/components/Accordion';
 import { versions } from '@pkg/common/versions';
 
-<Accordions type="multiple" defaultValue={['what-is-lucidity']} className="smoke">
+<Accordions
+  type="multiple"
+  faqPageSlugs={['get-started', 'faq']}
+  defaultValue={['what-is-lucidity']}
+  className="smoke"
+  withJsonLd
+>
 
   <Accordion title="What is Lucidity?" value="what-is-lucidity" id="what-is-lucidity">
 
