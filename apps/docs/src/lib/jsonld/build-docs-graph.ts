@@ -1,23 +1,8 @@
 import { appConfig } from '@/config/app';
 import { seoConfig } from '@/config/seo';
-import { faqJsonLdEntries } from '@/data/faq-jsonld';
 import { normalizeBaseUrl } from '@/lib/jsonld/normalize-base-url';
+import { organizationId, softwareId, websiteId } from '@/lib/jsonld/schema-ids';
 import type { LucidityDocsPage, LucidityDocsSource } from '@/lib/source';
-
-/** Slug path for the FAQ MDX page (`content/docs/get-started/faq.mdx`). */
-const FAQ_SLUG_KEY = 'get-started/faq';
-
-function organizationId(base: string): string {
-  return `${base}/#organization`;
-}
-
-function websiteId(base: string): string {
-  return `${base}/#website`;
-}
-
-function softwareId(base: string): string {
-  return `${base}/#software`;
-}
 
 function buildOrganization(base: string) {
   const logoUrl = `${base}/favicon.svg`;
@@ -91,31 +76,6 @@ function buildBreadcrumbListFromSource(
   };
 }
 
-function buildFaqPage(
-  base: string,
-  canonicalUrl: string,
-  name: string,
-  description: string | undefined,
-): Record<string, unknown> {
-  return {
-    '@type': 'FAQPage',
-    '@id': `${canonicalUrl}#webpage`,
-    url: canonicalUrl,
-    name,
-    description,
-    isPartOf: { '@id': websiteId(base) },
-    publisher: { '@id': organizationId(base) },
-    mainEntity: faqJsonLdEntries.map((entry) => ({
-      '@type': 'Question',
-      name: entry.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: entry.answer,
-      },
-    })),
-  };
-}
-
 function buildWebPage(params: {
   base: string;
   canonicalUrl: string;
@@ -135,7 +95,7 @@ function buildWebPage(params: {
 }
 
 /**
- * Builds a schema.org `@graph` for documentation pages: Organization, WebSite, WebPage (or FAQPage), BreadcrumbList.
+ * Builds a schema.org `@graph` for documentation pages: Organization, WebSite, WebPage, BreadcrumbList.
  */
 export function buildDocsJsonLdGraph(options: {
   source: LucidityDocsSource;
@@ -144,17 +104,13 @@ export function buildDocsJsonLdGraph(options: {
   const { source, page } = options;
   const base = normalizeBaseUrl(appConfig.baseUrl);
   const canonicalUrl = `${base}${page.url}`;
-  const slugKey = page.slugs.join('/');
-  const isFaq = slugKey === FAQ_SLUG_KEY;
 
   const siteTitle =
     seoConfig.title.replace(/\s*\|\s*.*/, '').trim() || 'Lucidity documentation';
   const name = page.data.pageTitle ?? page.data.title;
   const description = page.data.description;
 
-  const primaryPage = isFaq
-    ? buildFaqPage(base, canonicalUrl, name, description)
-    : buildWebPage({ base, canonicalUrl, name, description });
+  const primaryPage = buildWebPage({ base, canonicalUrl, name, description });
 
   return [
     buildOrganization(base),
