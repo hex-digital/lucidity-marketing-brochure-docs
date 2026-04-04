@@ -14,9 +14,7 @@
   },
   "exclude": ["node_modules"],
   "include": [
-    ".eslintrc.*",
-    "next-env.d.ts",
-    "./config/tests/setupVitest.ts",
+    "eslint.config.js",
     "**/*.ts",
     "**/*.tsx",
     "**/*.mts",
@@ -24,7 +22,6 @@
     "**/*.cjs",
     "**/*.mjs",
     "**/*.jsx",
-    "**/*.json",
-    ".next/types/**/*.ts"
+    "**/*.json"
   ]
 }
