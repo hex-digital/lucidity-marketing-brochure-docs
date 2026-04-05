@@ -436,6 +436,10 @@ select {
   border-bottom: 1px solid var(--grid-line);
 }
 
+.blueprint-section[id] {
+  scroll-margin-top: 5.75rem;
+}
+
 .blueprint-band {
   display: grid;
   gap: 2rem;
