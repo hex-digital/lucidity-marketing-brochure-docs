@@ -19,6 +19,7 @@
     "@pkg/notifications": "workspace:*",
     "@pkg/observability": "workspace:*",
     "@pkg/next-config": "workspace:*",
+    "@pkg/next-proxy": "workspace:*",
     "@takumi-rs/image-response": "catalog:utility",
     "@t3-oss/env-nextjs": "catalog:dev",
     "@vercel/speed-insights": "catalog:observability",
