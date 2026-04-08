@@ -1,10 +1,19 @@
-import { source } from '@/lib/source';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
+import { MessageCircleIcon } from 'lucide-react';
+import { DocsBackground } from '@/components/DocsBackground';
 import { SectionLinksBar } from '@/components/SectionLinksBar/SectionLinksBar';
-import { appConfig } from '@/config/app';
 import { SidebarLogo } from '@/components/SidebarLogo';
 import { SkipToMainContent } from '@/components/SkipToMainContent';
-import { DocsBackground } from '@/components/DocsBackground';
+import { buttonVariants } from '@/components/ui/button';
+import { aiConfig } from '@/config/ai';
+import { appConfig } from '@/config/app';
+import {
+  AISearch,
+  AISearchPanel,
+  AISearchTrigger,
+} from '@/features/ai-chat/components/search';
+import { cn } from '@/lib/cn';
+import { source } from '@/lib/source';
 
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
@@ -37,6 +46,24 @@ export default function Layout({ children }: LayoutProps<'/'>) {
             },
           }}
         >
+          {aiConfig.chat.enabled && (
+            <AISearch>
+              <AISearchPanel />
+              <AISearchTrigger
+                position="float"
+                className={cn(
+                  buttonVariants({
+                    variant: 'secondary',
+                    className: 'text-fd-muted-foreground rounded-2xl',
+                  }),
+                )}
+              >
+                <MessageCircleIcon className="size-4.5" />
+                Ask AI
+              </AISearchTrigger>
+            </AISearch>
+          )}
+
           {children}
         </DocsLayout>
       </div>

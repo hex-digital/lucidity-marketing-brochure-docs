@@ -3,6 +3,11 @@ packages:
   - packages/*
 
 catalogs:
+  ai-chat:
+    '@ai-sdk/react': 3.0.148
+    '@openrouter/ai-sdk-provider': 2.3.3
+    '@radix-ui/react-presence': 1.1.5
+    ai: 6.0.146
   analytics:
     '@next/third-parties': 16.1.6
     '@vercel/analytics': 1.6.1
@@ -27,7 +32,13 @@ catalogs:
     fumadocs-core: 16.7.6
     fumadocs-mdx: 14.2.11
     fumadocs-ui: 16.7.6
+    flexsearch: 0.8.212
+    hast-util-to-jsx-runtime: 2.3.6
     lucide-react: 0.577.0
+    remark: 15.0.1
+    remark-gfm: 4.0.1
+    remark-rehype: 11.1.2
+    unist-util-visit: 5.1.0
   frontend:
     '@lottiefiles/dotlottie-react': 0.18.3
     '@tailwindcss/postcss': 4.2.1
@@ -81,6 +92,7 @@ catalogs:
     happy-dom: 20.8.9
     vitest: 4.0.18
   types:
+    '@types/hast': 3.0.4
     '@types/mdx': 2.0.13
     '@types/node': 25.3.3
     '@types/react': 19.2.14

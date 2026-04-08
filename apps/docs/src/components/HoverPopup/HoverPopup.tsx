@@ -1,9 +1,9 @@
 'use client';
 
-import type { CSSProperties, ReactNode, RefObject } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '@/lib/cn';
 import styles from './styles.module.css';
+import type { CSSProperties, ReactNode, RefObject } from 'react';
 
 interface HoverPopupProps {
   mounted: boolean;
