@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useState, useTransition } from 'react';
 import { usePathname } from 'next/navigation';
+import { useCallback, useEffect, useState, useTransition } from 'react';
 import { feedbackConfig } from '@/config/feedback';
 import type { FeedbackRating, UserFeedbackPayload } from '@/features/feedback/types';
 

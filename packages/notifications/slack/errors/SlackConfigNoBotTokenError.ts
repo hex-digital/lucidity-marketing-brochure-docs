@@ -1,5 +1,5 @@
-import { NotificationError } from '../../errors/NotificationError';
 import { NOTIFICATION_ERROR_CODES } from '../../errors/codes';
+import { NotificationError } from '../../errors/NotificationError';
 
 export class SlackConfigNoBotTokenError extends NotificationError {
   constructor(message: string, errorOptions: ErrorOptions = {}) {

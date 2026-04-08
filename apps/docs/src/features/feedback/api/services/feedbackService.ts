@@ -1,13 +1,13 @@
+import { feedbackConfig } from '@/config/feedback';
+import { InvalidFeedbackError } from '@/features/feedback/api/errors/InvalidFeedbackError';
+import { NoFeedbackChannelError } from '@/features/feedback/api/errors/NoFeedbackChannelError';
 import type {
   FeedbackItem,
   FeedbackRequest,
 } from '@/features/feedback/api/validation/sendFeedback';
-import { feedbackConfig } from '@/config/feedback';
-import { NoFeedbackChannelError } from '@/features/feedback/api/errors/NoFeedbackChannelError';
 import { postSlackMessage } from '@pkg/notifications/slack/lib';
 import type { SlackBlock } from '@pkg/notifications/slack/types';
 import { escapeSlackText, sanitizeSlackMrkdwn } from '@pkg/notifications/slack/utilities';
-import { InvalidFeedbackError } from '@/features/feedback/api/errors/InvalidFeedbackError';
 
 export function feedbackService() {
   return {

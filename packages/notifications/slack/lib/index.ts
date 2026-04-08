@@ -1,3 +1,7 @@
+import { getConfig } from '../config';
+import { SlackApiRequestError } from '../errors/SlackApiRequestError';
+import { SlackApiResponseError } from '../errors/SlackApiResponseError';
+import { SlackConfigNoBotTokenError } from '../errors/SlackConfigNoBotTokenError';
 import type {
   NotificationMessageInput,
   SlackApiOptions,
@@ -5,10 +9,6 @@ import type {
   SlackMessageOptions,
   SlackWriteResult,
 } from '../types';
-import { getConfig } from '../config';
-import { SlackConfigNoBotTokenError } from '../errors/SlackConfigNoBotTokenError';
-import { SlackApiRequestError } from '../errors/SlackApiRequestError';
-import { SlackApiResponseError } from '../errors/SlackApiResponseError';
 
 async function slackApi(
   method: 'chat.postMessage',

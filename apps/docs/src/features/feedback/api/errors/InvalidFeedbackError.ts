@@ -1,5 +1,5 @@
-import { BaseUserError, type ErrorOptions } from '@pkg/errors/BaseUserError';
 import { ERROR_CODES } from '@/errors/codes';
+import { BaseUserError, type ErrorOptions } from '@pkg/errors/BaseUserError';
 
 export class InvalidFeedbackError extends BaseUserError {
   constructor(message: string, errorOptions: ErrorOptions = {}) {

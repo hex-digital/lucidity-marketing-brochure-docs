@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import type { ComponentPropsWithoutRef } from 'react';
 import { SquarePen } from 'lucide-react';
+import Link from 'next/link';
 import { cn } from '@/lib/cn';
+import type { ComponentPropsWithoutRef } from 'react';
 
 interface DocsFooterProps extends ComponentPropsWithoutRef<'div'> {
   githubUrl: string;

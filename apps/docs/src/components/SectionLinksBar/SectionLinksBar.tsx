@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { appConfig } from '@/config/app';
 import { SectionLink } from '@/components/SectionLinksBar/SectionLink/SectionLink';
+import { appConfig } from '@/config/app';
 import { cn } from '@/lib/cn';
 
 const SCROLL_THRESHOLD = 25;

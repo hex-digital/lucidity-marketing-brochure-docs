@@ -1,12 +1,12 @@
 'use client';
 
-import React from 'react';
 import { ExternalLink, Link2 as LinkIcon } from 'lucide-react';
 import Link from 'next/link';
-import styles from './styles.module.css';
-import { HoverPopup } from '@/components/HoverPopup/HoverPopup';
-import { useHoverPopup } from '@/components/HoverPopup/hooks/useHoverPopup';
+import React from 'react';
 import { BaseLinkPopup } from '@/components/BaseLink/BaseLinkPopup';
+import { useHoverPopup } from '@/components/HoverPopup/hooks/useHoverPopup';
+import { HoverPopup } from '@/components/HoverPopup/HoverPopup';
+import styles from './styles.module.css';
 
 type BaseLinkKind = 'internal' | 'external' | 'same-page-anchor' | 'special';
 
