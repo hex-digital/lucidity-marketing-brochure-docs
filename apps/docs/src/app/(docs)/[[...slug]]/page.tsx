@@ -1,4 +1,3 @@
-import { getPageImage, source } from '@/lib/source';
 import {
   DocsBody,
   DocsDescription,
@@ -8,17 +7,18 @@ import {
   ViewOptionsPopover,
 } from 'fumadocs-ui/layouts/docs/page';
 import { notFound } from 'next/navigation';
+import { DocsFooter } from '@/components/DocsFooter';
+import { HexDigitalTocAd } from '@/components/HexDigitalTocAd';
 import { getMDXComponents } from '@/components/mdx';
-import type { Metadata } from 'next';
 import { appConfig } from '@/config/app';
-import { normalizeBaseUrl } from '@/lib/jsonld/normalize-base-url';
+import { DocsFeedbackWidget } from '@/features/feedback/components/DocsFeedbackWidget';
 import { buildDocsJsonLdGraph } from '@/lib/jsonld/build-docs-graph';
 import { docsJsonLdDocument } from '@/lib/jsonld/docs-json-ld-document';
 import { JsonLd } from '@/lib/jsonld/json-ld';
-import { HexDigitalTocAd } from '@/components/HexDigitalTocAd';
-import { DocsFooter } from '@/components/DocsFooter';
-import { DocsFeedbackWidget } from '@/features/feedback/components/DocsFeedbackWidget';
+import { normalizeBaseUrl } from '@/lib/jsonld/normalize-base-url';
+import { getPageImage, source } from '@/lib/source';
 import { createBaseLink } from '@/mdx/createBaseLink';
+import type { Metadata } from 'next';
 
 export const dynamic = 'force-static';
 

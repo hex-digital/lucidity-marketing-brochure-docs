@@ -1,6 +1,6 @@
-import { defineNextProxy } from '@pkg/next-proxy/utilities';
-import { NextResponse } from 'next/server';
 import { isMarkdownPreferred, rewritePath } from 'fumadocs-core/negotiation';
+import { NextResponse } from 'next/server';
+import { defineNextProxy } from '@pkg/next-proxy/utilities';
 
 const llm = rewritePath('{/*path}', '/llms.mdx{/*path}');
 

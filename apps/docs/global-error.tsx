@@ -1,9 +1,9 @@
 'use client';
 
-import type NextError from 'next/error';
-import { useEffect } from 'react';
 import { captureException } from '@sentry/nextjs';
+import { useEffect } from 'react';
 import { fonts } from '@pkg/brand/fonts';
+import type NextError from 'next/error';
 
 interface GlobalErrorProperties {
   readonly error: NextError & { digest?: string };

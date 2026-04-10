@@ -1,12 +1,12 @@
+import { BaseLink } from '@/components/BaseLink/BaseLink';
+import { appConfig } from '@/config/app';
+import { isExternalLink } from '@/helpers';
 import {
   getDocsPageByPathname,
   type LucidityDocsPage,
   type LucidityDocsSource,
 } from '@/lib/source';
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
-import { BaseLink } from '@/components/BaseLink/BaseLink';
-import { isExternalLink } from '@/helpers';
-import { appConfig } from '@/config/app';
 
 type MdxAnchorProps = ComponentPropsWithoutRef<'a'>;
 

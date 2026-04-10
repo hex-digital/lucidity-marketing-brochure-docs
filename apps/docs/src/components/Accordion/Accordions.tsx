@@ -1,12 +1,12 @@
 import { Accordions as FumaAccordions } from 'fumadocs-ui/components/accordion';
-import type { ComponentProps, ReactElement } from 'react';
-import { Accordion } from './Accordion';
-import { JsonLd } from '@/lib/jsonld/json-ld';
+import { appConfig } from '@/config/app';
 import { buildFaqPageJsonLdRoot } from '@/lib/jsonld/faq-page-jsonld';
+import { JsonLd } from '@/lib/jsonld/json-ld';
 import { normalizeBaseUrl } from '@/lib/jsonld/normalize-base-url';
 import { accordionChildrenToFaqEntries } from '@/lib/react-node-to-plain-text';
-import { appConfig } from '@/config/app';
 import { source } from '@/lib/source';
+import { Accordion } from './Accordion';
+import type { ComponentProps, ReactElement } from 'react';
 
 type FumaAccordionsProps = ComponentProps<typeof FumaAccordions>;
 

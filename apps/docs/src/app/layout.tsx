@@ -1,12 +1,12 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import './global.css';
-import type { Metadata } from 'next';
 import { appConfig } from '@/config/app';
 import { seoConfig } from '@/config/seo';
 import { env } from '@/env';
-import { fonts } from '@pkg/brand/fonts';
 import { AnalyticsProvider } from '@pkg/analytics/provider';
+import { fonts } from '@pkg/brand/fonts';
 import { PerformanceMonitorProvider } from '@pkg/observability/provider';
+import type { Metadata } from 'next';
 
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (

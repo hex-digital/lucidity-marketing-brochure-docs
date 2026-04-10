@@ -1,4 +1,4 @@
-export interface ErrorOptions {
+export interface ErrorOpts {
   publicMessage?: string;
   statusCode?: number;
   details?: Record<string, unknown>;
@@ -18,7 +18,7 @@ export class BaseError extends Error {
       statusCode = 500,
       details,
       cause,
-    }: ErrorOptions,
+    }: ErrorOpts = {},
   ) {
     super(message, { cause });
 

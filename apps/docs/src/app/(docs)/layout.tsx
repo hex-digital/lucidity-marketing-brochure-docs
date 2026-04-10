@@ -1,10 +1,10 @@
-import { source } from '@/lib/source';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
+import { DocsBackground } from '@/components/DocsBackground';
 import { SectionLinksBar } from '@/components/SectionLinksBar/SectionLinksBar';
-import { appConfig } from '@/config/app';
 import { SidebarLogo } from '@/components/SidebarLogo';
 import { SkipToMainContent } from '@/components/SkipToMainContent';
-import { DocsBackground } from '@/components/DocsBackground';
+import { appConfig } from '@/config/app';
+import { source } from '@/lib/source';
 
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (

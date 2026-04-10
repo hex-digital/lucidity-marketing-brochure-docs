@@ -1,8 +1,8 @@
 import { createMDX } from 'fumadocs-mdx/next';
-import type { NextConfig } from 'next';
 import { env } from '@/env';
 import { config, withAnalyzer } from '@pkg/next-config';
 import { withLogging, withSentry } from '@pkg/observability/next-config';
+import type { NextConfig } from 'next';
 
 const withMDX = createMDX();
 
