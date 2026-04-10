@@ -1,7 +1,7 @@
-import type { NextRequest } from 'next/server';
-import { runNextProxyPipeline } from '@pkg/next-proxy/utilities';
-import { proxyProcessed } from '@/proxy/proxy-processed';
 import { madeWithLucidity } from '@/proxy/made-with-lucidity';
+import { proxyProcessed } from '@/proxy/proxy-processed';
+import { runNextProxyPipeline } from '@pkg/next-proxy/utilities';
+import type { NextRequest } from 'next/server';
 
 /** Add proxy to the pipeline here. They will be executed in the order they are listed here. */
 const proxyPipeline = [proxyProcessed, madeWithLucidity];
