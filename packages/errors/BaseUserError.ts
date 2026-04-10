@@ -8,15 +8,11 @@ export class BaseUserError extends BaseError {
       statusCode = 400,
       details,
       cause,
-    }: ErrorOpts,
+    }: ErrorOpts = {},
   ) {
-    super(message, { cause });
+    super(message, { publicMessage, statusCode, details, cause });
 
     this.name = 'BaseUserError';
     this.code = '00100';
-
-    this.publicMessage = publicMessage;
-    this.statusCode = statusCode;
-    this.details = details;
   }
 }

@@ -13,7 +13,12 @@ export class BaseError extends Error {
 
   constructor(
     message: string,
-    { publicMessage = 'Something went wrong.', statusCode = 500, details, cause }: ErrorOpts,
+    {
+      publicMessage = 'Something went wrong.',
+      statusCode = 500,
+      details,
+      cause,
+    }: ErrorOpts = {},
   ) {
     super(message, { cause });
 
