@@ -1,8 +1,8 @@
 import { NOTIFICATION_ERROR_CODES } from './codes';
-import { BaseError, type ErrorOptions } from '@pkg/errors/BaseError';
+import { BaseError, type ErrorOpts } from '@pkg/errors/BaseError';
 
 export class NotificationError extends BaseError {
-  constructor(message: string, errorOptions: ErrorOptions = {}) {
+  constructor(message: string, errorOptions: ErrorOpts = {}) {
     super(message, errorOptions);
 
     this.name = 'NotificationError';

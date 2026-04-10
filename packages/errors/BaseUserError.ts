@@ -1,16 +1,6 @@
-export interface ErrorOptions {
-  publicMessage?: string;
-  statusCode?: number;
-  details?: Record<string, unknown>;
-  cause?: unknown;
-}
+import { BaseError, type ErrorOpts } from './BaseError';
 
-export class BaseUserError extends Error {
-  code: string;
-  publicMessage: string;
-  statusCode: number;
-  details?: Record<string, unknown>;
-
+export class BaseUserError extends BaseError {
   constructor(
     message: string,
     {
@@ -18,7 +8,7 @@ export class BaseUserError extends Error {
       statusCode = 400,
       details,
       cause,
-    }: ErrorOptions,
+    }: ErrorOpts,
   ) {
     super(message, { cause });
 

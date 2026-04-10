@@ -1,8 +1,8 @@
 import { ERROR_CODES } from '@/errors/codes';
-import { BaseError, type ErrorOptions } from '@pkg/errors/BaseError';
+import { BaseError, type ErrorOpts } from '@pkg/errors/BaseError';
 
 export class NoFeedbackChannelError extends BaseError {
-  constructor(message: string, errorOptions: ErrorOptions = {}) {
+  constructor(message: string, errorOptions: ErrorOpts = {}) {
     super(message, errorOptions);
 
     this.name = 'ConfigNoFeedbackChannelError';

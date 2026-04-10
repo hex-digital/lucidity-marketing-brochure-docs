@@ -1,4 +1,4 @@
-export interface ErrorOptions {
+export interface ErrorOpts {
   publicMessage?: string;
   statusCode?: number;
   details?: Record<string, unknown>;
@@ -13,12 +13,7 @@ export class BaseError extends Error {
 
   constructor(
     message: string,
-    {
-      publicMessage = 'Something went wrong.',
-      statusCode = 500,
-      details,
-      cause,
-    }: ErrorOptions,
+    { publicMessage = 'Something went wrong.', statusCode = 500, details, cause }: ErrorOpts,
   ) {
     super(message, { cause });
 
