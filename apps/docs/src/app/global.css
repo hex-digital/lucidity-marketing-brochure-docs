@@ -40,6 +40,8 @@
  */
 #nd-docs-layout #nd-sidebar {
   background-color: transparent !important; /* [1] */
+  border-inline-end: 1px solid transparent;
+  transition: border-color 180ms;
 }
 
 html[data-docs-scrolled='true'] #nd-docs-layout #nd-sidebar {
@@ -48,6 +50,7 @@ html[data-docs-scrolled='true'] #nd-docs-layout #nd-sidebar {
     var(--color-fd-background) 80%,
     transparent
   ) !important;
+  border-inline-end-color: var(--color-fd-border);
 }
 
 html[data-docs-scrolled='true'] #nd-docs-layout [data-toc-popover] > header,
