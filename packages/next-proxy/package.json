@@ -24,7 +24,7 @@
     "eslint": "catalog:lint",
     "next": "catalog:frontend",
     "prettier": "catalog:lint",
-    "typescript-plugin-css-modules": "catalog:types",
+    "typescript": "catalog:dev",
     "vitest": "catalog:testing"
   }
 }

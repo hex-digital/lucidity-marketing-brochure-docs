@@ -26,7 +26,9 @@ const rules = {
     });
   },
   '**/*.{js,jsx,ts,tsx,mjs,cjs,json,md,mdx,css,html,yml,yaml,scss}': (filenames) => {
-    return [`prettier --write ${filenames.join(' ')}`];
+    const quotedFilenames = filenames.map((f) => `"${f}"`).join(' ');
+
+    return [`prettier --write ${quotedFilenames}`];
   },
 };
 
