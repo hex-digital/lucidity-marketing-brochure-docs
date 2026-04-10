@@ -1,13 +1,7 @@
-import {
-  DocsBody,
-  DocsDescription,
-  DocsPage,
-  DocsTitle,
-  MarkdownCopyButton,
-  ViewOptionsPopover,
-} from 'fumadocs-ui/layouts/docs/page';
+import { DocsBody, DocsPage } from 'fumadocs-ui/layouts/docs/page';
 import { notFound } from 'next/navigation';
 import { DocsFooter } from '@/components/DocsFooter';
+import { DocsPageHeader } from '@/components/DocsPageHeader';
 import { HexDigitalTocAd } from '@/components/HexDigitalTocAd';
 import { getMDXComponents } from '@/components/mdx';
 import { appConfig } from '@/config/app';
@@ -43,12 +37,7 @@ export default async function Page(props: PageProps<'/[[...slug]]'>) {
         id="nd-page"
         tabIndex={-1}
       >
-        <DocsTitle>{page.data.pageTitle ?? page.data.title}</DocsTitle>
-        <DocsDescription className="mb-0">{page.data.description}</DocsDescription>
-        <div className="mb-3 flex flex-row gap-2 items-center border-b pb-6">
-          <MarkdownCopyButton markdownUrl={`${page.url}.mdx`} />
-          <ViewOptionsPopover markdownUrl={`${page.url}.mdx`} githubUrl={pageGithubUrl} />
-        </div>
+        <DocsPageHeader data={page.data} url={page.url} pageGithubUrl={pageGithubUrl} />
         <DocsBody>
           <Mdx
             components={getMDXComponents({

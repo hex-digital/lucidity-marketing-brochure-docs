@@ -1,0 +1,32 @@
+.headerGrid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template:
+    'title' auto
+    'desc' auto
+    'actions' auto
+    / 1fr;
+
+  @media only screen and (min-width: 1024px) {
+    align-items: start;
+    column-gap: 24px;
+    grid-template:
+      'title actions' auto
+      'desc  desc' auto
+      / 1fr auto;
+  }
+}
+
+.title {
+  grid-area: title;
+}
+.desc {
+  grid-area: desc;
+}
+.actions {
+  grid-area: actions;
+
+  @media only screen and (min-width: 1024px) {
+    margin-top: 6px;
+  }
+}
