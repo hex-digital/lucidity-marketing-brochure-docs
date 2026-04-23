@@ -1,6 +1,6 @@
 {
-  "name": "Lucidity",
-  "short_name": "Lucidity",
+  "name": "Lucidity.js",
+  "short_name": "Lucidity.js",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

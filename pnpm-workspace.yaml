@@ -24,10 +24,13 @@ catalogs:
     turbo: 2.8.16
     typescript: 5.9.3
   docs:
+    '@radix-ui/react-collapsible': 1.1.12
+    '@radix-ui/react-tabs': 1.1.13
     fumadocs-core: 16.7.6
     fumadocs-mdx: 14.2.11
     fumadocs-ui: 16.7.6
     lucide-react: 0.577.0
+    react-medium-image-zoom: 5.4.3
   frontend:
     '@lottiefiles/dotlottie-react': 0.18.3
     '@tailwindcss/postcss': 4.2.1
