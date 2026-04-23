@@ -8,11 +8,6 @@
   position: absolute;
 }
 
-[data-rmiz-btn-zoom],
-[data-rmiz-btn-unzoom] {
-  display: none;
-}
-
 [data-rmiz-content='found'] img {
   cursor: zoom-in;
 }
@@ -20,10 +15,8 @@
 [data-rmiz-modal][open] {
   width: 100vw /* fallback */;
   width: 100dvw;
-
   height: 100vh /* fallback */;
   height: 100dvh;
-
   background-color: transparent;
   max-width: none;
   max-height: none;
@@ -55,10 +48,6 @@
   width: 100%;
   height: 100%;
   position: relative;
-}
-
-[data-rmiz-modal]::backdrop {
-  display: none;
 }
 
 [data-rmiz-modal-img] {

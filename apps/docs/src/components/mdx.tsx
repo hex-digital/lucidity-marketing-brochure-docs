@@ -1,11 +1,11 @@
-import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
+import { ImageZoom, type ImageZoomProps } from './image-zoom';
 import type { MDXComponents } from 'mdx/types';
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
     ...defaultMdxComponents,
-    img: (props) => <ImageZoom {...(props as any)} />,
+    img: (props) => <ImageZoom {...(props as ImageZoomProps)} />,
     ...components,
   } satisfies MDXComponents;
 }

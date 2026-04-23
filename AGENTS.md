@@ -14,7 +14,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 This is a pnpm/turborepo monorepo containing the Lucidity.js marketing website, documentation website, and related packages. No databases or backend services required.
 
-```
+```text
 lucidity.js/
 ├── apps/               # The individual app entry points
 └── packages/           # Monorepo packages used in the apps. These are not published to npm

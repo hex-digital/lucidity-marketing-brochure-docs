@@ -26,7 +26,6 @@ catalogs:
   docs:
     '@radix-ui/react-collapsible': 1.1.12
     '@radix-ui/react-tabs': 1.1.13
-    class-variance-authority: 0.7.1
     fumadocs-core: 16.7.6
     fumadocs-mdx: 14.2.11
     fumadocs-ui: 16.7.6

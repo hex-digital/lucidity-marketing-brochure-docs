@@ -26,7 +26,7 @@
     "@t3-oss/env-nextjs": "catalog:dev",
     "@takumi-rs/image-response": "catalog:utility",
     "@vercel/speed-insights": "catalog:observability",
-    "class-variance-authority": "catalog:docs",
+    "class-variance-authority": "catalog:utility",
     "fumadocs-core": "catalog:docs",
     "fumadocs-mdx": "catalog:docs",
     "fumadocs-ui": "catalog:docs",
@@ -35,6 +35,7 @@
     "next": "catalog:frontend",
     "react": "catalog:frontend",
     "react-dom": "catalog:frontend",
+    "react-medium-image-zoom": "catalog:docs",
     "rooks": "catalog:utility",
     "tailwind-merge": "catalog:utility",
     "zod": "catalog:types"
@@ -55,7 +56,6 @@
     "eslint-plugin-react-compiler": "catalog:lint",
     "postcss": "catalog:dev",
     "prettier": "catalog:lint",
-    "react-medium-image-zoom": "catalog:docs",
     "tailwindcss": "catalog:frontend",
     "typescript": "catalog:dev",
     "vitest": "catalog:testing"
