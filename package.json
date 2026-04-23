@@ -1,12 +1,47 @@
 {
-  "name": "lucidity-enterprise-starter-brochure",
+  "name": "lucidity-marketing-brochure-docs",
   "private": "true",
+  "contributors": [
+    {
+      "name": "Giuseppe Castiglione",
+      "url": "https://github.com/giuseppe-hex"
+    },
+    {
+      "name": "Jamie Warburton",
+      "url": "https://github.com/jamiewarb"
+    }
+  ],
   "scripts": {
+    "g:build": "turbo build",
     "g:dev": "turbo dev --color",
-    "g:build": "turbo build"
+    "g:lint-staged-files": "lint-staged --allow-empty",
+    "g:lint": "TIMING=1 turbo run lint --color --continue",
+    "g:lint:fix": "turbo run lint:fix --color --continue",
+    "g:prettier": "turbo run prettier --color --continue",
+    "g:prettier:fix": "turbo run prettier:fix --color --continue",
+    "g:test": "turbo run test --continue",
+    "g:test:unit": "turbo run test:unit --continue",
+    "g:turbo": "turbo",
+    "g:typecheck": "turbo run typecheck --continue",
+    "prepare": "husky"
   },
   "packageManager": "pnpm@10.17.1",
+  "engines": {
+    "node": ">=20.19.2",
+    "pnpm": ">=10.12.4"
+  },
   "devDependencies": {
-    "turbo": "^2.8.16"
+    "@commitlint/cli": "catalog:git",
+    "@commitlint/config-conventional": "catalog:git",
+    "@hexdigital/config-commitlint": "catalog:git",
+    "@pkg/tooling": "workspace:*",
+    "husky": "catalog:dev",
+    "lint-staged": "catalog:dev",
+    "prettier": "catalog:lint",
+    "turbo": "catalog:dev",
+    "typescript": "catalog:dev"
+  },
+  "dependencies": {
+    "node-plop": "catalog:dev"
   }
 }

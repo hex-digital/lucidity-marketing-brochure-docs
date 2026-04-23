@@ -1,3 +1,4 @@
+import { GLOB_TS, GLOB_TSX } from '../globs.js';
 import { pluginImport } from '../plugins.js';
 
 /**
@@ -6,6 +7,7 @@ import { pluginImport } from '../plugins.js';
 export async function imports() {
   return [
     {
+      files: [GLOB_TS, GLOB_TSX],
       name: 'eslint-plugin/imports/rules',
       plugins: { 'import-x': pluginImport },
       rules: {
@@ -17,6 +19,26 @@ export async function imports() {
         'import-x/no-self-import': 'error',
         'import-x/no-webpack-loader-syntax': 'error',
         'import-x/newline-after-import': ['error', { count: 1 }],
+        'import-x/order': [
+          'error',
+          {
+            alphabetize: { order: 'asc', caseInsensitive: true },
+            groups: [
+              'builtin',
+              'external',
+              'internal',
+              ['parent', 'sibling', 'index'],
+              'object',
+              'type',
+            ],
+            pathGroups: [
+              { pattern: '@/**', group: 'internal', position: 'before' },
+              { pattern: '~/**', group: 'internal', position: 'before' },
+              { pattern: '@pkg/**', group: 'index', position: 'after' },
+            ],
+            pathGroupsExcludedImportTypes: [],
+          },
+        ],
       },
     },
   ];

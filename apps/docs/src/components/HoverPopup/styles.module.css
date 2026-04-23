@@ -1,0 +1,17 @@
+.popup {
+  position: fixed;
+  left: var(--hover-preview-left);
+  top: var(--hover-preview-top);
+  z-index: 9999;
+  max-width: 360px;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--color-fd-border) 85%, transparent);
+  border-radius: 12px;
+  background: var(--color-fd-card);
+  color: var(--color-fd-foreground);
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 10px 30px color-mix(in oklab, var(--color-fd-foreground) 12%, transparent),
+    0 6px 12px color-mix(in oklab, var(--color-fd-foreground) 8%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--color-fd-background) 55%, transparent);
+}

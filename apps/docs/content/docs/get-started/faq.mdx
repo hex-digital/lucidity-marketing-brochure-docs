@@ -1,0 +1,262 @@
+---
+title: FAQ
+description: Get the answers to frequently asked questions about Lucidity.
+icon: CircleQuestionMark
+---
+
+import { Accordion, Accordions } from '@/components/Accordion';
+import { versions } from '@pkg/common/versions';
+
+<Accordions
+  type="multiple"
+  faqPageSlugs={['get-started', 'faq']}
+  defaultValue={['what-is-lucidity']}
+  className="smoke"
+  withJsonLd
+>
+
+  <Accordion title="What is Lucidity?" value="what-is-lucidity" id="what-is-lucidity">
+
+    Lucidity is an enterprise-grade template for building multi-site, multi-language websites and content-driven experiences.
+    It deeply integrates [Next.js](https://nextjs.org "Next.js by Vercel - The React Framework") with
+    [Sanity CMS](https://sanity.io "The Content Operating System for the AI era | Sanity") to create a publishing
+    platform that is fully functional and enjoyable to use.
+
+    Thousands of hours of development time have been spent on Lucidity by our team of UX and engineering specialists. Its aim
+    is to be the most feature complete, enterprise-grade template for Sanity. Taking our decade of Sanity and Next.js
+    experience, we've built it from the ground up on the learnings of building other real-world, enterprise
+    digital experiences.
+
+    Read our [What is Lucidity page](./index.mdx) for more details.
+
+  </Accordion>
+
+  <Accordion title="Who is Lucidity for?" value="who-is-lucidity-for" id="who-is-lucidity-for">
+
+    Our focus is on global organisations looking to deliver content across multiple mediums, in multiple languages.
+
+    If you're managing multiple websites, apps, digital experiences, or other internet-connected UIs, Lucidity is likely a great fit for you.
+
+    Lucidity is designed to manage and deliver your content across these outputs efficiently, whether you
+    have a centralised editing team, or a globally distributed one. Lucidity helps with local-to-global content, local
+    content guardrails, and re-using content where appropriate across outputs.
+
+    Lucidity is ideal for organisations looking to derisk their Sanity projects, but who may not have budget to pay for a
+    [Sanity specialist partner](https://www.hexdigital.com/sanity?utm_source=lucidity&utm_medium=documentation-site "Hex Digital")
+    Lucidity ensures you have a practical start point with a well-designed, future proofed Sanity build, with long-term
+    flexibility and Enterprise-level support.
+
+    Learn more in our [use cases for Lucidity](./index.mdx#use-cases).
+
+  </Accordion>
+
+  <Accordion title="Who is Lucidity not for?" value="who-is-lucidity-not-for" id="who-is-lucidity-not-for">
+
+    For simple, single marketing websites in a single language, this starter kit may not be for you.
+
+    For these use cases you may be better served by simple starters like [SanityPress](https://sanitypress.dev "SanityPress")
+    or [Turbo Start](https://github.com/robotostudio/turbo-start-sanity "Turbo Start"), which are free to use.
+
+    However, if later you need to move to a multi-site or multi-language setup, there is considerable work required to create
+    to build that in to these starters. This starter kit may be a good choice if you know you'll be expanding into
+    multiple sites or languages.
+
+  </Accordion>
+
+  <Accordion
+    title="Why should we buy Lucidity instead of building our own Sanity setup?"
+    value="buy-vs-build-sanity"
+    id="buy-vs-build-sanity"
+  >
+    
+    Building something equivalent to Lucidity typically takes **several thousand hours**, a deep understanding of
+    Sanity and Next.js, and UX and engineering specialists. Buying Lucidity saves that time and money and significantly
+    derisks your Sanity project.
+
+    Sanity puts emphasis on letting you build whatever you need in the CMS. However, this means there are fewer features out
+    of the box than you would find with other Headless CMS. Multi-site, i18n, redirects, flexible page sections,
+    caching strategies, performance optimisations, [and loads more](./../features/index.mdx) are all built into Lucidity.
+    With a well-designed architecture and features ready to use, Lucidity lets your team focus on what is unique to
+    your organisation.
+
+  </Accordion>
+
+  <Accordion
+    title="Why buy Lucidity over a free starter kit?"
+    value="free-sanity-starter"
+    id="free-sanity-starter"
+  >
+    
+    Free starters are a great fit for simple sites. If you only need a single marketing site in one language, a lighter
+    starter may be enough. We would recommend [SanityPress](https://sanitypress.dev "SanityPress")
+    or [Turbo Start](https://github.com/robotostudio/turbo-start-sanity "Turbo Start") if so.
+    
+    However, if you're managing and delivering content to multiple sites or experiences, in multiple languages, or
+    need strong editorial UX and workflows, Lucidity is the best choice. Lucidity gives your team a solid framework to
+    build upon, and the necessary features to let you launch quickly and with greatly reduced risk.
+
+  </Accordion>
+
+  <Accordion title="How does Lucidity reduce delivery risk?" value="delivery-risk" id="delivery-risk">
+
+    Starting without Lucidity means starting from one of a few other starter kits, either from Sanity themselves
+    or from the community. These are simple demonstrations of taking content from Sanity and displaying it on a page.
+
+    It doesn't include the many features a global organisation needs to manage and deliver that content. This means
+    these features need building before you can start delivering content. It also doesn't integrate multi-site support
+    into the Studio and the Website, which takes significant planning and effort.
+
+    Teams moving to Sanity for the first time also do not have a depth of Sanity experience yet. Without Lucidity,
+    these teams will be building critical content infrastructure using Sanity for the first time. This infrastructure
+    will be what's used for the next few years, so it needs to be correct, and it needs to scale.
+
+    This is a big ask for a first time Sanity team.
+
+    With Lucidity, you inherit thousands of hours of development and expertise from UX and Engineering specialists.
+    We've built it from the ground up on the learnings other real-world, enterprise digital experiences we've built.
+
+    We've also worked closely with Sanity solution engineers to ensure it's compatible with all Sanity features, now
+    and into the future.
+
+  </Accordion>
+
+  <Accordion
+    title="What features does Lucidity include out of the box?"
+    value="features-out-of-the-box"
+    id="features-out-of-the-box"
+  >
+    
+    Alongside the configured and integrated Next.js v{versions.next} and Sanity v{versions.sanity} apps, Lucidity includes
+    many features that cover these main areas:
+    
+    - Editorial Experience
+      - Visual Editing
+      - Live Previews
+      - Recycling Bin
+      - Content Type Page Templates
+      - Document Location Resolvers
+      - Redirect Warnings
+      - Redirect Tester
+      - Redirect Tracking
+      - Reusable Content Blocks
+      - Portable Text Editor Configuration
+      - Deep Image, Video, and File Integrations
+    - Multi-site and multi-language
+      - Studio workspaces per site
+      - Document Translations and Field Translations
+      - Codebase string translations
+      - Initial Value Templates
+      - Deep Structure Integration and Helpers
+      - Roles + Permissions for Sites and Languages
+      - Multi-site and Multi-language Routing via Proxy
+      - Easily modifiable config
+    - Content
+      - Headers and Footers
+      - Modular Content Blocks
+      - Announcement Bar
+      - Editable 404 Page
+    - SEO, GEO, Sitemaps, RSS Feeds, and AI Crawlers
+      - Content visibility (access rules)
+      - SEO & Metadata Integrations
+      - Sitemap
+      - RSS Feeds for XML and JSON
+      - Deeply Integrated Redirects
+      - Preview SEO in-CMS
+      - Automated JSON-LD Structured Data  
+    - Developer Experience
+      - Helpers for Validation, Hidden/Readonly, Structure, Singletons, and more
+      - Next.js Middleware Proxy Pipeline
+      - Turborepo with Turbo generators
+    - Developing with AI Agents
+      - .agents directory with skills and sub-agents
+      - AGENTS.md that describes the codebase
+    - Security
+      - Pre-launch Site Password Protection
+      - Security Headers and CSP
+    - Performance
+      - Caching & Invalidation
+      - Asset Optimisation
+    - Governance
+      - Roles and Permissions Scripts
+      - Editorial Workflow
+    - Durability
+      - Detailed Documentation
+      - Solid Repository Architecture
+      - High Code Quality
+      - Configured CI/CD Pipeline
+    - Observability and Monitoring
+      - Error Monitoring Integrations (Sentry, simple to add more)
+      - Observability Integrations (BetterStack, simple to add more)
+    - Analytics
+      - Analytics Integrations (PostHog, GA4, GTM, simple to add more)
+    - QA + Testing
+      - UAT Integration (FeedBucket)
+    
+    For a full breakdown of the included features, see our [Features page](./../features/index.mdx).
+
+  </Accordion>
+
+  <Accordion title="Can I customise and change Lucidity?" value="how-customisable" id="how-customisable">
+
+    Absolutely. Once you purchase Lucidity, you have full control over all of the code. Lucidity is the starting point
+    from which you can continue developing your own functionality.
+
+    For example, you can use your own Digital Asset Manager, tailor content workflows, adjust roles and
+    permissions, or extend schemas as needed. The codebase is intended to be owned and evolved by your team, not
+    treated as a black box.
+
+    What's more, we've designed each feature with configuration and extensibility in mind. The config directories let
+    you quickly configure certain options. See [the Apps configurations](./structure/apps/index.mdx)
+    for details of each config option.
+
+  </Accordion>
+
+  <Accordion title="What license does the code come with?" value="own-the-code" id="own-the-code">
+
+    When you purchase a Lucidity licence, you can:
+
+    ✅ Use Lucidity for commercial and non-commercial projects
+    ✅ Modify the code to fit your needs
+    ✅ Use it in as many projects as you like
+    ✅ As a freelancer or agency, create client projects using Lucidity (licence must be purchased per client)
+
+    You cannot:
+
+    ❌ Re-sell Lucidity even with significant modification
+    ❌ Use the code to create a competing product or service, or another template
+    ❌ Share your licence with others
+
+    For the full license breakdown, read our [Licence page](./../licence/index.mdx).
+
+  </Accordion>
+
+  <Accordion
+    title="How many sites and languages can Lucidity support?"
+    value="expand-sites-languages"
+    id="expand-sites-languages"
+  >
+
+    There is no limit on the number of sites or languages Lucidity can support.
+
+  </Accordion>
+
+  <Accordion title="What support is available after purchase?" value="support-after-purchase" id="support-after-purchase">
+    
+    We offer enterprise-level, hands-on support after you purchase. That includes:
+
+    - A dedicated account manager
+    - A Slack Connect channel with our support engineers, where you can ask questions under SLA
+    - Onboarding sessions to get you set up with Lucidity
+    - Monthly check-in sessions to see how your build is progressing
+    - News and updates about Lucidity that you can apply to your project
+
+    Beyond that, Hex Digital offers consultancy and delivery services if you need more capacity or depth:
+
+    - Embedded engineers working alongside your team to ship features, Studio customisations, integrations, and front-end work
+    - Architecture and review sessions—content models, multi-site structure, performance, accessibility, SEO, and operational concerns such as caching, redirects, and CI/CD
+    - Migration and launch support—content moves, redirect strategy, go-live planning, and stabilisation after release
+    - Training and enablement—workshops and hands-on upskilling in Sanity, Next.js, React, TypeScript, and adjacent tooling your stack uses
+
+  </Accordion>
+
+</Accordions>

@@ -2,7 +2,31 @@
   "name": "@pkg/brand",
   "version": "0.0.1",
   "private": true,
-  "exports": {
-    "./tokens.css": "./tokens.css"
+  "sideEffects": false,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint . && pnpm prettier",
+    "lint:fix": "eslint --fix . && pnpm prettier:fix",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "typecheck": "tsc --project ./tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "next": "catalog:frontend"
+  },
+  "devDependencies": {
+    "@pkg/eslint-plugin": "workspace:*",
+    "@types/node": "catalog:types",
+    "@types/react": "catalog:types",
+    "@types/react-dom": "catalog:types",
+    "eslint": "catalog:lint",
+    "eslint-config-next": "catalog:lint",
+    "eslint-config-prettier": "catalog:lint",
+    "eslint-plugin-react-compiler": "catalog:lint",
+    "postcss": "catalog:dev",
+    "prettier": "catalog:lint",
+    "typescript": "catalog:dev",
+    "vitest": "catalog:testing"
   }
 }

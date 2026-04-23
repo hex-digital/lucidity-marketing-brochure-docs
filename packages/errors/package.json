@@ -1,0 +1,37 @@
+{
+  "name": "@pkg/errors",
+  "version": "0.0.1",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint . && pnpm prettier",
+    "lint:fix": "eslint --fix . && pnpm prettier:fix",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "typecheck": "tsc --project ./tsconfig.json --noEmit"
+  },
+  "peerDependencies": {
+    "next": "catalog:frontend",
+    "react": "catalog:frontend"
+  },
+  "devDependencies": {
+    "@pkg/eslint-plugin": "workspace:*",
+    "@types/node": "catalog:types",
+    "@types/react": "catalog:types",
+    "@types/react-dom": "catalog:types",
+    "eslint": "catalog:lint",
+    "eslint-config-next": "catalog:lint",
+    "eslint-config-prettier": "catalog:lint",
+    "eslint-plugin-react-compiler": "catalog:lint",
+    "prettier": "catalog:lint",
+    "typescript": "catalog:dev",
+    "vitest": "catalog:testing"
+  },
+  "dependencies": {
+    "@t3-oss/env-nextjs": "catalog:dev",
+    "server-only": "catalog:utility",
+    "zod": "catalog:types"
+  }
+}
