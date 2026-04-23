@@ -12,10 +12,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ### Monorepo Overview
 
-This is a pnpm/turborepo monorepo containing the Lucidity marketing website, documentation website, and related packages. No databases or backend services required.
+This is a pnpm/turborepo monorepo containing the Lucidity.js marketing website, documentation website, and related packages. No databases or backend services required.
 
 ```
-lucidity/
+lucidity.js/
 ├── apps/               # The individual app entry points
 └── packages/           # Monorepo packages used in the apps. These are not published to npm
 ```

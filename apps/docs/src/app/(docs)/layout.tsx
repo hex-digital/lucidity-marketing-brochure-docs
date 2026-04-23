@@ -9,7 +9,7 @@ import { source } from '@/lib/source';
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
     <>
-      {/*<Banner>Lucidity is now available. Talk to sales now</Banner>*/}
+      {/*<Banner>Lucidity.js is now available. Talk to sales now</Banner>*/}
       <div className="relative isolate">
         <SkipToMainContent />
         <DocsBackground />

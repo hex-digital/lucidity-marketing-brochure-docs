@@ -15,7 +15,7 @@ export async function GET(_req: Request, { params }: RouteContext<'/og/[...slug]
     <DefaultImage
       title={page.data.title}
       description={page.data.description}
-      site="Lucidity"
+      site="Lucidity.js"
     />,
     {
       width: 1200,

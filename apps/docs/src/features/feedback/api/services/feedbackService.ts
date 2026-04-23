@@ -39,7 +39,7 @@ async function sendFeedbackToSlack(input: FeedbackRequest) {
   }
 
   const text = [
-    '*New Lucidity docs feedback*',
+    '*New Lucidity.js docs feedback*',
     `*Page:* ${escapeSlackText(input.pageTitle)}`,
     `*URL:* <${input.pageUrl}|${input.pageUrl}>`,
     `*Rating:* ${escapeSlackText(rating.emoji)}`,
