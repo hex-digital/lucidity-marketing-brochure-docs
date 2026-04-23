@@ -1,13 +1,46 @@
 @import "tailwindcss";
 @import "@pkg/brand/tokens.css";
-
+@import "./styles/layer-components.css";
+@import "./styles/text-utilities.css";
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body);
+  --font-heading-token: var(--font-heading-google), "DM Sans", sans-serif;
+  --font-body-token: var(--font-body-google), "Figtree", sans-serif;
+  --font-mono-token: var(--font-mono-google), "Martian Mono", monospace;
+  background: #212121;
+  color: var(--color-neutral-10);
+  font-family: var(--font-body-token);
+  font-size: var(--text-page-paragraph-size);
+  font-weight: var(--text-page-paragraph-weight);
+  letter-spacing: 0;
+  line-height: var(--text-page-paragraph-line-height);
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading-token);
+  margin: 0;
 }
+
+.prose {
+  > * {
+    margin-bottom: 1rem;
+  }
+
+  p:has(+ ul) {
+    margin-bottom: 0.5rem;
+  }
+
+  li {
+    list-style: circle;
+  }
+
+  ul {
+    margin-left: 1.5rem;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+

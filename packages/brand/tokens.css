@@ -1,11 +1,17 @@
 /* packages/brand/tokens.css */
-@theme {
+:root {
     --color-rose: #f2c4ce;
+    --color-rose-dark: #f59db0;
     --color-blush: #e8c8e4;
+    --color-blush-dark: #e98edd;
     --color-iris: #cbbff0;
+    --color-iris-dark: #9e89de;
     --color-haze: #b8d4f8;
+    --color-haze-dark: #72a5e8;
     --color-mist: #a8e8e8;
+    --color-mist-dark: #7de6e6;
     --color-dew: #b8edd4;
+    --color-dew-dark: #79dfaf;
     --color-ink: #171614;
     --color-white: #fafaf8;
     --color-paper: #f4f3ef;
@@ -14,8 +20,121 @@
     --color-ash: #56534e;
     --color-stone: #2e2c29;
     --color-char: #171614;
+    --color-surface-dark: #121212;
+    --color-black: #212121;
 
-    --font-heading: navigo, sans-serif;
-    --font-body: "Figtree", sans-serif;
-    --font-mono: "Martian Mono", sans-serif;
+    --color-neutral-10: var(--color-white);
+    --color-neutral-70: var(--color-char);
+
+    --gradient-rose-blush: linear-gradient(
+        90deg,
+        var(--color-rose-dark) 0%,
+        var(--color-blush-dark) 100%
+    );
+    --gradient-blush-iris: linear-gradient(
+        90deg,
+        var(--color-blush-dark) 0%,
+        var(--color-iris-dark) 100%
+    );
+    --gradient-iris-haze: linear-gradient(
+        90deg,
+        var(--color-iris-dark) 0%,
+        var(--color-haze-dark) 100%
+    );
+    --gradient-haze-mist: linear-gradient(
+        90deg,
+        var(--color-haze-dark) 0%,
+        var(--color-mist-dark) 100%
+    );
+    --gradient-mist-dew: linear-gradient(
+        90deg,
+        var(--color-mist-dark) 0%,
+        var(--color-dew-dark) 100%
+    );
+
+    --gradient-dark: linear-gradient(
+        91deg,
+        var(--color-rose-dark) 0.07%,
+        var(--color-blush-dark) 20.06%,
+        var(--color-iris-dark) 40.04%,
+        var(--color-haze-dark) 60.03%,
+        var(--color-mist-dark) 80.01%,
+        var(--color-dew-dark) 100%
+    );
+
+    --font-heading-token: navigo, sans-serif;
+    --font-body-token: 'Figtree', sans-serif;
+    --font-mono-token: 'Martian Mono', monospace;
+
+    /* Typography tokens from Figma text styles */
+    --text-page-eyebrow-size: 0.8125rem; /* 13px */
+    --text-page-eyebrow-weight: 300;
+    --text-page-eyebrow-line-height: 1;
+    --text-page-eyebrow-letter-spacing: 0.16em; /* ~2px at 13px */
+
+    --text-display-title-desktop-size: 4rem; /* 64px */
+    --text-display-title-desktop-weight: 300;
+    --text-display-title-desktop-line-height: 1.2;
+
+    --text-page-title-l-desktop-size: 3rem; /* 48px */
+    --text-page-title-l-desktop-weight: 300;
+    --text-page-title-l-desktop-line-height: 1.1;
+
+    --text-page-title-s-desktop-size: 2rem; /* 32px */
+    --text-page-title-s-desktop-weight: 300;
+    --text-page-title-s-desktop-line-height: 1.3;
+
+    --text-post-subtitle-desktop-size: 1.25rem; /* 20px */
+    --text-post-subtitle-desktop-weight: 400;
+    --text-post-subtitle-desktop-line-height: 1.4;
+
+    --text-page-paragraph-size: 1rem; /* 16px */
+    --text-page-paragraph-weight: 300;
+    --text-page-paragraph-line-height: 1.4;
+
+    --text-page-paragraph-bold-size: 1rem; /* 16px */
+    --text-page-paragraph-bold-weight: 500;
+    --text-page-paragraph-bold-line-height: 1.4;
+
+    --text-button-l-size: 1rem; /* 16px */
+    --text-button-l-weight: 600;
+    --text-button-l-line-height: 1.2;
+}
+
+@theme inline {
+    --color-rose: var(--color-rose);
+    --color-rose-dark: var(--color-rose-dark);
+    --color-blush: var(--color-blush);
+    --color-blush-dark: var(--color-blush-dark);
+    --color-iris: var(--color-iris);
+    --color-iris-dark: var(--color-iris-dark);
+    --color-haze: var(--color-haze);
+    --color-haze-dark: var(--color-haze-dark);
+    --color-mist: var(--color-mist);
+    --color-mist-dark: var(--color-mist-dark);
+    --color-dew: var(--color-dew);
+    --color-dew-dark: var(--color-dew-dark);
+    --color-ink: var(--color-ink);
+    --color-white: var(--color-white);
+    --color-paper: var(--color-paper);
+    --color-cartridge: var(--color-cartridge);
+    --color-muted: var(--color-muted);
+    --color-ash: var(--color-ash);
+    --color-stone: var(--color-stone);
+    --color-char: var(--color-char);
+    --color-surface-dark: var(--color-surface-dark);
+    --color-neutral-10: var(--color-neutral-10);
+    --color-neutral-70: var(--color-neutral-70);
+
+    --font-heading: var(--font-heading-token);
+    --font-body: var(--font-body-token);
+    --font-mono: var(--font-mono-token);
+
+    /* Breakpoints */
+    --breakpoint-xs: 28rem; /* 448px */
+    --breakpoint-sm: 48rem; /* 768px - tablet */
+    --breakpoint-md: 64rem; /* 1024px - tablet-wide */
+    --breakpoint-lg: 75rem; /* 1200px - desktop */
+    --breakpoint-xl: 85rem; /* 1366px - desktop-wide */
+    --breakpoint-2xl: 120rem; /* 1920px - desktop-ultrawide */
 }

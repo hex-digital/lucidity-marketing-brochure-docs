@@ -1,0 +1,24 @@
+@layer components {
+    .wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-block: 3.75rem;
+        padding-inline: 1rem;
+
+        &.wrapper--padding-none {
+            padding-block: 0;
+        }
+
+        &.wrapper--padding-small {
+            padding-block: 2rem;
+        }
+
+        &.wrapper--padding-medium {
+            padding-block: 4.5rem;
+        }
+
+        &.wrapper--padding-large {
+            padding-block: 6.25rem;
+        }
+    }
+}
