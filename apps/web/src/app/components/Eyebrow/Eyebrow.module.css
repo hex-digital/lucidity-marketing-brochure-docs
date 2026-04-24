@@ -1,0 +1,50 @@
+.root {
+  --eyebrow-border-gradient: var(--gradient-blush-iris);
+  display: inline-flex;
+  position: relative;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0.625rem;
+}
+
+.root::after {
+  background: var(--eyebrow-border-gradient);
+  bottom: 0;
+  content: '';
+  height: 2px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.text {
+  color: var(--color-neutral-10);
+  font-family: var(--font-mono-token);
+  font-size: var(--text-page-eyebrow-size);
+  font-weight: var(--text-page-eyebrow-weight);
+  letter-spacing: var(--text-page-eyebrow-letter-spacing);
+  line-height: var(--text-page-eyebrow-line-height);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.variantRoseBlush {
+  --eyebrow-border-gradient: var(--gradient-rose-blush);
+}
+
+.variantBlushIris {
+  --eyebrow-border-gradient: var(--gradient-blush-iris);
+}
+
+.variantIrisHaze {
+  --eyebrow-border-gradient: var(--gradient-iris-haze);
+}
+
+.variantHazeMist {
+  --eyebrow-border-gradient: var(--gradient-haze-mist);
+}
+
+.variantMistDew {
+  --eyebrow-border-gradient: var(--gradient-mist-dew);
+}

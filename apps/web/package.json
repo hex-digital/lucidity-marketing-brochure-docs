@@ -19,7 +19,7 @@
     "@pkg/brand": "workspace:*",
     "clsx": "catalog:ui",
     "tailwind-merge": "catalog:ui",
-    "motion": "catalog:ui"
+    "motion": "catalog:ui",
     "@lottiefiles/dotlottie-react": "catalog:frontend",
     "@pkg/analytics": "workspace:*",
     "@pkg/brand": "workspace:*",

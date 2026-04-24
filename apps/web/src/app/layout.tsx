@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from 'next/font/google';
+import { DM_Sans, Figtree, Martian_Mono } from 'next/font/google';
 import './globals.css';
 import { appConfig } from '@/config/app';
 import { seoConfig } from '@/config/seo';
@@ -7,16 +7,26 @@ import { AnalyticsProvider } from '@pkg/analytics/provider';
 import { PerformanceMonitorProvider } from '@pkg/observability/provider';
 import type { Metadata } from 'next';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const dmSans = DM_Sans({
   subsets: ['latin'],
+  variable: '--font-heading-google',
+  display: 'swap',
+  weight: ['300', '400', '500'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const figtree = Figtree({
   subsets: ['latin'],
+  variable: '--font-body-google',
+  display: 'swap',
+  weight: ['300', '400', '500', '700'],
 });
 
+const martianMono = Martian_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono-google',
+  display: 'swap',
+  weight: ['300', '400', '600'],
+});
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased touch-manipulation`}
+        className={`${dmSans.variable} ${figtree.variable} ${martianMono.variable} antialiased touch-manipulation`}
       >
         <ProductionOnlyProviders />
         {children}
