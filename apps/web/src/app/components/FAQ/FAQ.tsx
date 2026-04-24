@@ -92,7 +92,7 @@ export function FAQ({ items, className }: FAQProps) {
           <div className={styles.content}>
             <div className="prose">
               {item.content.map((paragraph) => (
-                <p key={`${item.summary}-${paragraph}`} className="text-page-paragraph">
+                <p key={crypto.randomUUID()} className="text-page-paragraph">
                   {paragraph}
                 </p>
               ))}
