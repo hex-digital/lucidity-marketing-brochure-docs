@@ -1,4 +1,4 @@
-import type { GridContent } from '@/types/gridContent';
+import type { GridContent } from '@/app/types/gridContent';
 
 export const directorsGrid: GridContent[] = [
   {

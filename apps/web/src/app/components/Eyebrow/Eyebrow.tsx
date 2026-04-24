@@ -10,14 +10,14 @@ export type EyebrowVariant =
   | 'mist-dew'
   | 'dew-rose';
 
-const variantClassMap: Record<EyebrowVariant, string> = {
-  'rose-blush': styles.variantRoseBlush,
-  'blush-iris': styles.variantBlushIris,
-  'iris-haze': styles.variantIrisHaze,
-  'haze-mist': styles.variantHazeMist,
-  'mist-dew': styles.variantMistDew,
-  'dew-rose': styles.variantDewRose,
-};
+const variantClassMap = {
+  'rose-blush': styles.variantRoseBlush ?? '',
+  'blush-iris': styles.variantBlushIris ?? '',
+  'iris-haze': styles.variantIrisHaze ?? '',
+  'haze-mist': styles.variantHazeMist ?? '',
+  'mist-dew': styles.variantMistDew ?? '',
+  'dew-rose': styles.variantDewRose ?? '',
+} satisfies Record<EyebrowVariant, string>;
 
 export interface EyebrowProps {
   variant?: EyebrowVariant;
