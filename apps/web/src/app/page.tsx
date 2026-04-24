@@ -37,7 +37,7 @@ export default function Home() {
               Ready on day one.
             </h2>
             <p className="text-center max-w-[600px] mt-6">
-              Lucidity is built on a modern, battle-tested stack, the same tools trusted by
+              Lucidity.js is built on a modern, battle-tested stack, the same tools trusted by
               engineering teams at some of the world's leading organisations. No experimental
               dependencies, no niche frameworks. Just the right tools, configured properly.
             </p>
@@ -61,9 +61,9 @@ export default function Home() {
                 </div>
                 <div className="prose">
                   <p>
-                    Lucidity is built for engineering and product teams at organisations where
-                    content infrastructure is business-critical. Pricing is tailored to your
-                    team size and onboarding requirements.
+                    Lucidity.js is built for engineering and product teams at organisations
+                    where content infrastructure is business-critical. Pricing is tailored to
+                    your team size and onboarding requirements.
                   </p>
                   <p>
                     <strong>What's included:</strong>
@@ -148,11 +148,11 @@ export default function Home() {
                 </p>
 
                 <p>
-                  Lucidity is built so that doesn't happen. Every site you run shares the same
-                  component library, design system, and CMS tooling. Your editorial teams work
-                  independently in their own content environment, with their own workflows and
-                  access controls, but the underlying platform is one thing your engineering
-                  team maintains once.
+                  Lucidity.js is built so that doesn't happen. Every site you run shares the
+                  same component library, design system, and CMS tooling. Your editorial teams
+                  work independently in their own content environment, with their own workflows
+                  and access controls, but the underlying platform is one thing your
+                  engineering team maintains once.
                 </p>
 
                 <p>
@@ -180,9 +180,10 @@ export default function Home() {
                 </h2>
               </div>
               <p>
-                Lucidity is built on a modern, battle-tested stack — the same tools trusted by
-                engineering teams at some of the world's leading organisations. No experimental
-                dependencies, no niche frameworks. Just the right tools, configured properly.
+                Lucidity.js is built on a modern, battle-tested stack — the same tools trusted
+                by engineering teams at some of the world's leading organisations. No
+                experimental dependencies, no niche frameworks. Just the right tools,
+                configured properly.
               </p>
             </div>
 
@@ -212,7 +213,7 @@ export default function Home() {
                 </h2>
               </div>
               <p>
-                Lucidity’s architecture has been shaped through repeated builds for complex
+                Lucidity.js’s architecture has been shaped through repeated builds for complex
                 organisations. Each structural decision reflects what consistently worked,
                 refined over time through real-world use. You’re not inheriting a clever idea,
                 you’re inheriting a system that’s been continuously improved to handle
@@ -261,7 +262,7 @@ export default function Home() {
               plainly started.
             </h2>
             <p className="text-center max-w-[600px] mt-6">
-              Lucidity isn't just a technical decision — it affects timelines, headcount,
+              Lucidity.js isn't just a technical decision — it affects timelines, headcount,
               editorial velocity, and long-term maintainability. Here's what that looks like in
               concrete terms.
             </p>
@@ -289,9 +290,10 @@ export default function Home() {
                 </h2>
               </div>
               <p>
-                Lucidity is built on a modern, battle-tested stack, the same tools trusted by
-                engineering teams at some of the world's leading organisations. No experimental
-                dependencies, no niche frameworks. Just the right tools, configured properly.
+                Lucidity.js is built on a modern, battle-tested stack, the same tools trusted
+                by engineering teams at some of the world's leading organisations. No
+                experimental dependencies, no niche frameworks. Just the right tools,
+                configured properly.
               </p>
               <Button href="#" variant="secondary" icon={true}>
                 View the docs
@@ -340,7 +342,8 @@ export default function Home() {
               </h2>
               <p className="text-center max-w-[600px] mt-6">
                 We'll take the time to understand your stack, your team, and your editorial
-                requirements, and give you an honest view of whether Lucidity is the right fit.
+                requirements, and give you an honest view of whether Lucidity.js is the right
+                fit.
               </p>
               <Button href="/" className="mt-4">
                 Talk to sales
@@ -400,7 +403,7 @@ export default function Home() {
 
         <Wrapper className="items-center">
           <div className="flex flex-col gap-4 items-center">
-            <Image src="./logo.svg" width={221} height={38} alt="Lucidity logo" />
+            <Image src="./logo.svg" width={221} height={38} alt="Lucidity.js logo" />
 
             <p className="text-center max-w-[600px] mt-6">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec tristique nisi,
@@ -429,7 +432,7 @@ export default function Home() {
                 title="Visit Hex Digital Ltd"
                 className="text-page-eyebrow uppercase"
               >
-                Lucidity Licence
+                Lucidity.js Licence
               </a>
             </li>
             <li className="hidden md:block">•</li>

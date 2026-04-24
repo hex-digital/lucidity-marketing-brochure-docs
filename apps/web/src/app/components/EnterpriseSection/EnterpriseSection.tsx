@@ -54,7 +54,7 @@ export function EnterpriseSection() {
 
           <div className={styles.bodyCopy}>
             <p>
-              Lucidity is built for engineering and product teams at organisations where
+              Lucidity.js is built for engineering and product teams at organisations where
               content infrastructure is business-critical. Pricing is tailored to your team
               size and onboarding requirements.
             </p>
@@ -66,7 +66,7 @@ export function EnterpriseSection() {
             </ul>
             <p className={styles.listLabel}>Available separately:</p>
             <ul>
-              <li>Onboarding workshop with the Lucidity team</li>
+              <li>Onboarding workshop with the Lucidity.js team</li>
               <li>Architectural review for your specific setup</li>
               <li>Implementation consultancy and embedded engineering</li>
             </ul>

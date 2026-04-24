@@ -11,9 +11,9 @@ export function Hero() {
             The best start your Sanity project <br className="hidden md:block" /> can get.
           </h1>
           <p>
-            Lucidity is an enterprise-grade monorepo framework for engineering teams building
-            on Next.js and Sanity. Multisite, multi-lang, visual editing, caching, security and
-            40+ features, all from day one.
+            Lucidity.js is an enterprise-grade monorepo framework for engineering teams
+            building on Next.js and Sanity. Multisite, multi-lang, visual editing, caching,
+            security and 40+ features, all from day one.
           </p>
           <p>
             Cut 6 months off your delivery timeline with a codebase that&apos;s documented and

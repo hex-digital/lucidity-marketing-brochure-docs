@@ -8,7 +8,7 @@ export function Header() {
         src="./logo.svg"
         width={221}
         height={38}
-        alt="Lucidity logo"
+        alt="Lucidity.js logo"
         className="w-[150px] md:w-[221px]"
       />
       {/*<Navigation />*/}

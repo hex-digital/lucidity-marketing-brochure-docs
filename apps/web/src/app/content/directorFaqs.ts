@@ -4,7 +4,7 @@ export const directorFaqs: FAQItem[] = [
   {
     summary: "Can't we just build it?",
     content: [
-      'To create something like Lucidity yourself would take several hundreds of development hours, a deep understanding of Sanity and Next.js, and a team of UX and engineering specialists. Buying Lucidity saves you that time and money, and significantly de-risks your Sanity project.',
+      'To create something like Lucidity.js yourself would take several hundreds of development hours, a deep understanding of Sanity and Next.js, and a team of UX and engineering specialists. Buying Lucidity saves you that time and money, and significantly de-risks your Sanity project.',
     ],
   },
   {

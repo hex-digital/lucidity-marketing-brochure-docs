@@ -1,12 +1,12 @@
 export const docsPoints = [
   {
     heading: 'Quick start',
-    content: 'The quickest route to getting a Lucidity project running locally.',
+    content: 'The quickest route to getting a Lucidity.js project running locally.',
     bulletColor: '--color-dew-dark',
   },
   {
     heading: 'Philosophy',
-    content: 'Guiding principles for the development of Lucidity.',
+    content: 'Guiding principles for the development of Lucidity.js.',
     bulletColor: '--color-mist-dark',
   },
   {
@@ -17,7 +17,7 @@ export const docsPoints = [
   {
     heading: 'Enterprise',
     content:
-      'Guidance for teams preparing Lucidity for larger programs and enterprise delivery.',
+      'Guidance for teams preparing Lucidity.js for larger programs and enterprise delivery.',
     bulletColor: '--color-iris-dark',
   },
   {

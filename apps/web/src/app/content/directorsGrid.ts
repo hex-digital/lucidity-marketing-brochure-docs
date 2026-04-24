@@ -8,7 +8,7 @@ export const directorsGrid: GridContent[] = [
     subtitle: 'of engineering time recovered.',
     body: [
       'The infrastructure is already built.',
-      'Multisite routing, cache invalidation, Studio configuration, security — this work costs 6 to 12 months of senior engineering time. With Lucidity, your team inherits it on day one.',
+      'Multisite routing, cache invalidation, Studio configuration, security — this work costs 6 to 12 months of senior engineering time. With Lucidity.js, your team inherits it on day one.',
     ],
   },
   {
@@ -39,7 +39,7 @@ export const directorsGrid: GridContent[] = [
     subtitle: 'bus factor risk.',
     body: [
       'Architecture that survives team changes.',
-      'One of the highest sources of engineering risk in content teams is an undocumented, bespoke CMS. Lucidity’s built on SanityCMS, the industry leader four years running, and is fully documented and fully typesafe, which means you’re not dependent on any one engineer.',
+      'One of the highest sources of engineering risk in content teams is an undocumented, bespoke CMS. Lucidity.js is built on SanityCMS, the industry leader four years running, and is fully documented and fully typesafe, which means you’re not dependent on any one engineer.',
     ],
   },
   {
@@ -49,7 +49,7 @@ export const directorsGrid: GridContent[] = [
     subtitle: 'lock in.',
     body: [
       'Full source code. No dependency on us.',
-      'You own the codebase from day one. Lucidity is a starting point, not a platform subscription. If you stop working with us tomorrow, your codebase continues operating exactly as it did.',
+      'You own the codebase from day one. Lucidity.js is a starting point, not a platform subscription. If you stop working with us tomorrow, your codebase continues operating exactly as it did.',
     ],
   },
   {
