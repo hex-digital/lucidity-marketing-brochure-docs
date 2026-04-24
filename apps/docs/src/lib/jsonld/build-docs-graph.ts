@@ -23,7 +23,7 @@ function buildSoftwareApplication(base: string) {
   return {
     '@type': 'SoftwareApplication',
     '@id': softwareId(base),
-    name: 'Lucidity',
+    name: 'Lucidity.js',
     description: seoConfig.description,
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'Any',
@@ -106,7 +106,7 @@ export function buildDocsJsonLdGraph(options: {
   const canonicalUrl = `${base}${page.url}`;
 
   const siteTitle =
-    seoConfig.title.replace(/\s*\|\s*.*/, '').trim() || 'Lucidity documentation';
+    seoConfig.title.replace(/\s*\|\s*.*/, '').trim() || 'Lucidity.js documentation';
   const name = page.data.pageTitle ?? page.data.title;
   const description = page.data.description;
 
