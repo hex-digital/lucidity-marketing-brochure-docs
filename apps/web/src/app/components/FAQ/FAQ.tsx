@@ -1,5 +1,5 @@
+import { useId, type CSSProperties } from 'react';
 import styles from './FAQ.module.css';
-import type { CSSProperties } from 'react';
 
 const BORDER_COLOR_VARS = [
   '--color-rose-dark',
@@ -21,6 +21,8 @@ interface FAQProps {
 }
 
 export function FAQ({ items, className }: FAQProps) {
+  const instanceId = useId();
+
   return (
     <div className={className}>
       {items.map((item, index) => (
@@ -45,7 +47,7 @@ export function FAQ({ items, className }: FAQProps) {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <mask
-                    id={`mask-plus-${index}`}
+                    id={`${instanceId}-mask-plus-${index}`}
                     style={{ maskType: 'alpha' }}
                     maskUnits="userSpaceOnUse"
                     x="0"
@@ -55,7 +57,7 @@ export function FAQ({ items, className }: FAQProps) {
                   >
                     <rect width="16" height="16" fill="#D9D9D9" />
                   </mask>
-                  <g mask={`url(#mask-plus-${index})`}>
+                  <g mask={`url(#${instanceId}-mask-plus-${index})`}>
                     <path
                       d="M7.33333 8.66667H2V7.33333H7.33333V2H8.66667V7.33333H14V8.66667H8.66667V14H7.33333V8.66667Z"
                       fill="#FAFAF8"
@@ -72,7 +74,7 @@ export function FAQ({ items, className }: FAQProps) {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <mask
-                    id={`mask-minus-${index}`}
+                    id={`${instanceId}-mask-minus-${index}`}
                     style={{ maskType: 'alpha' }}
                     maskUnits="userSpaceOnUse"
                     x="0"
@@ -82,7 +84,7 @@ export function FAQ({ items, className }: FAQProps) {
                   >
                     <rect width="16" height="16" fill="#D9D9D9" />
                   </mask>
-                  <g mask={`url(#mask-minus-${index})`}>
+                  <g mask={`url(#${instanceId}-mask-minus-${index})`}>
                     <path d="M2 8.66634V7.33301H14V8.66634H2Z" fill="#FAFAF8" />
                   </g>
                 </svg>
@@ -92,7 +94,7 @@ export function FAQ({ items, className }: FAQProps) {
           <div className={styles.content}>
             <div className="prose">
               {item.content.map((paragraph) => (
-                <p key={crypto.randomUUID()} className="text-page-paragraph">
+                <p key={`${item.summary}-${paragraph}`} className="text-page-paragraph">
                   {paragraph}
                 </p>
               ))}

@@ -5,7 +5,7 @@ export function Header() {
   return (
     <header className="wrapper wrapper--padding-small flex justify-between relative items-center z-4">
       <Image
-        src="./logo.svg"
+        src="/logo.svg"
         width={221}
         height={38}
         alt="Lucidity.js logo"

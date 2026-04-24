@@ -48,3 +48,7 @@
 .variantMistDew {
   --eyebrow-border-gradient: var(--gradient-mist-dew);
 }
+
+.variantDewRose {
+  --eyebrow-border-gradient: var(--gradient-dew-rose);
+}

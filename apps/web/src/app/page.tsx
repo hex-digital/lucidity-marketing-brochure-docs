@@ -20,6 +20,8 @@ import { generalFaqs } from '@/app/content/generalFaqs';
 import { stats } from '@/app/content/stats';
 import { techPoints } from '@/app/content/techPoints';
 
+export const dynamic = 'force-static';
+
 export default function Home() {
   return (
     <>
@@ -280,7 +282,7 @@ export default function Home() {
           <FAQ items={directorFaqs} />
         </Wrapper>
 
-        <Wrapper className="z4">
+        <Wrapper className="z-4">
           <div className="grid md:grid-cols-2 gap-15">
             <div className="flex flex-col gap-10">
               <div>

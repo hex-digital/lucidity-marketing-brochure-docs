@@ -31,7 +31,7 @@ export function Hero() {
         <div className="hero-images">
           <Image
             src="https://picsum.photos/720/464"
-            alt="string"
+            alt="Lucidity.js dashboard preview"
             width={720}
             height={464}
             className="relative md:absolute md:-right-1/3 z-20 w-full md:w-auto rounded-md"
@@ -39,7 +39,7 @@ export function Hero() {
           />
           <Image
             src="https://picsum.photos/720/464"
-            alt="string"
+            alt=""
             width={720}
             height={464}
             className="hidden md:block absolute top-[242px] rounded-md"
