@@ -20,7 +20,7 @@ export function HexDigitalTocAd({ className }: HexDigitalTocAdProps) {
         </p>
         <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-fd-border bg-fd-muted/10">
           <Image
-            src="/hex-digital-team-group.png"
+            src="/hex-digital-team-group-small.jpg"
             alt="Hex Digital team group photo outdoors in the city"
             fill
             className="object-cover"

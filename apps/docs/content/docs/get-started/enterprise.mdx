@@ -1,17 +1,17 @@
 ---
 title: Enterprise
-description: Guidance for teams preparing Lucidity for delivery of enterprise-grade applications.
+description: Guidance for teams preparing Lucidity.js for delivery of enterprise-grade applications.
 icon: Handshake
 who: Global Organisations
-why: To quickly understand if Lucidity meets their stringent enterprise requirements
+why: To quickly understand if Lucidity.js meets their stringent enterprise requirements
 ---
 
-Lucidity is built from the ground-up to be the perfect content delivery framework for enterprise-grade applications.
+Lucidity.js is built from the ground-up to be the perfect content delivery framework for enterprise-grade applications.
 
 It's been used in production since 2024 by global teams with mission-critical content infrastructure and complex
 digital needs.
 
-We've worked closely with Sanity solution engineers to ensure Lucidity is durable, performant, and secure, and that it
+We've worked closely with Sanity solution engineers to ensure Lucidity.js is durable, performant, and secure, and that it
 can utilise all of Sanity's features, now and in the future.
 
 ## Enterprise support model
@@ -28,7 +28,7 @@ This model helps global organisations align platform support with internal servi
 
 ## Architecture for enterprise teams
 
-Lucidity is a software platform delivered as a codebase your teams own. It is designed as a monorepo with dedicated apps
+Lucidity.js is a software platform delivered as a codebase your teams own. It is designed as a monorepo with dedicated apps
 and shared packages, so you can build one or multiple websites on a common technical foundation without duplicating effort.
 
 The default structure separates concerns clearly across website delivery, content tooling, and shared UI and engineering
@@ -37,7 +37,7 @@ release quality, and governance.
 
 ## Security and access control
 
-Lucidity is designed to be secure by default. It has deep integration with Sanity's roles and permissions and provides
+Lucidity.js is designed to be secure by default. It has deep integration with Sanity's roles and permissions and provides
 scripts to ease the burden of managing access control that Sanity's UI can struggle with at scale. This works with SSO.
 
 It also manages your security headers, including your Content Security Policy (CSP), Permissions Policy, and more.
@@ -46,23 +46,23 @@ Secrets are securely managed through environment variables, with specific precau
 variables are not exposed in clientside bundles.
 
 Dependencies and packages are carefully selected for security and durability, and are pinned to specific versions to
-help prevent supply chain attacks. We quickly disclose if any vulnerable package versions are used within Lucidity.
+help prevent supply chain attacks. We quickly disclose if any vulnerable package versions are used within Lucidity.js.
 
-The Lucidity platform maintains vulnerability scanning so you know you're building from a solid, secure foundation.
+The Lucidity.js platform maintains vulnerability scanning so you know you're building from a solid, secure foundation.
 
 Guidance on securely setting up your hosting environment is available in the [deployment section](./deploy/index.mdx).
 
 ## Observability and monitoring
 
-Out of the box, Lucidity integrates with popular observability tools Better Stack and Sentry. Instrumentation files and
+Out of the box, Lucidity.js integrates with popular observability tools Better Stack and Sentry. Instrumentation files and
 providers can be easily edited to add other providers.
 
-This ensures observability is a first-class part of Lucidity and visibility is established early. Monitoring is then
+This ensures observability is a first-class part of Lucidity.js and visibility is established early. Monitoring is then
 yours to control as you need, in the platforms your team prefers, and evolve into deeper tracing and reporting as required.
 
 ## Performance and durability
 
-Lucidity leverages the power of Next.js and Sanity to ensure reliable, high-performance content delivery.
+Lucidity.js leverages the power of Next.js and Sanity to ensure reliable, high-performance content delivery.
 
 The web application uses React's server components to keep pages light, and Next's incremental static regeneration to
 serve cached content globally at lightning speed. Sanity's Live API ensures content is always up to date. This means
@@ -73,7 +73,7 @@ reusable components, and shared configuration that reduce regressions across tea
 
 ## CI/CD pipelines
 
-Lucidity is built to work with modern CI/CD pipelines and quality gates. A typical implementation includes pull request
+Lucidity.js is built to work with modern CI/CD pipelines and quality gates. A typical implementation includes pull request
 validation for linting, formatting, type safety, and test execution before any merge to protected branches.
 
 For monorepo efficiency, pipelines use Turborepo task filtering and caching to reduce build time across multiple
@@ -81,7 +81,7 @@ teams. This enables faster feedback cycles.
 
 ## Test framework (unit, e2e)
 
-Lucidity is set up for a layered test strategy with fast unit coverage and end-to-end confidence for critical user journeys.
+Lucidity.js is set up for a layered test strategy with fast unit coverage and end-to-end confidence for critical user journeys.
 
 - Unit tests with Vitest for package and application logic
 - End-to-end tests with Playwright for customer-facing flows
@@ -90,6 +90,6 @@ This model keeps feedback fast for day-to-day development while still protecting
 
 ## Disaster recovery
 
-Because Lucidity is a software platform rather than a managed service, disaster recovery planning is implemented within
+Because Lucidity.js is a software platform rather than a managed service, disaster recovery planning is implemented within
 your own hosting and operations model. We provide a foundation that supports resilient delivery practices,
 and best practices and guides to help organisations define and run their own backup and recovery procedures.
