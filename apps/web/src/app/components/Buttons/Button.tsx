@@ -13,10 +13,10 @@ type ButtonProps = {
   icon?: boolean;
 } & Omit<ComponentProps<typeof Link>, 'href' | 'className' | 'children'>;
 
-const variantClassMap: Record<ButtonVariant, string> = {
-  primary: styles.primaryBtn,
-  secondary: styles.secondaryBtn,
-};
+const variantClassMap = {
+  primary: styles.primaryBtn ?? '',
+  secondary: styles.secondaryBtn ?? '',
+} satisfies Record<ButtonVariant, string>;
 
 export function Button({
   href,
