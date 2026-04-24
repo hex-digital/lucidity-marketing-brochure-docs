@@ -6,6 +6,14 @@ import type { NextConfig } from 'next';
 /* eslint-disable import-x/no-mutable-exports */
 let nextConfig: NextConfig = withLogging({
   ...config,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
+    ],
+  },
 });
 
 if (env.VERCEL) {

@@ -1,0 +1,34 @@
+.btn {
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: var(--font-mono-token);
+  font-size: 0.7125rem;
+  font-weight: 300;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  padding: 10px 14px;
+  text-transform: uppercase;
+  text-box: trim-both cap alphabetic;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+
+  @media screen and (min-width: 56.25rem) {
+    padding: 0.9375rem 1.25rem;
+    font-size: 0.8125rem;
+  }
+}
+
+.primaryBtn {
+  background: var(--color-neutral-10);
+  border: 0;
+  color: var(--color-neutral-70);
+}
+
+.secondaryBtn {
+  background: transparent;
+  border: 1px solid var(--color-neutral-10);
+  color: var(--color-neutral-10);
+}

@@ -1,0 +1,110 @@
+@layer utilities {
+  /* Figma: Page/Eyebrow/Regular */
+  .text-page-eyebrow {
+    font-family: var(--font-mono-token);
+    font-size: var(--text-page-eyebrow-size);
+    font-weight: var(--text-page-eyebrow-weight);
+    letter-spacing: var(--text-page-eyebrow-letter-spacing);
+    line-height: var(--text-page-eyebrow-line-height);
+    text-transform: uppercase;
+  }
+
+  /* Figma: Display/Title/Desktop/Bold */
+  .text-display-title-desktop {
+    font-family: var(--font-heading-token);
+    font-size: var(--text-display-title-desktop-size);
+    font-weight: var(--text-display-title-desktop-weight);
+    letter-spacing: 0;
+    line-height: var(--text-display-title-desktop-line-height);
+  }
+
+  /* Figma: Page/Title L/Desktop */
+  .text-page-title-l-desktop {
+    font-family: var(--font-heading-token);
+    font-size: var(--text-page-title-l-desktop-size);
+    font-weight: var(--text-page-title-l-desktop-weight);
+    letter-spacing: 0;
+    line-height: var(--text-page-title-l-desktop-line-height);
+  }
+
+  /* Figma: Page/Title S/Desktop */
+  .text-page-title-s-desktop {
+    font-family: var(--font-heading-token);
+    font-size: var(--text-page-title-s-desktop-size);
+    font-weight: var(--text-page-title-s-desktop-weight);
+    letter-spacing: 0;
+    line-height: var(--text-page-title-s-desktop-line-height);
+  }
+
+  /* Figma: Post/Subtitle/Desktop */
+  .text-post-subtitle-desktop {
+    font-family: var(--font-body-token);
+    font-size: var(--text-post-subtitle-desktop-size);
+    font-weight: var(--text-post-subtitle-desktop-weight);
+    letter-spacing: 0;
+    line-height: var(--text-post-subtitle-desktop-line-height);
+  }
+
+  /* Figma: Page/Paragraph/Regular */
+  .text-page-paragraph {
+    font-family: var(--font-body-token);
+    font-size: var(--text-page-paragraph-size);
+    font-weight: var(--text-page-paragraph-weight);
+    letter-spacing: 0;
+    line-height: var(--text-page-paragraph-line-height);
+  }
+
+  /* Figma: Page/Paragraph/Bold */
+  .text-page-paragraph-bold {
+    font-family: var(--font-body-token);
+    font-size: var(--text-page-paragraph-bold-size);
+    font-weight: var(--text-page-paragraph-bold-weight);
+    letter-spacing: 0;
+    line-height: var(--text-page-paragraph-bold-line-height);
+  }
+
+  /* Figma: Button L */
+  .text-button-l {
+    font-family: var(--font-mono-token);
+    font-size: var(--text-button-l-size);
+    font-weight: var(--text-button-l-weight);
+    letter-spacing: 0;
+    line-height: var(--text-button-l-line-height);
+  }
+}
+
+@media (max-width: 48rem) {
+  @layer utilities {
+    .text-page-eyebrow {
+      font-size: var(--text-page-eyebrow-mobile-size);
+    }
+
+    .text-display-title-desktop {
+      font-size: var(--text-display-title-mobile-size);
+    }
+
+    .text-page-title-l-desktop {
+      font-size: var(--text-page-title-l-mobile-size);
+    }
+
+    .text-page-title-s-desktop {
+      font-size: var(--text-page-title-s-mobile-size);
+    }
+
+    .text-post-subtitle-desktop {
+      font-size: var(--text-post-subtitle-mobile-size);
+    }
+
+    .text-page-paragraph {
+      font-size: var(--text-page-paragraph-mobile-size);
+    }
+
+    .text-page-paragraph-bold {
+      font-size: var(--text-page-paragraph-bold-mobile-size);
+    }
+
+    .text-button-l {
+      font-size: var(--text-button-l-mobile-size);
+    }
+  }
+}

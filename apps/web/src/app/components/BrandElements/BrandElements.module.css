@@ -1,0 +1,50 @@
+.brandElements {
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 0;
+}
+
+.gradientTop,
+.gradientRight {
+  filter: blur(6px);
+  position: fixed;
+  transform-origin: center;
+}
+
+.gradientTop {
+  background: var(--gradient-blush-iris);
+  clip-path: polygon(0 26%, 100% 0, 78% 100%);
+  height: min(22vw, 260px);
+  left: -8vw;
+  opacity: 0.55;
+  top: -4vh;
+  transform: rotate(7deg);
+  width: min(60vw, 840px);
+}
+
+.gradientRight {
+  background: var(--gradient-mist-dew);
+  clip-path: polygon(10% 0, 100% 20%, 0 100%);
+  height: min(38vw, 520px);
+  opacity: 0.52;
+  right: -14vw;
+  top: 44vh;
+  transform: rotate(-18deg);
+  width: min(34vw, 500px);
+}
+
+@media (max-width: 48rem) {
+  .gradientTop {
+    height: 180px;
+    left: -20vw;
+    width: 88vw;
+  }
+
+  .gradientRight {
+    height: 320px;
+    right: -28vw;
+    top: 56vh;
+    width: 72vw;
+  }
+}
