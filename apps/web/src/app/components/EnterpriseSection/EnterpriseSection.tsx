@@ -1,3 +1,4 @@
+import { Button } from '@/app/components/Buttons/Button';
 import { Wrapper } from '@/app/components/Wrapper/Wrapper';
 import styles from './EnterpriseSection.module.css';
 
@@ -72,9 +73,9 @@ export function EnterpriseSection() {
             </ul>
           </div>
 
-          <button type="button" className={styles.cta}>
+          <Button href="#talk-to-sales" variant="primary" className="w-fit">
             Talk to sales
-          </button>
+          </Button>
         </div>
 
         <div className={styles.featuresColumn}>

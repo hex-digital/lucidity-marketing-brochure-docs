@@ -46,7 +46,12 @@ export default function Home() {
           </div>
           <StatsRow stats={stats} />
           <ContentGrid content={featureCards} />
-          <Button href="/" icon={true}>
+          <Button
+            href="https://lucidityjs-docs.hexlabs.uk/get-started"
+            icon={true}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             And so much more
           </Button>
         </Wrapper>
@@ -89,7 +94,7 @@ export default function Home() {
                     <li>GitHub access for raising issues and tracking fixes</li>
                   </ul>
                 </div>
-                <Button href="#" variant="primary" className="w-fit">
+                <Button href="#talk-to-sales" variant="primary" className="w-fit">
                   Talk to sales
                 </Button>
               </div>
@@ -98,7 +103,7 @@ export default function Home() {
                 {enterprisePoints &&
                   enterprisePoints.map((item) => (
                     <div
-                      key={item.heading}
+                      key={item.key}
                       className="flex flex-col gap-5 border-b-2 pb-8"
                       style={{ borderColor: `var(${item.borderColor})` }}
                     >
@@ -162,10 +167,11 @@ export default function Home() {
                   decision.
                 </p>
               </div>
-              <img
-                src="https://picsum.photos/1920/1080"
-                alt="something here"
-                className="rounded-[6px]"
+              <Image
+                src="/images/cms-view-2-light.jpg"
+                width={1200}
+                height={700}
+                alt="Screenshot of Sanity studio showing multi-lang pages"
               />
             </div>
           </Wrapper>
@@ -193,7 +199,7 @@ export default function Home() {
               {techPoints &&
                 techPoints.map((item) => (
                   <div
-                    key={item.heading}
+                    key={item.key}
                     className="flex flex-col gap-5 border-b-2 pb-8"
                     style={{ borderColor: `var(${item.borderColor})` }}
                   >
@@ -226,7 +232,7 @@ export default function Home() {
             <div className="flex flex-col gap-8">
               {architecturePoints &&
                 architecturePoints.map((item) => (
-                  <div key={item.heading} className="flex gap-5 pb-8">
+                  <div key={item.key} className="flex gap-5 pb-8">
                     <div
                       className="text-neutral-70 max-w-[50px] w-full h-[50px] flex justify-center items-center rounded-full"
                       style={{ backgroundColor: `var(${item.bulletColor})` }}
@@ -305,7 +311,7 @@ export default function Home() {
             <div className="flex flex-col gap-8">
               {docsPoints &&
                 docsPoints.map((item) => (
-                  <div key={item.heading} className="flex gap-5 pb-8">
+                  <div key={item.key} className="flex gap-5 pb-8">
                     <div
                       className="text-neutral-70 max-w-[50px] w-full h-[50px] flex justify-center items-center rounded-full"
                       style={{ backgroundColor: `var(${item.bulletColor})` }}
@@ -335,7 +341,7 @@ export default function Home() {
           </div>
         </Wrapper>
 
-        <div className="bg-surface-dark relative z-4">
+        <div id="talk-to-sales" className="bg-surface-dark relative z-4">
           <Wrapper className="items-center">
             <div className="flex flex-col gap-4 items-center">
               <Eyebrow label="Get Started" variant="mist-dew" />
@@ -347,9 +353,57 @@ export default function Home() {
                 requirements, and give you an honest view of whether Lucidity.js is the right
                 fit.
               </p>
-              <Button href="/" className="mt-4">
-                Talk to sales
-              </Button>
+              <form
+                action="/api/contact"
+                method="post"
+                className="mt-4 grid w-full max-w-[600px] grid-cols-1 gap-4 md:grid-cols-2"
+              >
+                <label className="flex flex-col gap-2 text-page-eyebrow uppercase">
+                  Full name*
+                  <input
+                    name="fullName"
+                    type="text"
+                    required
+                    className="rounded-[3px] border border-neutral-10/40 bg-transparent px-3 py-3 text-page-paragraph normal-case"
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2 text-page-eyebrow uppercase">
+                  Company name*
+                  <input
+                    name="companyName"
+                    type="text"
+                    required
+                    className="rounded-[3px] border border-neutral-10/40 bg-transparent px-3 py-3 text-page-paragraph normal-case"
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2 text-page-eyebrow uppercase">
+                  Email*
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    className="rounded-[3px] border border-neutral-10/40 bg-transparent px-3 py-3 text-page-paragraph normal-case"
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2 text-page-eyebrow uppercase">
+                  Telephone
+                  <input
+                    name="telephone"
+                    type="tel"
+                    className="rounded-[3px] border border-neutral-10/40 bg-transparent px-3 py-3 text-page-paragraph normal-case"
+                  />
+                </label>
+
+                <button
+                  type="submit"
+                  className="md:col-span-2 mt-2 w-fit rounded-[3px] bg-neutral-10 px-5 py-[0.9375rem] text-page-eyebrow uppercase text-neutral-70 mx-auto cursor-pointer"
+                >
+                  Talk to sales
+                </button>
+              </form>
             </div>
           </Wrapper>
 
@@ -359,12 +413,7 @@ export default function Home() {
               <h2 className="text-page-title-l-desktop text-center">Common questions</h2>
               <p className="text-center max-w-[600px] mt-6">
                 Not seeing what you need?{' '}
-                <a
-                  href="https://www.hexdigital.com/contact"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="border-b-1"
-                >
+                <a href="#talk-to-sales" rel="noreferrer noopener" className="border-b-1">
                   Talk to us directly.
                 </a>
               </p>
@@ -393,11 +442,13 @@ export default function Home() {
               </svg>
 
               <p className="text-center max-w-[600px] mt-6">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum interdum
-                sem a mi ornare, et aliquam ex congue. Cras pellentesque odio libero. Maecenas
-                aliquam urna erat, non consequat urna malesuada at. Donec elementum tempus
-                sagittis. Curabitur quis pellentesque velit. Quisque ornare eu eros vel
-                viverra. Aliquam quam tortor, placerat non.
+                We are Hex Digital, a London-based digital agency focused on brand, website,
+                and product delivery for organisations with complex digital needs.
+              </p>
+              <p className="text-center max-w-[600px] mt-6">
+                We are one of the very first Sanity-certified partners, and we're home to one
+                of only a few Sanity-selected MVPs. This means we have privileged access to
+                Sanity engineers and support engineers, and an insight into the Sanity roadmap.
               </p>
             </div>
           </Wrapper>
@@ -406,11 +457,6 @@ export default function Home() {
         <Wrapper className="items-center">
           <div className="flex flex-col gap-4 items-center">
             <Image src="./logo.svg" width={221} height={38} alt="Lucidity.js logo" />
-
-            <p className="text-center max-w-[600px] mt-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec tristique nisi,
-              condimentum tempus urna.
-            </p>
           </div>
 
           <ul className="flex flex-col items-center md:flex-row gap-[10px]">
@@ -431,7 +477,7 @@ export default function Home() {
                 href="http://www.hexdigital.com"
                 target="_blank"
                 rel="noreferrer noopener"
-                title="Visit Hex Digital Ltd"
+                title="Lucidity.js licence"
                 className="text-page-eyebrow uppercase"
               >
                 Lucidity.js Licence
@@ -443,7 +489,7 @@ export default function Home() {
                 href="https://www.hexdigital.com/privacy-policy"
                 target="_blank"
                 rel="noreferrer noopener"
-                title="Visit Hex Digital Ltd"
+                title="Privaacy Policy"
                 className="text-page-eyebrow uppercase"
               >
                 Privacy Policy

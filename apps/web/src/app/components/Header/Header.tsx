@@ -12,7 +12,7 @@ export function Header() {
         className="w-[150px] md:w-[221px]"
       />
       {/*<Navigation />*/}
-      <Button href="#" variant="primary">
+      <Button href="#talk-to-sales" variant="primary" className="w-fit">
         Talk to sales
       </Button>
     </header>

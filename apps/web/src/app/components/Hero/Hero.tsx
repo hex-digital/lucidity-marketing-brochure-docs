@@ -20,26 +20,26 @@ export function Hero() {
             ready to extend.
           </p>
           <div className="flex gap-4 mt-2">
-            <Button href="#" variant="primary">
+            <Button href="#talk-to-sales" variant="primary" className="w-fit">
               Talk to sales
             </Button>
-            <Button href="#" variant="secondary">
-              Request a demo
-            </Button>
+            {/*<Button href="#" variant="secondary">*/}
+            {/*  Request a demo*/}
+            {/*</Button>*/}
           </div>
         </div>
         <div className="hero-images">
           <Image
-            src="https://picsum.photos/720/464"
+            src="/images/codebase-view-2-dark.jpg"
             alt="Lucidity.js dashboard preview"
-            width={720}
-            height={464}
+            width={750}
+            height={480}
             className="relative md:absolute md:-right-1/3 z-20 w-full md:w-auto rounded-md"
             loading="eager"
           />
           <Image
-            src="https://picsum.photos/720/464"
-            alt=""
+            src="/images/cms-view-2-light.jpg"
+            alt="Render of Lucidity.js' studio in Sanity"
             width={720}
             height={464}
             className="hidden md:block absolute top-[242px] rounded-md"

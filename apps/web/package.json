@@ -18,6 +18,7 @@
     "@pkg/brand": "workspace:*",
     "@pkg/next-config": "workspace:*",
     "@pkg/next-proxy": "workspace:*",
+    "@pkg/notifications": "workspace:*",
     "@pkg/observability": "workspace:*",
     "@sentry/nextjs": "catalog:observability",
     "@t3-oss/env-nextjs": "catalog:dev",

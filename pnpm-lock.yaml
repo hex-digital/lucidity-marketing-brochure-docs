@@ -416,6 +416,9 @@ importers:
       '@pkg/next-proxy':
         specifier: workspace:*
         version: link:../../packages/next-proxy
+      '@pkg/notifications':
+        specifier: workspace:*
+        version: link:../../packages/notifications
       '@pkg/observability':
         specifier: workspace:*
         version: link:../../packages/observability

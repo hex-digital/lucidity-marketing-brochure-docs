@@ -1,4 +1,5 @@
 import { useId, type CSSProperties } from 'react';
+import { cn } from '@/app/utils/cn';
 import styles from './FAQ.module.css';
 
 const BORDER_COLOR_VARS = [
@@ -11,6 +12,7 @@ const BORDER_COLOR_VARS = [
 ] as const;
 
 export interface FAQItem {
+  key: string;
   summary: string;
   content: string[];
 }
@@ -24,10 +26,10 @@ export function FAQ({ items, className }: FAQProps) {
   const instanceId = useId();
 
   return (
-    <div className={className}>
+    <div className={cn('max-w-[700px] w-full', className)}>
       {items.map((item, index) => (
         <details
-          key={item.summary}
+          key={item.key}
           className={styles.item}
           style={
             {
