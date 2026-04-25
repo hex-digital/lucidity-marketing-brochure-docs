@@ -3,11 +3,6 @@ packages:
   - packages/*
 
 catalogs:
-  ui:
-    clsx: 2.1.1
-    tailwind-merge: 3.3.0
-    motion: 12.38.0
-
   analytics:
     '@next/third-parties': 16.1.6
     '@vercel/analytics': 1.6.1

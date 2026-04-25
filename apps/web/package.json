@@ -13,19 +13,12 @@
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "next": "16.2.4",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "@pkg/brand": "workspace:*",
-    "clsx": "catalog:ui",
-    "tailwind-merge": "catalog:ui",
-    "motion": "catalog:ui"
     "@lottiefiles/dotlottie-react": "catalog:frontend",
     "@pkg/analytics": "workspace:*",
     "@pkg/brand": "workspace:*",
-    "@pkg/observability": "workspace:*",
     "@pkg/next-config": "workspace:*",
     "@pkg/next-proxy": "workspace:*",
+    "@pkg/observability": "workspace:*",
     "@sentry/nextjs": "catalog:observability",
     "@t3-oss/env-nextjs": "catalog:dev",
     "@vercel/speed-insights": "catalog:observability",
@@ -40,6 +33,7 @@
     "react-player": "catalog:frontend",
     "rooks": "catalog:utility",
     "rss": "catalog:frontend",
+    "tailwind-merge": "catalog:utility",
     "tailwindcss": "catalog:frontend"
   },
   "devDependencies": {

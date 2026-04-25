@@ -1,4 +1,4 @@
-name: Docs App
+name: Web App
 
 on:
   push:
@@ -74,7 +74,7 @@ jobs:
       - name: Setup Next application 🥾
         run: cp .github/apps.web.env apps/web/.env
 
-      - name: Restore Docs App related caches ♻️
+      - name: Restore Web App related caches ♻️
         uses: actions/cache@v4
         with:
           path: |

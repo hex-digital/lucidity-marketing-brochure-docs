@@ -461,6 +461,9 @@ importers:
       rss:
         specifier: catalog:frontend
         version: 1.2.2
+      tailwind-merge:
+        specifier: catalog:utility
+        version: 3.5.0
       tailwindcss:
         specifier: catalog:frontend
         version: 4.2.1
