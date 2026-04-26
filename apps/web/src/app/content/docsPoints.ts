@@ -14,7 +14,7 @@ export const docsPoints = [
   {
     key: crypto.randomUUID(),
     heading: 'Features',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit.',
+    content: 'Everything your team needs to run a content lead product at scale.',
     bulletColor: '--color-haze-dark',
   },
   {
@@ -34,7 +34,7 @@ export const docsPoints = [
   {
     key: crypto.randomUUID(),
     heading: 'Guides',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit.',
+    content: 'Guides on core concepts within Lucidity.js',
     bulletColor: '--color-rose-dark',
   },
 ] as const;

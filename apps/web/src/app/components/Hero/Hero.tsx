@@ -27,9 +27,9 @@ export function Hero() {
             >
               Talk to sales
             </Button>
-            {/*<Button href="#" variant="secondary">*/}
-            {/*  Request a demo*/}
-            {/*</Button>*/}
+            <Button href="https://lucidityjs-docs.hexlabs.uk/get-started" variant="secondary">
+              View the docs
+            </Button>
           </div>
         </div>
         <div className="hero-images">

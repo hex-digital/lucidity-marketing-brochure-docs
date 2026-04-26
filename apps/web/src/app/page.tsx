@@ -361,6 +361,14 @@ export default function Home() {
                 requirements, and give you an honest view of whether Lucidity.js is the right
                 fit.
               </p>
+
+              <Button
+                href="mailto:dev@hexdigital.com?subject=Lucidity.js%20-%20Let's%20talk%20about%20what%20you're%20building"
+                variant="primary"
+                className="w-fit"
+              >
+                Talk to sales
+              </Button>
               {/*<form*/}
               {/*  action="/api/contact"*/}
               {/*  method="post"*/}

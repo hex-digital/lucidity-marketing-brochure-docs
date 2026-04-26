@@ -24,13 +24,15 @@ export function ContentGrid({ content }: { content: GridContent[] }) {
               <h4 className="text-page-title-s-desktop">{item.title}</h4>
               {item.subtitle && <p className="text-post-subtitle-desktop">{item.subtitle}</p>}
             </div>
-            <div className="prose">
-              {item.body.map((paragraph) => (
-                <p key={paragraph} className="text-page-paragraph">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
+            {item?.body?.length >= 1 && (
+              <div className="prose">
+                {item.body.map((paragraph) => (
+                  <p key={paragraph} className="text-page-paragraph">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
