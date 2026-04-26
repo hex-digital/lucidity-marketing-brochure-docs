@@ -12,7 +12,11 @@ export function Header() {
         className="w-[150px] md:w-[221px]"
       />
       {/*<Navigation />*/}
-      <Button href="#talk-to-sales" variant="primary" className="w-fit">
+      <Button
+        href="mailto:dev@hexdigital.com?subject=Lucidity.js%20-%20Let's%20talk%20about%20what%20you're%20building"
+        variant="primary"
+        className="w-fit"
+      >
         Talk to sales
       </Button>
     </header>

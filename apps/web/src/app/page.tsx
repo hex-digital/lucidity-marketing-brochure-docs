@@ -94,7 +94,11 @@ export default function Home() {
                     <li>GitHub access for raising issues and tracking fixes</li>
                   </ul>
                 </div>
-                <Button href="#talk-to-sales" variant="primary" className="w-fit">
+                <Button
+                  href="mailto:dev@hexdigital.com?subject=Lucidity.js%20-%20Let's%20talk%20about%20what%20you're%20building"
+                  variant="primary"
+                  className="w-fit"
+                >
                   Talk to sales
                 </Button>
               </div>
@@ -303,7 +307,11 @@ export default function Home() {
                 experimental dependencies, no niche frameworks. Just the right tools,
                 configured properly.
               </p>
-              <Button href="#" variant="secondary" icon={true}>
+              <Button
+                href="https://lucidityjs-docs.hexlabs.uk/get-started"
+                variant="secondary"
+                icon={true}
+              >
                 View the docs
               </Button>
             </div>
@@ -353,57 +361,57 @@ export default function Home() {
                 requirements, and give you an honest view of whether Lucidity.js is the right
                 fit.
               </p>
-              <form
-                action="/api/contact"
-                method="post"
-                className="mt-4 grid w-full max-w-[600px] grid-cols-1 gap-4 md:grid-cols-2"
-              >
-                <label className="flex flex-col gap-2 text-page-eyebrow uppercase">
-                  Full name*
-                  <input
-                    name="fullName"
-                    type="text"
-                    required
-                    className="rounded-[3px] border border-neutral-10/40 bg-transparent px-3 py-3 text-page-paragraph normal-case"
-                  />
-                </label>
+              {/*<form*/}
+              {/*  action="/api/contact"*/}
+              {/*  method="post"*/}
+              {/*  className="mt-4 grid w-full max-w-[600px] grid-cols-1 gap-4 md:grid-cols-2"*/}
+              {/*>*/}
+              {/*  <label className="flex flex-col gap-2 text-page-eyebrow uppercase">*/}
+              {/*    Full name**/}
+              {/*    <input*/}
+              {/*      name="fullName"*/}
+              {/*      type="text"*/}
+              {/*      required*/}
+              {/*      className="rounded-[3px] border border-neutral-10/40 bg-transparent px-3 py-3 text-page-paragraph normal-case"*/}
+              {/*    />*/}
+              {/*  </label>*/}
 
-                <label className="flex flex-col gap-2 text-page-eyebrow uppercase">
-                  Company name*
-                  <input
-                    name="companyName"
-                    type="text"
-                    required
-                    className="rounded-[3px] border border-neutral-10/40 bg-transparent px-3 py-3 text-page-paragraph normal-case"
-                  />
-                </label>
+              {/*  <label className="flex flex-col gap-2 text-page-eyebrow uppercase">*/}
+              {/*    Company name**/}
+              {/*    <input*/}
+              {/*      name="companyName"*/}
+              {/*      type="text"*/}
+              {/*      required*/}
+              {/*      className="rounded-[3px] border border-neutral-10/40 bg-transparent px-3 py-3 text-page-paragraph normal-case"*/}
+              {/*    />*/}
+              {/*  </label>*/}
 
-                <label className="flex flex-col gap-2 text-page-eyebrow uppercase">
-                  Email*
-                  <input
-                    name="email"
-                    type="email"
-                    required
-                    className="rounded-[3px] border border-neutral-10/40 bg-transparent px-3 py-3 text-page-paragraph normal-case"
-                  />
-                </label>
+              {/*  <label className="flex flex-col gap-2 text-page-eyebrow uppercase">*/}
+              {/*    Email**/}
+              {/*    <input*/}
+              {/*      name="email"*/}
+              {/*      type="email"*/}
+              {/*      required*/}
+              {/*      className="rounded-[3px] border border-neutral-10/40 bg-transparent px-3 py-3 text-page-paragraph normal-case"*/}
+              {/*    />*/}
+              {/*  </label>*/}
 
-                <label className="flex flex-col gap-2 text-page-eyebrow uppercase">
-                  Telephone
-                  <input
-                    name="telephone"
-                    type="tel"
-                    className="rounded-[3px] border border-neutral-10/40 bg-transparent px-3 py-3 text-page-paragraph normal-case"
-                  />
-                </label>
+              {/*  <label className="flex flex-col gap-2 text-page-eyebrow uppercase">*/}
+              {/*    Telephone*/}
+              {/*    <input*/}
+              {/*      name="telephone"*/}
+              {/*      type="tel"*/}
+              {/*      className="rounded-[3px] border border-neutral-10/40 bg-transparent px-3 py-3 text-page-paragraph normal-case"*/}
+              {/*    />*/}
+              {/*  </label>*/}
 
-                <button
-                  type="submit"
-                  className="md:col-span-2 mt-2 w-fit rounded-[3px] bg-neutral-10 px-5 py-[0.9375rem] text-page-eyebrow uppercase text-neutral-70 mx-auto cursor-pointer"
-                >
-                  Talk to sales
-                </button>
-              </form>
+              {/*  <button*/}
+              {/*    type="submit"*/}
+              {/*    className="md:col-span-2 mt-2 w-fit rounded-[3px] bg-neutral-10 px-5 py-[0.9375rem] text-page-eyebrow uppercase text-neutral-70 mx-auto cursor-pointer"*/}
+              {/*  >*/}
+              {/*    Talk to sales*/}
+              {/*  </button>*/}
+              {/*</form>*/}
             </div>
           </Wrapper>
 
@@ -413,7 +421,11 @@ export default function Home() {
               <h2 className="text-page-title-l-desktop text-center">Common questions</h2>
               <p className="text-center max-w-[600px] mt-6">
                 Not seeing what you need?{' '}
-                <a href="#talk-to-sales" rel="noreferrer noopener" className="border-b-1">
+                <a
+                  href="mailto:dev@hexdigital.com?subject=Lucidity.js%20-%20Let's%20talk%20about%20what%20you're%20building"
+                  rel="noreferrer noopener"
+                  className="border-b-1"
+                >
                   Talk to us directly.
                 </a>
               </p>
@@ -472,18 +484,18 @@ export default function Home() {
               </a>
             </li>
             <li className="hidden md:block">•</li>
-            <li>
-              <a
-                href="http://www.hexdigital.com"
-                target="_blank"
-                rel="noreferrer noopener"
-                title="Lucidity.js licence"
-                className="text-page-eyebrow uppercase"
-              >
-                Lucidity.js Licence
-              </a>
-            </li>
-            <li className="hidden md:block">•</li>
+            {/*<li>*/}
+            {/*  <a*/}
+            {/*    href="http://www.hexdigital.com"*/}
+            {/*    target="_blank"*/}
+            {/*    rel="noreferrer noopener"*/}
+            {/*    title="Lucidity.js licence"*/}
+            {/*    className="text-page-eyebrow uppercase"*/}
+            {/*  >*/}
+            {/*    Lucidity.js Licence*/}
+            {/*  </a>*/}
+            {/*</li>*/}
+            {/*<li className="hidden md:block">•</li>*/}
             <li>
               <a
                 href="https://www.hexdigital.com/privacy-policy"

@@ -20,7 +20,11 @@ export function Hero() {
             ready to extend.
           </p>
           <div className="flex gap-4 mt-2">
-            <Button href="#talk-to-sales" variant="primary" className="w-fit">
+            <Button
+              href="mailto:dev@hexdigital.com?subject=Lucidity.js%20-%20Let's%20talk%20about%20what%20you're%20building"
+              variant="primary"
+              className="w-fit"
+            >
               Talk to sales
             </Button>
             {/*<Button href="#" variant="secondary">*/}
