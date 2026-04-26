@@ -3,5 +3,5 @@ export interface GridContent {
   keyColor: string;
   title: string;
   subtitle?: string;
-  body: string[];
+  body?: string[];
 }
