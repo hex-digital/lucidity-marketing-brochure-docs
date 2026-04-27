@@ -17,12 +17,11 @@ const trustedLogos = [
   {
     alt: 'Conservation International',
     src: '/logos/ci.svg',
-    width: 350,
-    height: 130,
+    width: 120,
   },
-  { alt: 'Too Good To Go', src: '/logos/tgtg.svg', width: 99, height: 78 },
-  { alt: 'BirdLife International', src: '/logos/birdlife.svg', width: 99, height: 78 },
-  { alt: 'Atomos', src: '/logos/atomos.svg', width: 180, height: 78 },
+  { alt: 'Too Good To Go', src: '/logos/tgtg.svg', width: 60 },
+  { alt: 'BirdLife International', src: '/logos/birdlife.svg', width: 60 },
+  { alt: 'Atomos', src: '/logos/atomos.svg', width: 60 },
 ];
 
 export default function TalkToSalesPage() {
@@ -66,22 +65,22 @@ export default function TalkToSalesPage() {
               Trusted by leaders and innovators
             </h2>
 
-            <div className="grid grid-cols-2 gap-x-8 gap-y-4 md:max-w-[30rem]">
+            <div className="flex flex-wrap gap-x-8 gap-y-4 md:max-w-[30rem]">
               {trustedLogos.map((logo) => (
                 <img
                   alt={logo.alt}
                   key={logo.src}
                   src={logo.src}
                   width={logo.width}
-                  height={logo.height}
-                  className="h-9 w-auto object-contain opacity-95"
+                  className="w-auto object-contain opacity-95"
+                  style={{ width: logo.width }}
                 />
               ))}
             </div>
           </div>
         </section>
 
-        <section className="rounded-[3px] border border-neutral-30/40 bg-neutral-70/40 p-5 md:p-6 [&_button[type='submit']]:rounded-[3px] [&_input:not([type='checkbox'])]:rounded-[3px] [&_textarea]:rounded-[3px]">
+        <section className="rounded-[12px] border border-neutral-30/40 bg-neutral-70/40 p-5 md:p-6">
           <TalkToSalesForm showIntro={false} />
         </section>
       </div>
