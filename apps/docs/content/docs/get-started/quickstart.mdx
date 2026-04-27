@@ -4,11 +4,99 @@ description: The quickest route to getting a Lucidity.js project running locally
 icon: Rocket
 ---
 
-Use this guide when you want to install dependencies, start the app, and confirm the core flows are working.
+## Before You Start
 
-## What This Will Cover
+Make sure your machine has:
 
-- Installing the workspace dependencies
-- Running the main apps locally
-- Verifying the initial content and preview flows
-- Confirming the project is ready for customization
+- Node.js `>=22.17.1`
+- pnpm `>=10.17.1`
+- Access to the private GitHub repository you receive after purchase
+- A Sanity project
+
+## 1) Create your Sanity project
+
+At https://manage.sanity.io, create your Sanity organisation and project.
+
+You'll need the project ID later for the application configuration, to connect it to Sanity, so note this down.
+
+## 2) Pull the Repository from GitHub
+
+After purchase, you will be granted access to the private GitHub repo. Clone it locally:
+
+```bash
+git clone git@github.com:hex-digital/lucidity-next-sanity-enterprise-starter.git
+cd lucidity-next-sanity-enterprise-starter
+```
+
+## 3) Create Environment Files
+
+Create local environment files for each app:
+
+```bash
+cp apps/web/.env.example apps/web/.env
+cp apps/sanity/.env.example apps/sanity/.env
+```
+
+Start by filling the required Sanity variables in both files (project ID, dataset, and API version).
+
+Then create long keys (64 chars+) for the matching secrets in both .env files.
+
+- `SANITY_STUDIO_SECRET_KEY` in `apps/web/.env` must match `SANITY_STUDIO_SECRET_KEY` in `apps/sanity/.env`.
+- `SANITY_REVALIDATE_SECRET` in `apps/web/.env` must match `SANITY_STUDIO_SANITY_REVALIDATE_SECRET` in `apps/sanity/.env`.
+
+> If a required value is missing, the codebase will fail early, so configuration errors are obvious.
+
+## 4) Install Dependencies
+
+Install workspace dependencies from the repository root:
+
+```bash
+pnpm install
+```
+
+> This will also run any install-time generation steps needed by the monorepo.
+
+## 5) Configure the `config/` Directory
+
+The starter keeps core platform behaviour in TypeScript config files. Set these up early so your site, studio, and content model all agree.
+
+- `apps/web/config/app.ts`: app-level runtime behaviour and critical environment-backed settings (base URL, Sanity connection, preview/revalidation toggles)
+- `apps/web/config/shared.ts`: shared URL/domain resolution values used across web config modules
+- `apps/sanity/config/app.ts`: studio-side project/dataset/API version and preview/revalidation routes
+- `packages/common/config/sites/index.ts`: site definitions (domains, languages, primary language, and site metadata) for single-site or multi-site setups
+
+Treat these files as your platform defaults and version them in Git so environment and editorial behaviour are predictable across teams.
+
+## 6) Run the Apps Locally
+
+From the repository root:
+
+```bash
+pnpm g:dev
+```
+
+This starts the web app and Sanity Studio together (typically web on `http://localhost:3000` and Studio on `http://localhost:3333` unless you change ports).
+
+## 7) Verify the Baseline
+
+Check these basics before customising:
+
+- The web app loads with no runtime config errors
+- Sanity Studio opens and connects to the correct dataset
+- Draft/preview routes work with your environment values
+- A content change in Studio appears in the frontend as expected
+
+## 8) Initial Content
+
+- Create your Header and Footer documents in Sanity Studio
+- Create your Homepage document in Sanity Studio (slug `/`)
+
+### Add Branding Elements to `global.css`
+
+Apply your brand layer by updating `apps/web/src/app/global.css` with your design tokens and foundational styles (for example brand colours, typography variables, and utility defaults), then verify key surfaces such as hero, buttons, and navigation inherit those values correctly.
+
+## Next Step: Deploy
+
+When local setup is working, continue with the deployment docs:
+
+- [Deployment Index](./deploy/index.mdx)
