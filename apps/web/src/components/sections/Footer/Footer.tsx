@@ -1,3 +1,4 @@
+import NextLink from 'next/link';
 import { Wrapper } from '@/components/layout/Wrapper/Wrapper';
 import { LuciditySvg } from '@/components/logos/LuciditySvg';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
@@ -38,7 +39,9 @@ export function Footer() {
 
       <Wrapper className="items-center">
         <div className="flex flex-col gap-4 items-center">
-          <LuciditySvg className="w-[221px]" />
+          <NextLink href="/" aria-label="Go to homepage">
+            <LuciditySvg className="w-[221px]" />
+          </NextLink>
         </div>
 
         <ul className="flex flex-col items-center md:flex-row gap-[10px]">

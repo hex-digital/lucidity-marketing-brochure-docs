@@ -81,7 +81,7 @@ export default function TalkToSalesPage() {
           </div>
         </section>
 
-        <section className="rounded-[12px] border border-neutral-30/40 bg-neutral-70/40 p-5 md:p-6">
+        <section className="rounded-[3px] border border-neutral-30/40 bg-neutral-70/40 p-5 md:p-6 [&_button[type='submit']]:rounded-[3px] [&_input:not([type='checkbox'])]:rounded-[3px] [&_textarea]:rounded-[3px]">
           <TalkToSalesForm showIntro={false} />
         </section>
       </div>
