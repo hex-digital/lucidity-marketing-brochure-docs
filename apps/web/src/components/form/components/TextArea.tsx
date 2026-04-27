@@ -30,9 +30,9 @@ export function TextArea({
           error ? 'border-red-400' : '',
           className,
         )}
+        {...rest}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
-        {...rest}
       />
       {error ? (
         <p id={`${id}-error`} className="mt-2 text-sm text-red-300">
