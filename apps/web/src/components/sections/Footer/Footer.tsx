@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { Wrapper } from '@/components/layout/Wrapper/Wrapper';
+import { LuciditySvg } from '@/components/logos/LuciditySvg';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 
 export function Footer() {
@@ -38,7 +38,7 @@ export function Footer() {
 
       <Wrapper className="items-center">
         <div className="flex flex-col gap-4 items-center">
-          <Image src="./logo.svg" width={221} height={38} alt="Lucidity.js logo" />
+          <LuciditySvg className="w-[221px]" />
         </div>
 
         <ul className="flex flex-col items-center md:flex-row gap-[10px]">
