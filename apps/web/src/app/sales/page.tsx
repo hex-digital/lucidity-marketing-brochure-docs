@@ -21,7 +21,7 @@ const trustedLogos = [
   },
   { alt: 'Too Good To Go', src: '/logos/tgtg.svg', width: 60 },
   { alt: 'BirdLife International', src: '/logos/birdlife.svg', width: 60 },
-  { alt: 'Atomos', src: '/logos/atomos.svg', width: 60 },
+  { alt: 'Atomos', src: '/logos/atomos.svg', width: 85 },
 ];
 
 export default function TalkToSalesPage() {
