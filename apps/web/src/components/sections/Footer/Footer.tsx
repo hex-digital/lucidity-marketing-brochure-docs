@@ -44,7 +44,7 @@ export function Footer() {
         <ul className="flex flex-col items-center md:flex-row gap-[10px]">
           <li>
             <a
-              href="http://www.hexdigital.com"
+              href="https://www.hexdigital.com?utm_source=lucidity&utm_medium=marketing-site&utm_content=footer"
               target="_blank"
               rel="noreferrer noopener"
               title="Visit Hex Digital Ltd"
@@ -56,7 +56,7 @@ export function Footer() {
           <li className="hidden md:block">•</li>
           {/*<li>*/}
           {/*  <a*/}
-          {/*    href="http://www.hexdigital.com"*/}
+          {/*    href="https://www.hexdigital.com?utm_source=lucidity&utm_medium=marketing-site&utm_content=footer"*/}
           {/*    target="_blank"*/}
           {/*    rel="noreferrer noopener"*/}
           {/*    title="Lucidity.js licence"*/}
@@ -68,7 +68,7 @@ export function Footer() {
           {/*<li className="hidden md:block">•</li>*/}
           <li>
             <a
-              href="https://www.hexdigital.com/privacy-policy"
+              href="https://www.hexdigital.com/privacy-policy?utm_source=lucidity&utm_medium=marketing-site&utm_content=footer-privacy"
               target="_blank"
               rel="noreferrer noopener"
               title="Privaacy Policy"
