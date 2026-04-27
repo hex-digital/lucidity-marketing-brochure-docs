@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { CheckboxField } from '@/components/form/components/CheckboxField';
 import { TextArea } from '@/components/form/components/TextArea';
@@ -225,13 +226,20 @@ export function TalkToSalesForm({
         />
         <CheckboxField
           id="agreeToPrivacyPolicy"
-          label="I agree to the"
           required
           checked={values.agreeToPrivacyPolicy}
           onCheckedChange={(checked) => updateField('agreeToPrivacyPolicy', checked)}
           error={errors.agreeToPrivacyPolicy}
           showPrivacyLink
-        />
+        >
+          I agree to the{' '}
+          <Link
+            href="https://hexdigital.com/privacy-policy?utm_source=lucidity&utm_medium=marketing-site&utm_content=sales-form-privacy-policy"
+            className="text-mist-dark hover:underline"
+          >
+            Privacy Policy
+          </Link>
+        </CheckboxField>
       </div>
 
       {submitError ? <p className="text-sm text-red-300">{submitError}</p> : null}

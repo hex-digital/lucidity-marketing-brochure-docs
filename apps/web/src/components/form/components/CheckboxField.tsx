@@ -1,10 +1,8 @@
-import Link from 'next/link';
-
-interface CheckboxFieldProps {
+interface CheckboxFieldProps extends React.ComponentProps<'input'> {
   id: string;
   checked: boolean;
   onCheckedChange: (checked: boolean) => void;
-  label: string;
+  label?: string;
   required?: boolean;
   error?: string;
   showPrivacyLink?: boolean;
@@ -12,12 +10,12 @@ interface CheckboxFieldProps {
 
 export function CheckboxField({
   id,
+  children,
   checked,
   onCheckedChange,
   label,
   required = false,
   error,
-  showPrivacyLink = false,
 }: CheckboxFieldProps) {
   return (
     <div>
@@ -41,15 +39,7 @@ export function CheckboxField({
           aria-describedby={error ? `${id}-error` : undefined}
         />
         <span className="text-neutral-10">
-          {label}
-          {showPrivacyLink ? (
-            <>
-              {' '}
-              <Link href="/privacy-policy" className="text-mist-dark hover:underline">
-                Privacy Policy
-              </Link>
-            </>
-          ) : null}
+          {children ?? label}
           {required ? '\u00a0*' : ''}
         </span>
       </label>
