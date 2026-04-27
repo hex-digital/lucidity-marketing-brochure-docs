@@ -28,11 +28,9 @@ export interface EyebrowProps {
 }
 
 export function Eyebrow({ variant = 'blush-iris', label, children, className }: EyebrowProps) {
-  const content = children ?? label;
-
   return (
     <div className={cn(styles.root, variantClassMap[variant], className)}>
-      <p className={styles.text}>{content}</p>
+      <p className={styles.text}>{children ?? label}</p>
     </div>
   );
 }

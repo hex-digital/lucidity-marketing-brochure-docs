@@ -16,8 +16,8 @@ export function Hero() {
             security and 40+ features, all from day one.
           </p>
           <p>
-            Cut 6 months off your delivery timeline with a codebase that&apos;s documented and
-            ready to extend.
+            <strong>Cut 6 months off your delivery timeline</strong> with a codebase
+            that&apos;s documented and ready to extend.
           </p>
           <div className="flex gap-4 mt-2">
             <Button
@@ -32,7 +32,7 @@ export function Hero() {
             </Button>
           </div>
         </div>
-        <div className="hero-images">
+        <div>
           <Image
             src="/images/codebase-view-2-dark.jpg"
             alt="Lucidity.js dashboard preview"
@@ -42,7 +42,7 @@ export function Hero() {
             loading="eager"
           />
           <Image
-            src="/images/cms-view-2-light.jpg"
+            src="/images/cms-view-2-dark.jpg"
             alt="Render of Lucidity.js' studio in Sanity"
             width={720}
             height={464}
