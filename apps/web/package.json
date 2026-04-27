@@ -36,7 +36,8 @@
     "rooks": "catalog:utility",
     "rss": "catalog:frontend",
     "tailwind-merge": "catalog:utility",
-    "tailwindcss": "catalog:frontend"
+    "tailwindcss": "catalog:frontend",
+    "zod": "catalog:types"
   },
   "devDependencies": {
     "@pkg/eslint-plugin": "workspace:*",
