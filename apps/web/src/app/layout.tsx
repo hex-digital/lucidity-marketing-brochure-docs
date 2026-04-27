@@ -1,5 +1,7 @@
 import { DM_Sans, Figtree, Martian_Mono } from 'next/font/google';
 import './globals.css';
+import { Footer } from '@/components/sections/Footer/Footer';
+import { Header } from '@/components/sections/Header/Header';
 import { appConfig } from '@/config/app';
 import { seoConfig } from '@/config/seo';
 import { env } from '@/env';
@@ -38,7 +40,12 @@ export default function RootLayout({
         className={`${dmSans.variable} ${figtree.variable} ${martianMono.variable} antialiased touch-manipulation`}
       >
         <ProductionOnlyProviders />
-        {children}
+
+        <Header />
+
+        <main>{children}</main>
+
+        <Footer />
       </body>
     </html>
   );

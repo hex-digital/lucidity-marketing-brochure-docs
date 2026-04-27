@@ -1,7 +1,62 @@
 @import 'tailwindcss';
 @import '@pkg/brand/tokens.css';
-@import './styles/layer-components.css';
-@import './styles/text-utilities.css';
+@import '../styles/layer-components.css';
+@import '../styles/text-utilities.css';
+
+:root {
+  --z-background: 0;
+  --z-brand-effects: 2;
+  --z-base-content: 4;
+  --z-navbar: 10;
+  --z-hero-image-secondary: 19;
+  --z-hero-image-primary: 20;
+  --z-content-grid-background: 1;
+  --z-content-grid-foreground: 3;
+  --z-modal-overlay: 70;
+  --z-modal: 80;
+}
+
+@layer utilities {
+  .z-background {
+    z-index: var(--z-background);
+  }
+
+  .z-brand-effects {
+    z-index: var(--z-brand-effects);
+  }
+
+  .z-base-content {
+    z-index: var(--z-base-content);
+  }
+
+  .z-navbar {
+    z-index: var(--z-navbar);
+  }
+
+  .z-hero-image-secondary {
+    z-index: var(--z-hero-image-secondary);
+  }
+
+  .z-hero-image-primary {
+    z-index: var(--z-hero-image-primary);
+  }
+
+  .z-content-grid-background {
+    z-index: var(--z-content-grid-background);
+  }
+
+  .z-content-grid-foreground {
+    z-index: var(--z-content-grid-foreground);
+  }
+
+  .z-modal-overlay {
+    z-index: var(--z-modal-overlay);
+  }
+
+  .z-modal {
+    z-index: var(--z-modal);
+  }
+}
 
 body {
   --font-heading-token: var(--font-heading-google), 'DM Sans', sans-serif;
