@@ -5,17 +5,17 @@ export function Hero() {
   return (
     <div className="w-full overflow-hidden mt-[60px]">
       <Wrapper className="relative z-6">
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-2 relative md:h-[706px]">
-          <div className="hero-content flex flex-col gap-10 max-w-150">
+        <div className="grid gap-4 grid-cols-1 md:grid-cols-2 relative md:h-[600px]">
+          <div className="hero-content flex flex-col gap-10 md:max-w-150">
             <h1 className="text-display-title-desktop">
               The best start your Sanity project <br className="hidden md:block" /> can get.
             </h1>
-            <p>
+            <p className="max-w-[50ch] md:max-w-[450px]">
               Lucidity.js is an enterprise-grade monorepo framework for engineering teams
               building on Next.js and Sanity. Multisite, multi-lang, visual editing, caching,
               security and 40+ features, all from day one.
             </p>
-            <p>
+            <p className="max-w-[50ch] md:max-w-[450px]">
               <strong>Cut 6 months off your delivery timeline</strong> with a codebase
               that&apos;s documented and ready to extend.
             </p>
