@@ -9,12 +9,20 @@ export const sendTalkToSales = {
 
       await talkToSalesService().sendTalkToSales(payload);
 
-      return Response.json({
-        ok: true,
-        status: 'created' as const,
-      });
+      return Response.json(
+        {
+          ok: true,
+          status: 'created' as const,
+        },
+        { status: 201 },
+      );
     } catch (error) {
-      console.error('Talk to sales submission failed.', error);
+      if (error instanceof SyntaxError) {
+        return Response.json(
+          { ok: false, error: 'Malformed JSON request body.' },
+          { status: 400 },
+        );
+      }
 
       if (error instanceof z.ZodError) {
         return Response.json(
@@ -22,6 +30,10 @@ export const sendTalkToSales = {
           { status: 400 },
         );
       }
+
+      console.error('Talk to sales submission failed.', {
+        name: error instanceof Error ? error.name : 'UnknownError',
+      });
 
       return Response.json({ ok: false, error: 'Unable to send message.' }, { status: 500 });
     }

@@ -71,7 +71,7 @@ export function Footer() {
               href="https://www.hexdigital.com/privacy-policy?utm_source=lucidity&utm_medium=marketing-site&utm_content=footer-privacy"
               target="_blank"
               rel="noreferrer noopener"
-              title="Privaacy Policy"
+              title="Privacy Policy"
               className="text-page-eyebrow uppercase"
             >
               Privacy Policy
