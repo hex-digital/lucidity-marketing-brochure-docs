@@ -5,7 +5,7 @@ export const generalFaqs: FAQItem[] = [
     key: crypto.randomUUID(),
     summary: 'What is Lucidity.js?',
     content: [
-      'Lucidity.js is an enterprise-grade template for building multi-site, multi-language websites and content-driven experiences.',
+      'Lucidity.js is an enterprise-grade framework for building multi-site, multi-language websites and content-driven experiences.',
       'It deeply integrates Next.js with Sanity CMS to create a publishing platform that is fully functional and enjoyable to use.',
       'Thousands of hours of development time have been spent on Lucidity.js by our team of UX and engineering specialists. Its aim is to be the most feature complete, enterprise-grade template for Sanity.',
       "Taking our decade of Sanity and Next.js experience, we've built it from the ground up on the learnings of building other real-world, enterprise digital experiences.",
