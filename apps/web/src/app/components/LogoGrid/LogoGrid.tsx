@@ -17,6 +17,10 @@ export function LogoGrid() {
   return (
     <Wrapper padding="medium" className="flex flex-col justify-center items-center gap-10 z-4">
       <Eyebrow variant="rose-blush">Built with Lucidity.js</Eyebrow>
+      <p className="text-center">
+        Lucidity is the Next.js and Sanity framework used in production by some of the most
+        innovative organisations&nbsp;on&nbsp;earth.
+      </p>
 
       <div className="flex flex-col items-center md:flex-row md:flex-wrap gap-15">
         {logos.map((logo) => (

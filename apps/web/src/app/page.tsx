@@ -41,7 +41,8 @@ export default function Home() {
             <p className="text-center max-w-[600px] mt-6">
               Lucidity.js is built on a modern, battle-tested stack, the same tools trusted by
               engineering teams at some of the world's leading organisations. No experimental
-              dependencies, no niche frameworks. Just the right tools, configured properly.
+              dependencies, no niche frameworks. Just the right tools,
+              configured&nbsp;properly.
             </p>
           </div>
           <StatsRow stats={stats} />
@@ -63,7 +64,7 @@ export default function Home() {
                 <div>
                   <Eyebrow label="Enterprise" className="mb-6" variant="iris-haze" />
                   <h2 className="text-page-title-l-desktop mt-6">
-                    Designed for teams that need it to work from the start.
+                    Designed for teams that need it to work from the&nbsp;start.
                   </h2>
                 </div>
                 <div className="prose">

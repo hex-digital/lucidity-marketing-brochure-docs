@@ -49,7 +49,7 @@ export function EnterpriseSection() {
           <div className={styles.headingGroup}>
             <p className={styles.eyebrow}>Enterprise</p>
             <h1 className={styles.title}>
-              Designed for teams that need it to work from the start.
+              Designed for teams that need it to work from the&nbsp;start.
             </h1>
           </div>
 
