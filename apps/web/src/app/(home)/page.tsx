@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { architecturePoints } from '@/app/(home)/content/architecturePoints';
 import { directorFaqs } from '@/app/(home)/content/directorFaqs';
 import { directorsGrid } from '@/app/(home)/content/directorsGrid';
@@ -18,7 +19,6 @@ import { FeatureGallery } from '@/components/ui/FeatureGallery/FeatureGallery';
 import { Hero } from '@/components/ui/Hero/Hero';
 import { LogoGrid } from '@/components/ui/LogoGrid/LogoGrid';
 import { StatsRow } from '@/components/ui/StatsRow/StatsRow';
-import { TalkToSalesModal } from '@/forms/talk-to-sales/TalkToSalesModal';
 
 export const dynamic = 'force-static';
 
@@ -96,7 +96,9 @@ export default function Home() {
                     <li>Training and enablement</li>
                   </ul>
                 </div>
-                <TalkToSalesModal triggerClassName="w-fit" />
+                <Button href="/sales" className="w-fit">
+                  Talk to sales
+                </Button>
               </div>
 
               <div className="flex flex-col gap-8">
@@ -358,7 +360,9 @@ export default function Home() {
                 fit.
               </p>
 
-              <TalkToSalesModal triggerClassName="w-fit" />
+              <Button href="/sales" className="w-fit">
+                Talk to sales
+              </Button>
               {/*<form*/}
               {/*  action="/api/contact"*/}
               {/*  method="post"*/}
@@ -419,7 +423,9 @@ export default function Home() {
               <h2 className="text-page-title-l-desktop text-center">Common questions</h2>
               <p className="text-center max-w-[600px] mt-6">
                 Not seeing what you need?{' '}
-                <TalkToSalesModal label="Talk to us directly." triggerVariant="inline" />
+                <Link href="/sales" className="border-b-1">
+                  Talk to us directly.
+                </Link>
               </p>
             </div>
 

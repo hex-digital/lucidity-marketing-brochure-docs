@@ -239,7 +239,7 @@ export function TalkToSalesForm({
       <button
         type="submit"
         className="w-full rounded-[12px] bg-neutral-10 px-5 py-4 text-center text-page-eyebrow uppercase text-neutral-70 transition-colors hover:bg-mist-dark disabled:cursor-not-allowed disabled:opacity-60"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !values.agreeToPrivacyPolicy}
       >
         {isSubmitting ? 'Sending...' : 'Register'}
       </button>

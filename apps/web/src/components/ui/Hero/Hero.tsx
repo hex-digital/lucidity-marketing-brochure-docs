@@ -1,6 +1,5 @@
 import { Wrapper } from '@/components/layout/Wrapper/Wrapper';
 import { Button } from '@/components/ui/Buttons/Button';
-import { TalkToSalesModal } from '@/forms/talk-to-sales/TalkToSalesModal';
 
 export function Hero() {
   return (
@@ -21,7 +20,9 @@ export function Hero() {
               that&apos;s documented and ready to extend.
             </p>
             <div className="flex gap-4 mt-2 mb-8">
-              <TalkToSalesModal triggerClassName="w-fit" />
+              <Button href="/sales" className="w-fit">
+                Talk to sales
+              </Button>
               <Button
                 href="https://lucidityjs-docs.hexlabs.uk/get-started"
                 variant="secondary"
