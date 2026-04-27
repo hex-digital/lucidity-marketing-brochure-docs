@@ -1,0 +1,71 @@
+---
+title: Dev Helpers
+description: Use built-in development helpers to inspect responsive breakpoints, debug Sanity page queries, and control behaviour with environment-driven debug settings.
+---
+
+## Overview
+
+The starter includes practical development-only helpers in both the web app and Sanity Studio. They are intentionally small, environment-gated, and safe to leave in the codebase.
+
+These helpers are centred on `debugConfig` modules:
+
+- `apps/web/config/debug.ts`
+- `apps/sanity/config/debug.ts`
+
+## Web app dev helpers
+
+### `DevOnly`
+
+`apps/web/src/components/dev/DevOnly.tsx` renders children only when `NODE_ENV === 'development'`. It is the guard used by UI-level debug components so no debug UI leaks into production rendering.
+
+### `DevBreakpoints`
+
+`apps/web/src/components/dev/DevBreakpoints/DevBreakpoints.tsx` renders a visual overlay that shows the current responsive range (`sm`, `md`, `lg`, etc). It is only shown when:
+
+- `debugConfig.showBreakpoints` is enabled, and
+- the app is running in development (through `DevOnly`)
+
+This is useful when validating block/layout behaviour across breakpoints without opening browser devtools on every check.
+
+### `DevSanityPageQuery`
+
+`apps/web/src/components/dev/DevSanityPageQuery.tsx` conditionally renders a debug code block for page query payloads when `debugConfig.sanityShowPageQuery` is true.
+
+This helps with:
+
+- validating query shape during schema changes
+- checking whether field values are present before rendering
+- debugging modular block data quickly in-page
+
+### Sanity fetch cache debug toggle
+
+In `apps/web/config/debug.ts`, `sanityNoCache` can disable Next data caching for Sanity fetches in development. The comment in that file explicitly warns against using this in production due to load and performance impact.
+
+## Sanity Studio dev helpers
+
+In `apps/sanity/config/debug.ts`, debug settings include:
+
+- `hideSiteLanguageField` (default true)
+- `readonlySiteLanguageField` (optional override)
+- `logLevel` with environment precedence
+
+Those values are used by schema field definitions such as `defineSiteFieldType(...)` and `defineLanguageFieldType(...)`, so editors see cleaner forms while developers can opt into visibility/editability during setup or debugging.
+
+`apps/sanity/features/dev/logger.ts` also consumes the shared debug log level via `createLogger(...)`, giving consistent log verbosity controls across environments.
+
+## Environment variables used
+
+Key variables supported by debug config include:
+
+- `NEXT_PUBLIC_DEBUG_SANITY_NO_CACHE`
+- `NEXT_PUBLIC_DEBUG_SHOW_PAGE_QUERY`
+- `NEXT_PUBLIC_DEBUG_SHOW_BREAKPOINTS`
+- `SANITY_STUDIO_HIDE_SITE_LANGUAGE_FIELDS`
+- `SANITY_STUDIO_READONLY_SITE_LANGUAGE_FIELDS`
+- `NEXT_PUBLIC_LOG_LEVEL`, `SANITY_STUDIO_LOG_LEVEL`, `LOG_LEVEL`
+
+## Practical guidance
+
+- Keep debug helpers in source, but gate them aggressively.
+- Default to safe production behaviour, then opt in to debug features locally.
+- Prefer shared debug config over ad-hoc environment checks scattered through components.

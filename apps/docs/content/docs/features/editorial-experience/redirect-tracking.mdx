@@ -1,0 +1,28 @@
+---
+title: Redirect Tracking
+description: Record redirect usage counts and path history to monitor rule impact over time.
+---
+
+## Overview
+
+Redirect Tracking records how often redirect rules are triggered and which paths were redirected. Lucidity stores this data in redirect metadata documents.
+
+## Why it matters
+
+Operational teams can identify heavily used redirects, validate migration success, and decide when legacy rules can be retired.
+
+## How Lucidity implements it
+
+When a redirect match is resolved in proxy flow, Lucidity schedules a post-response increment call (`after`) unless the rule is marked `dontTrack`.
+
+`incrementRedirectRuleCount` creates or updates a `redirectMeta.<redirectId>` document, increments `redirectCount`, and appends timestamped redirect paths.
+
+The redirect form includes a read-only `RedirectCountInput` with a shortcut to open the metadata document and inspect tracked paths.
+
+## Data model
+
+Tracking metadata is separated from primary redirect rule documents. This keeps editorial config clean while preserving analytics-friendly history.
+
+## Operational considerations
+
+Tracking requires a writable Sanity token (`redirectWriteToken`) in the web app. Without it, redirect behaviour still works but usage history is not recorded.

@@ -1,0 +1,33 @@
+---
+title: Redirect Warnings
+description: Warn editors when existing redirects may prevent a page from being reachable.
+---
+
+## Overview
+
+Redirect Warnings surface potential redirect collisions directly in the editing interface. When a page slug overlaps existing redirect rules, Lucidity warns the editor before publish.
+
+## Why it matters
+
+A valid page can still be unreachable if a redirect intercepts its URL. Catching this early avoids production incidents and confusing QA outcomes.
+
+## How Lucidity implements it
+
+`RedirectWarning` runs a listening query for redirect documents scoped to the current site, normalises the page slug, and evaluates matching redirect rules.
+
+When matches are found, the UI shows a critical card with:
+
+- match count
+- per-rule details via `RedirectCard`
+- contextual warning copy in the document form
+
+## Editorial workflow
+
+When warned, editors should either:
+
+- update the page slug to avoid collision, or
+- update redirect rules to reflect the intended route ownership
+
+## Scope and limitations
+
+Warnings depend on currently published redirect data and matching logic. They are guardrails, not a full replacement for route-level testing.

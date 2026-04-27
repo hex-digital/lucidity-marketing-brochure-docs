@@ -1,0 +1,40 @@
+---
+title: Editable 404 Page
+description: Manage 404 page content in Sanity and render modular, site-specific fallback pages in the web app.
+---
+
+The starter treats 404 as managed content, not hardcoded UI. Editors can update the page body in Sanity, and the website renders that content when a route is not found.
+
+## What this gives you
+
+- A dedicated singleton schema for 404 content (`singleton.config.404`)
+- Modular content blocks for rich 404 layouts
+- Site-scoped 404 documents, resolved through the site manifest
+- Built-in 404 analytics tracking through GTM hooks
+
+## How it works
+
+The `not-found.tsx` route reads `X-Site-Id` and `X-Language-Code` headers, validates them, then loads the site manifest. The manifest query includes a site-scoped `notFound` field that fetches the 404 singleton content.
+
+If valid context is missing, the route falls back to plain text output (`404 - Page not found`). If data exists, it renders modular blocks via `ModularContentRenderer`.
+
+## Configure the 404 page in Sanity
+
+1. Open the **404 Not Found** singleton in Studio.
+2. Add content in the modular content field.
+3. Publish the document.
+4. Verify your site has the correct site context in routing/proxy so `X-Site-Id` and `X-Language-Code` resolve.
+
+## Rendering and tracking details
+
+- 404 content is loaded from the same manifest path used by layout-level site data.
+- A client tracker component (`Track404`) runs on the 404 view and triggers GTM `notFound()` tracking.
+- SEO fields exist on the 404 singleton schema and can be edited alongside content.
+
+## Implementation notes
+
+- 404 singleton schema: `apps/sanity/schema/types/singletons/notFound404.ts`
+- Site manifest query (`notFound` section): `apps/web/src/features/site-manifest/queries/siteManifest.query.ts`
+- Not found page rendering: `apps/web/src/app/(website)/~s/[siteId]/[languageCode]/not-found.tsx`
+- Tracking hook: `apps/web/src/lib/gtm/hooks/useTrack404.ts`
+- Header constants used for site/language context: `apps/web/src/constants/headers.ts`

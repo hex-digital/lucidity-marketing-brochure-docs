@@ -1,0 +1,54 @@
+---
+title: RSS Feeds
+description: XML and JSON feed generation from Sanity content with visibility filtering, language-aware routing, and cache-aware delivery.
+---
+
+Lucidity includes both RSS XML and JSON Feed endpoints. Feed data comes from Sanity, is filtered by visibility rules, and is scoped by site and language.
+
+## Endpoints
+
+Single-locale endpoints:
+
+- `/feed.xml`
+- `/feed.json`
+
+Multilingual endpoints:
+
+- `/feeds/[feedLanguageCode]/feed.xml`
+- `/feeds/[feedLanguageCode]/feed.json`
+
+For multilingual sites, language-specific feed routes are required and validated against configured site languages.
+
+## Feed data source
+
+`getSanityDocumentsForFeed()` retrieves feed items:
+
+- Limits to `DOCUMENTS_IN_RSS_FEED` types.
+- Filters by `site` and optional `language`.
+- Excludes documents where `visibilityOptions.includeInRssFeeds == false`.
+- Orders by most recent update/publish timestamp.
+- Returns up to 300 items.
+
+By default in this starter, `DOCUMENTS_IN_RSS_FEED` is empty, so no items are emitted until you opt document types in.
+
+## Output formats
+
+RSS XML (`rss` package):
+
+- Uses `feedTitle`, `feedDescription`, `feedWebmaster`, and copyright settings.
+- Includes item title, URL, publish date, and excerpt as description.
+
+JSON Feed 1.1:
+
+- Uses `version: https://jsonfeed.org/version/1.1`.
+- Emits item `id`, `title`, `url`, `date_published`, `content_text`, and `summary`.
+- Sets content type to `application/feed+json`.
+
+## Caching and delivery
+
+All feed routes use `unstable_cache` with:
+
+- Revalidation every 12 hours.
+- Cache tags `CACHE_TAG.SANITY_ALL` and `CACHE_TAG.RSS_FEED`.
+
+Routes validate site/language and return `notFound()` for invalid requests, keeping feed surfaces clean and deterministic.

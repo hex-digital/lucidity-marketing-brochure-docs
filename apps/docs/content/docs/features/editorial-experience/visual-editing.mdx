@@ -1,0 +1,35 @@
+---
+title: Visual Editing
+description: Edit Sanity content with on-page overlays and Draft Mode in the Lucidity website.
+---
+
+## Overview
+
+Visual Editing lets editors click content on the website and jump straight to the matching Sanity field. In Lucidity, this is enabled only during Draft Mode so production visitors never see editing controls.
+
+## Why it matters
+
+Teams can review copy and layout in real context, instead of switching between Studio and the front-end mentally. This reduces publishing mistakes and speeds up sign-off.
+
+## How Lucidity implements it
+
+Lucidity mounts `VisualEditing` from `next-sanity/visual-editing` in `VisualEditingControls`, and only renders it when Next.js Draft Mode is enabled.
+
+Draft Mode is toggled through dedicated API routes:
+
+- `/api/sanity/draft-mode/enable` uses `defineEnableDraftMode` with a server token
+- `/api/sanity/draft-mode/disable` turns Draft Mode off and redirects back to the site
+
+The website layout includes both live data subscriptions and Visual Editing controls so editorial sessions update in near real time.
+
+## Security and access model
+
+Draft content is gated behind Sanity read tokens and Draft Mode sessions. Lucidity does not expose these controls in normal published browsing.
+
+## Where to customise
+
+Typical customisation points are:
+
+- draft-mode route paths in app config
+- token and environment setup for preview sessions
+- where `VisualEditingControls` is mounted in the app layout

@@ -1,0 +1,30 @@
+---
+title: Shareable Preview Links
+description: Generate secure preview URLs so stakeholders can review draft content without Studio editing access.
+---
+
+## Overview
+
+Shareable preview links let teams send a URL to reviewers so they can inspect draft content in context. Lucidity wires this through Sanity Presentation preview URL settings and Draft Mode routes.
+
+## Why it matters
+
+You can involve legal, brand, and campaign stakeholders before publishing, without giving them full CMS editing permissions.
+
+## How Lucidity implements it
+
+Sanity Studio config defines preview URL behaviour in `pagesTool`:
+
+- per-site initial preview origin
+- preview-mode enable and disable endpoints
+- allowed preview origins via `allowOrigins`
+
+Lucidity also exposes full URL previews in slug tooling (`FullUrlPreview`) and provides a one-click live preview action (`LivePreviewButton`) for editors.
+
+## Domain controls
+
+`allowOrigins` combines production domains with permitted wildcard domains and localhost patterns. This keeps previews flexible for staging while still restricting where preview sessions can be opened.
+
+## Good practice
+
+Treat preview URLs as privileged access. Keep token scopes minimal, rotate secrets regularly, and avoid sharing long-lived links in public channels.

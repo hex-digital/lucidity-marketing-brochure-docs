@@ -1,0 +1,83 @@
+---
+title: Code Quality and Scalable Repository Structure
+description: Maintain quality at scale with workspace boundaries, shared tooling packages, generated types, and CI gates that enforce linting, tests, and type safety.
+---
+
+## Overview
+
+Durability in this starter is not only runtime resilience. It also means the codebase remains safe to change as more teams, features, and markets are added.
+
+The enterprise starter achieves this through:
+
+- explicit app/package boundaries in a pnpm workspace monorepo
+- shared linting and formatting standards as internal packages
+- generated schema/query artefacts to reduce hand-maintained drift
+- local git hooks and CI pipelines that enforce quality gates
+
+## Repository structure for scale
+
+### Apps and packages have separate responsibilities
+
+`pnpm-workspace.yaml` defines `apps/**` and `packages/**` workspaces. This separation keeps domain logic in reusable packages while apps focus on product composition.
+
+Examples from the starter:
+
+- `apps/web` and `apps/sanity` as deployable products
+- `packages/common`, `packages/utilities`, `packages/sanity-toolkit` as shared foundations
+- `packages/eslint-plugin` and `packages/tooling` as quality infrastructure
+
+This structure helps teams add functionality in a bounded area without coupling unrelated systems.
+
+### Centralised dependency governance
+
+The workspace uses dependency catalogues in `pnpm-workspace.yaml` so core versions are managed once and reused consistently across workspaces.
+
+For large teams, this avoids silent version drift and reduces upgrade risk during security or framework update windows.
+
+## Quality mechanisms in day-to-day development
+
+### Shared linting policy as code
+
+`packages/eslint-plugin/factory.js` constructs composable flat-config presets for JavaScript, TypeScript, React, and Next.js. Workspace projects consume this instead of maintaining bespoke rulesets in each app.
+
+This gives consistent baseline behaviour while still allowing scoped overrides where needed.
+
+### Safe staged-file autofix behaviour
+
+`lint-staged.common.js` and `packages/tooling/lint-staged.config.js` deliberately limit ESLint auto-fixes to safer fix types and keep potentially risky rules (for example exhaustive hooks dependency changes) out of automatic staged edits.
+
+That design reduces the chance of “helpful” autofixes introducing subtle runtime regressions.
+
+### Commit quality gates before code leaves a laptop
+
+In `.husky/pre-commit`, staged files are linted/formatted and query/schema type generation runs before commit finalisation. The hook then re-adds generated artefacts so source and generated files stay in sync.
+
+`.husky/commit-msg` runs Commitlint (`commitlint.config.js`) to enforce consistent, parseable commit metadata.
+
+## Type safety and generated artefacts
+
+The repo includes explicit generation scripts in `apps/web` and `apps/sanity` for block registries, schema extraction, and Sanity query types (`generate:blocks`, `generate:block-query`, `generate:types`, `extract-schema`).
+
+This shifts error-prone manual maintenance into repeatable scripts and keeps large schema-driven surfaces coherent as content models evolve.
+
+## CI guardrails for enterprise workflows
+
+Dedicated workflows in `.github/workflows/ci-web-app.yml`, `ci-sanity-app.yml`, `ci-packages.yml`, and `ci-storybook-app.yml` run:
+
+- type checking
+- linting
+- unit tests
+- build steps
+
+They also use path-based triggers and cache restoration so only impacted areas run, which keeps verification practical in bigger repositories.
+
+## Practical implementation guidance
+
+- Add new cross-cutting rules in shared tooling packages, not per app.
+- Keep generated files part of normal workflows; do not rely on manual regeneration.
+- Use path-filtered CI and Turbo filters to preserve signal quality as work scales.
+- Treat repository boundaries (`apps/*` vs `packages/*`) as architectural contracts.
+
+## Outcome
+
+The result is a codebase that can absorb ongoing feature delivery without collapsing into inconsistent conventions, hidden dependency drift, or fragile release processes.

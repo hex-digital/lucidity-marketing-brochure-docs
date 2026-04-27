@@ -1,0 +1,68 @@
+---
+title: Next.js Proxy Pipeline
+description: Process requests through an ordered Next.js Proxy pipeline for site setup, redirects, security headers, and other cross-cutting runtime concerns.
+---
+
+## Overview
+
+The starter implements request interception with the Next.js `proxy.ts` file convention, not route-local handlers. The main pipeline is defined in `apps/web/src/proxy.ts`, then executed by `runNextProxyPipeline(...)` from `@pkg/next-proxy`.
+
+## Why this page says Proxy (not middleware)
+
+In older Next.js versions, this layer was commonly described as middleware. Current Next.js documentation uses the `proxy` file convention (`proxy.ts`) for this capability, and the starter follows that convention directly.
+
+If you are migrating existing projects, the mental model is similar: ordered request interception before route resolution.
+
+## Pipeline order in this starter
+
+`apps/web/src/proxy.ts` defines an explicit, ordered array:
+
+1. `passwordGateProxy`
+2. `transliterateRequest`
+3. `setupSite`
+4. `cmsRedirects`
+5. `contentSecurityPolicy`
+6. `proxyProcessed`
+7. `madeWithLucidity`
+
+This order matters. For example, site/language setup runs before CMS redirect resolution, so redirect checks receive normalised site context.
+
+## Core package: `@pkg/next-proxy`
+
+`packages/next-proxy/utilities/index.ts` provides the shared runtime contract:
+
+- `defineNextProxy(...)` for typed proxy handlers
+- `runNextProxyPipeline(...)` to run handlers in sequence
+- early termination when `response.ok` is false (for redirects and errors)
+- helper utilities such as `shouldSkipProxy(...)` and `urlWithoutHostname(...)`
+
+This keeps the app-level `proxy.ts` declarative, while shared execution details stay centralised and testable.
+
+## Site setup proxy
+
+`apps/web/src/proxy/setup-site.ts` resolves site and language from the request, then rewrites to internal route namespaces:
+
+- extracts subdomain/site ID
+- validates site against shared config
+- derives language from path or primary language fallback
+- rewrites to `/~s/${siteId}/${languageCode}...`
+- sets site/language headers for downstream usage
+
+This enables one codebase to serve multiple sites and languages consistently.
+
+## CMS redirects proxy
+
+`apps/web/src/proxy/cmsRedirects.ts` resolves redirects from CMS data and returns `NextResponse.redirect(...)` when a match is found.
+
+It also sets tracing headers (`X-Redirected-By`, etc.) and captures errors without taking down the request path.
+
+## Matcher scope
+
+The `config.matcher` in `apps/web/src/proxy.ts` excludes static and asset paths (`_next/static`, `_next/image`, file extensions, and others) so interception is applied where it is useful, not on every static request.
+
+## Operational guidance
+
+- Keep proxies focused on one concern each.
+- Keep ordering intentional and documented in `proxy.ts`.
+- Use shared helpers in `@pkg/next-proxy` to avoid per-app drift.
+- Treat this layer as cross-cutting infrastructure, not page business logic.

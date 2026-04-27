@@ -1,0 +1,13 @@
+{
+  "title": "SEO, GEO, Sitemaps, RSS Feeds, and AI Crawlers",
+  "icon": "Search",
+  "pages": [
+    "cms-powered-redirects",
+    "content-visibility-access-rules",
+    "json-ld-structured-data",
+    "rss-feeds",
+    "seo-and-metadata",
+    "seo-preview-pane",
+    "sitemap"
+  ]
+}

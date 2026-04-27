@@ -1,0 +1,81 @@
+---
+title: Caching and Invalidation
+description: Use layered cache tags and webhook-driven revalidation to keep page, redirect, feed, and manifest data fast while staying fresh after CMS changes.
+---
+
+## Overview
+
+The starter uses a tag-first caching strategy so reads stay fast and invalidation stays targeted.
+
+At implementation level, data fetches attach explicit cache tags (often scoped by site and language), then Sanity webhooks trigger invalidation for the exact tags and paths affected by a content update.
+
+Primary touchpoints in the enterprise starter:
+
+- `apps/web/src/constants/cacheTags.ts`
+- `apps/web/src/features/cache-invalidation/helpers.ts`
+- `apps/web/src/app/api/(routes)/sanity/revalidate/route.ts`
+- `apps/web/src/app/api/(routes)/sanity/revalidate-site-cache/route.ts`
+
+## Caching strategy
+
+### 1) Normalise cache keys with tag helpers
+
+`CACHE_TAG` defines stable, shared tag names such as `page`, `redirect`, `manifest`, `rssFeed`, `sitemap`, and `sanity:all`.
+
+`makeCacheTag(...)` builds composite tags in the form:
+
+- `${cacheTag}`
+- `${siteId}:${cacheTag}`
+- `${siteId}:${languageCode}:${cacheTag}`
+
+This convention gives a predictable invalidation surface across multisite and multilingual traffic.
+
+### 2) Attach tags where data is fetched
+
+Sanity-backed reads attach tags close to the query, for example:
+
+- page resolver queries tag `sanity:all`, `page`, and pathname-aware tags
+- site manifest queries tag `sanity:all` and `manifest` by site/language
+- announcement and feed queries tag feature-specific buckets like `announcements` and `rssFeed`
+
+This keeps cache ownership explicit in each feature module instead of hidden in global middleware.
+
+### 3) Use persistent caching for expensive route logic
+
+Redirect resolution uses `unstable_cache(...)` in the redirect API route to avoid re-computing redirect maps per request, with `revalidate: false` and explicit tags for Sanity-backed redirect configuration.
+
+## Invalidation strategy
+
+### Content-change webhook revalidation
+
+`/api/sanity/revalidate` validates the signed webhook payload, then:
+
+- revalidates document ID and document type tags
+- revalidates pathname-specific tags when available
+- revalidates relevant public/internal paths
+- revalidates base, site-scoped, and site+language-scoped versions of each tag
+
+The route also logs revalidated tags and paths for operational debugging.
+
+### Site-wide emergency clear
+
+`/api/sanity/revalidate-site-cache` is designed for explicit "clear cache" actions from Studio:
+
+- `updateTag('sanity')` clears broad CMS-tagged caches
+- `revalidatePath('/', 'layout')` forces broad layout/path revalidation
+
+Use this when targeted webhook invalidation is insufficient, for example after large migrations.
+
+## Practical implementation guidance
+
+- Define new tags centrally in `cacheTags.ts` before introducing a new cached feature.
+- Apply `makeCacheTag(...)` consistently so site/language invalidation works without custom logic per module.
+- Keep webhook payloads rich enough to include `_type`, `_id`, and URL path hints (`pathname`/`slug`) for precision.
+- Prefer targeted tag/path invalidation first; reserve full-site clears for maintenance and recovery workflows.
+
+## Operational benefits
+
+- Fast repeat reads for CMS-driven routes.
+- Lower invalidation blast radius in multisite setups.
+- Better debugging via logged tag/path invalidation output.
+- Clear migration path from older cache APIs to modern tag-driven patterns.

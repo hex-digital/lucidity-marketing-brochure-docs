@@ -1,0 +1,58 @@
+---
+title: Deep Structure Integration
+description: Enforce site and language boundaries end-to-end across schema, desk structure, queries, and frontend route validation.
+---
+
+## Overview
+
+Deep Structure Integration means site/language context is not a single feature toggle; it is enforced across the full content lifecycle:
+
+- schema fields
+- Studio structure and workspaces
+- GROQ queries
+- frontend route validation and rendering
+
+The result is strong data partitioning with shared infrastructure.
+
+## End-to-end integration model
+
+### 1) Schema contracts
+
+Reusable field constants (`site`, `language`) are defined in `packages/common/constants/sitesTranslationsFieldNames.ts`.
+
+Document schemas apply them explicitly using:
+
+- `defineSiteField()` from `apps/sanity/features/sites/schema/defineSiteField.ts`
+- `defineLanguageField()` from `apps/sanity/features/translations/schema/defineLanguageField.ts`
+
+For example, `page.ts` uses both fields, while some site-scoped types use only `site`.
+
+### 2) Workspace and structure scoping
+
+`apps/sanity/sanity.config.ts` builds one workspace per site. `apps/sanity/structure/index.ts` then filters document panes by site, and by language where required, via shared filter builders.
+
+This keeps the editor view aligned to the workspace context and prevents accidental cross-site browsing.
+
+### 3) Query-level enforcement
+
+Frontend queries include explicit site/language predicates:
+
+- page resolution in `apps/web/src/features/page-resolver/queries/page-query.ts`
+- site manifest and navigation/footer loading in `apps/web/src/features/site-manifest/queries/siteManifest.query.ts`
+- announcement loading in `apps/web/src/features/announcements/queries/activeAnnouncements.query.ts`
+
+This ensures fetches cannot silently return content for the wrong site or locale.
+
+### 4) Runtime route validation
+
+Rendered routes under `apps/web/src/app/(website)/~s/[siteId]/[languageCode]/...` validate the pair with `validSiteId(...)` and `validLanguageCodeForSite(...)` before fetching content.
+
+Invalid combinations fail early via `notFound()`.
+
+## Why this is enterprise-ready
+
+- Shared codebase, but hard boundaries at schema, query, and runtime levels
+- Lower risk of cross-market content leakage
+- Predictable governance for large editorial teams working in parallel
+
+This integration approach is especially useful when one platform serves multiple countries, languages, or brand domains with strict content ownership rules.

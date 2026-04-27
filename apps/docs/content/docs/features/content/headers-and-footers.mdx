@@ -1,0 +1,60 @@
+---
+title: Headers and Footers
+description: Create reusable header/footer documents in Sanity and activate them per site and language through Active Theme.
+---
+
+Headers and footers are managed as content documents, then mapped into the live site through the Active Theme singleton. This gives editorial control without changing frontend code for routine navigation updates.
+
+## What this gives you
+
+- Multiple header and footer variants per site/language
+- Rich navigation structures (links, submenus, card links, base links, newsletter content)
+- A single activation point through **Active Theme**
+- Consistent frontend delivery through the site manifest query
+
+## Content model
+
+Header documents (`document.navigation.header`) support:
+
+- logo
+- top-level sections
+- menu links
+- submenus with nested items
+- optional CTA
+
+Footer documents (`document.navigation.footer`) support:
+
+- logo and footer artwork
+- grouped link sections
+- optional newsletter configuration
+- base links and base description
+- social toggles and copyright text
+
+Both document types include `site` and language-aware content fields so menus can be managed per tenant and locale.
+
+## Activation flow
+
+Creating a header or footer does not publish it to the website by itself. The website reads whichever documents are selected in the Active Theme singleton:
+
+- `mainNavigation` controls the active header per language
+- `mainFooter` controls the active footer per language
+
+The site manifest query resolves those references and returns ready-to-render data for layout components.
+
+## Frontend rendering path
+
+1. Website layout validates route `siteId` and `languageCode`.
+2. Layout loads the site manifest with those params.
+3. `Header` receives `siteManifest.mainNavigation`.
+4. `Footer` receives `siteManifest.mainFooter` and `siteManifest.socials`.
+
+If no active footer is configured, the footer component returns `null`, so no footer chrome is rendered.
+
+## Implementation notes
+
+- Header schema: `apps/sanity/schema/types/documents/header.ts`
+- Footer schema: `apps/sanity/schema/types/documents/footer.ts`
+- Active Theme singleton: `apps/sanity/schema/types/singletons/activeTheme.tsx`
+- Studio structure entries (Navigation Menus): `apps/sanity/structure/index.ts`
+- Manifest query for `mainNavigation` and `mainFooter`: `apps/web/src/features/site-manifest/queries/siteManifest.query.ts`
+- Layout composition: `apps/web/src/app/(website)/~s/[siteId]/[languageCode]/layout.tsx`

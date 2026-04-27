@@ -1,0 +1,59 @@
+---
+title: Security Headers and CSP
+description: Apply baseline HTTP security headers in Next.js config and attach a centralised Content Security Policy in the proxy pipeline.
+---
+
+## Overview
+
+The starter applies security headers in two layers:
+
+1. baseline headers from `next.config.ts`
+2. `Content-Security-Policy` from a dedicated proxy step backed by `config/csp.ts`
+
+This keeps common headers simple while allowing CSP rules to be managed in one place as directive arrays.
+
+Key implementation paths:
+
+- `apps/web/next.config.ts`
+- `apps/web/config/csp.ts`
+- `apps/web/src/proxy/csp.ts`
+- `apps/web/src/proxy.ts`
+
+## Baseline HTTP security headers
+
+`apps/web/next.config.ts` sets headers for `/(.*)`:
+
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `X-Content-Type-Options: nosniff`
+- `X-Frame-Options: SAMEORIGIN`
+- `Permissions-Policy: web-share=*, autoplay=*`
+
+The same config also sets `poweredByHeader: false`.
+
+## Content Security Policy (CSP)
+
+### Directive source of truth
+
+`apps/web/config/csp.ts` defines each directive as a dedicated array (for example `SCRIPT_SRC`, `IMG_SRC`, `CONNECT_SRC`, `FRAME_ANCESTORS`) and serialises them into a single header string.
+
+It also includes:
+
+- `object-src 'none'`
+- `base-uri 'self'`
+- `form-action 'self'`
+- optional `upgrade-insecure-requests` (enabled by default)
+
+### Header attachment in proxy
+
+`apps/web/src/proxy/csp.ts` generates the header via `cspHeader()` and sets:
+
+- `Content-Security-Policy: <computed policy>`
+
+This proxy step runs in the central pipeline defined in `apps/web/src/proxy.ts`, after site setup and CMS redirects.
+
+## Operational notes
+
+- Update host allowlists by editing directive arrays in `apps/web/config/csp.ts`.
+- Keep analytics, embeds, CMS assets, and preview tooling domains aligned with your enabled integrations.
+- `frame-ancestors` is explicitly configured, including local development and selected trusted domains.
+- If you tighten CSP directives, verify runtime integrations that depend on script, style, frame, media, or connect sources.

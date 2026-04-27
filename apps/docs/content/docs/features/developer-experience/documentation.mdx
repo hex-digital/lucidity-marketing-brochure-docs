@@ -1,0 +1,61 @@
+---
+title: Documentation
+description: Maintain documentation as an engineering surface area, with implementation-backed feature docs, architecture references, and review workflows.
+---
+
+## Overview
+
+The enterprise starter treats documentation as part of delivery quality, not an afterthought. The repository includes:
+
+- feature and architecture docs in `docs/`
+- analysis and trace artefacts in `docs/analysis/`
+- process support for documentation review in `.claude/agents/` and `.claude/commands/`
+
+## What exists in implementation
+
+### Feature and architecture pages
+
+The `docs/` directory includes practical references such as:
+
+- `docs/features/repo-scripts.md`
+- `docs/features/modular-content-blocks.md`
+- `docs/features/redirects.md`
+- `docs/repo-architecture/about-multi-tenancy.md`
+
+These pages document real code paths and scripts rather than abstract product messaging.
+
+### Repository-wide documentation inventory
+
+`docs/analysis/repository-feature-audit.md` is a detailed inventory of implemented systems and their source files. Its purpose is explicit: write documentation against verified code, not assumptions.
+
+It maps features to concrete paths (for example, proxy pipeline, redirects, tooling, and modular content blocks), and identifies missing or stale documentation areas.
+
+### Documentation review workflow support
+
+The repo includes a dedicated documentation reviewer agent definition at `.claude/agents/documentation-accuracy-reviewer.md`, with guidance to cross-check README/API/code comments against implementation.
+
+The review command `.claude/commands/review-local-changes.md` also includes documentation review as a first-class review area.
+
+## Practical workflow
+
+For engineering teams, a reliable docs workflow in this starter looks like:
+
+1. Implement or change feature code.
+2. Update the related feature docs under `docs/`.
+3. Cross-check code paths and script names directly from source.
+4. Include docs review in local change review before merge.
+
+## Current trade-offs to know
+
+The repository already contains strong feature-level analysis, but some top-level getting-started surfaces are intentionally thin (for example, `docs/index.md`). This means:
+
+- deep technical detail often exists,
+- onboarding summaries may still need expansion for new teams.
+
+That trade-off is visible and explicitly tracked in `docs/analysis/repository-feature-audit.md`.
+
+## Why this matters
+
+- It reduces drift between documentation and runtime behaviour.
+- It makes handover safer across engineering and editorial teams.
+- It supports enterprise governance where “how it works” must be auditable from code.

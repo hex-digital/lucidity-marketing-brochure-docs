@@ -1,0 +1,44 @@
+---
+title: Error Monitoring Ready
+description: Ship with an error-capture abstraction and existing call sites so you can wire Sentry (or another provider) without refactoring business logic.
+---
+
+## Overview
+
+The starter includes an explicit error-capture boundary so monitoring can be enabled quickly without changing feature logic.
+
+`apps/web/src/lib/error-handling/error-capture.ts` exports `captureException(...)` and `captureMessage(...)` as no-op functions, with inline guidance to replace them with a provider implementation (for example Sentry).
+
+## What is already implemented
+
+### Central capture API
+
+The capture entry point lives in:
+
+- `apps/web/src/lib/error-handling/error-capture.ts`
+
+Because feature modules import this wrapper rather than a vendor SDK directly, you can add or swap providers in one place.
+
+### Existing error call sites
+
+Current production-path code already reports exceptions through the wrapper:
+
+- `apps/web/src/proxy/cmsRedirects.ts` catches redirect-resolution failures and calls `captureException(error)`.
+- `apps/web/src/features/redirects/resolveCmsRedirect.ts` catches query/path merge failures and calls `captureException(error)`.
+
+This means redirect-path faults are already instrumented at source once you wire a provider.
+
+## How to enable a provider (example: Sentry)
+
+1. Install and configure your provider in `apps/web` (for Sentry, follow Next.js SDK setup).
+2. Implement the wrapper in `apps/web/src/lib/error-handling/error-capture.ts`:
+   - map `captureException(error)` to the provider exception API
+   - map `captureMessage(message, severity)` to the provider message API
+3. Keep the wrapper function signatures stable so existing feature imports remain unchanged.
+
+## Practical enterprise guidance
+
+- Add request context (route, site/language, user/session identifiers where appropriate) in the wrapper before forwarding events.
+- Keep PII and secret redaction in the wrapper, not spread across feature modules.
+- Use `captureMessage(...)` for operational warnings that are not thrown errors, so product teams can alert on leading indicators.
+- Add release/environment tags centrally to support rollout and regression analysis.

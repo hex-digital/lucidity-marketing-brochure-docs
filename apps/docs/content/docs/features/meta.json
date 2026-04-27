@@ -1,5 +1,20 @@
 {
   "title": "Features",
   "root": true,
-  "pages": ["index"]
+  "pages": [
+    "index",
+    "editorial-experience",
+    "multi-site-and-multi-language",
+    "content",
+    "seo-geo-sitemaps-rss-feeds-and-ai-crawlers",
+    "developer-experience",
+    "developing-with-ai-agents",
+    "security",
+    "performance",
+    "governance",
+    "durability",
+    "observability-and-monitoring",
+    "analytics",
+    "qa-and-testing"
+  ]
 }

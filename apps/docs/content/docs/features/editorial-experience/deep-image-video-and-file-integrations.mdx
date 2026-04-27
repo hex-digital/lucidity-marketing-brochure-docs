@@ -1,0 +1,30 @@
+---
+title: Deep Image, Video, and File Integrations
+description: Use unified schema helpers for images, embeds, uploaded video, and media-aware rendering.
+---
+
+## Overview
+
+Lucidity provides shared schema helpers and rendering patterns for image, video, and file-heavy content. This keeps media behaviour consistent across blocks, templates, and rich text.
+
+## Why it matters
+
+Media often becomes fragmented when every feature defines it differently. Shared helpers reduce schema drift and make editorial expectations consistent.
+
+## Image integration
+
+Use `defineImageField` to standardise alt text, hotspot, captions, fit mode, and optional max-width controls. On the website, use `SanityImage` and always provide `sizes` for responsive optimisation.
+
+## Video integration
+
+`defineVideoFields` supports both embedded video (YouTube/Vimeo) and uploaded files, with orientation controls and conditional validation.
+
+`defineMediaFields` composes image and video into one editorial choice with media-type switching and optional overlay configuration.
+
+## File support
+
+Files use Sanity's file type directly, while image/video metadata is handled through Lucidity wrappers and validation helpers.
+
+## Query and rendering consistency
+
+Image queries should include Lucidity's expected image partial shape so front-end components receive IDs, crop/hotspot data, alt text, and preview metadata predictably.

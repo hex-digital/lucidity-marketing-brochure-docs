@@ -1,0 +1,83 @@
+---
+title: PostHog
+description: Use the shared analytics package to initialise client and server PostHog tracking with validated environment variables and safe no-op behaviour when disabled.
+---
+
+## Overview
+
+This docs workspace includes a reusable PostHog integration in `@pkg/analytics`.
+
+It provides:
+
+- client-side initialisation via `posthog-js`
+- server-side event capture via `posthog-node`
+- environment validation and graceful no-op fallbacks when PostHog is not configured
+
+## Evidence and scope
+
+During research in `lucidity-next-sanity-enterprise-starter`, there is no direct PostHog implementation in the web app (no PostHog source matches in `apps/web`).
+
+PostHog support is implemented in this repository’s shared package:
+
+- `packages/analytics/env.ts`
+- `packages/analytics/instrumentation-client.ts`
+- `packages/analytics/server.ts`
+- `apps/web/instrumentation-client.ts`
+- `apps/docs/instrumentation-client.ts`
+
+## Configuration
+
+PostHog configuration is validated in `packages/analytics/env.ts`:
+
+- `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` (must start with `phc_` when set)
+- `NEXT_PUBLIC_POSTHOG_HOST` (URL for PostHog API host)
+- `NEXT_PUBLIC_POSTHOG_UI_HOST` (optional URL for PostHog UI links)
+
+Related analytics variable in the same package:
+
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` (GA4, optional)
+
+## Client-side initialisation
+
+`packages/analytics/instrumentation-client.ts` exports `initializeAnalytics()`, which:
+
+1. reads and validates env values
+2. exits early when token or host are missing
+3. initialises `posthog-js` with:
+   - `api_host`
+   - `ui_host` (falls back to `api_host`)
+   - `defaults: '2026-01-30'`
+   - `person_profiles: 'always'`
+
+Both apps call this in their client instrumentation entry points:
+
+- `apps/web/instrumentation-client.ts`
+- `apps/docs/instrumentation-client.ts`
+
+This keeps startup wiring consistent across applications in the monorepo.
+
+## Server-side capture
+
+`packages/analytics/server.ts` exposes `analytics` for server capture.
+
+When PostHog env vars are set, it creates a `PostHog` client with serverless-safe settings:
+
+- `flushAt: 1`
+- `flushInterval: 0`
+
+When env vars are missing, it returns a no-op object with `capture: () => {}`. This avoids runtime errors in environments where analytics is intentionally disabled.
+
+## Practical implementation guidance
+
+- Keep env values empty in local or test environments if you do not want events emitted.
+- Use the exported server client for backend event capture, rather than importing `posthog-node` directly in each feature.
+- Keep event names and property keys consistent across client and server flows so product analytics stays queryable.
+- Treat PostHog token and host as deployment config, and manage them per environment.
+
+## Verification checklist
+
+- Set `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` and `NEXT_PUBLIC_POSTHOG_HOST`.
+- Start the app and confirm `posthog.init(...)` runs in the browser.
+- Trigger a tracked action and verify ingestion in PostHog Live Events.
+- Exercise a server capture call and confirm events arrive with expected properties.
+- Remove PostHog env vars and confirm the app still runs without analytics failures.

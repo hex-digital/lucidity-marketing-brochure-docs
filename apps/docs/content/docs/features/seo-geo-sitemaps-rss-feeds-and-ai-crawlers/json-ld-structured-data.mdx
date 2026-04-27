@@ -1,0 +1,46 @@
+---
+title: JSON-LD Structured Data
+description: JSON-LD components for website, organisation, webpage, article, and FAQ schema with site-aware URL generation.
+---
+
+The web app includes reusable JSON-LD components that output `application/ld+json` scripts with safe serialisation. Base website/organisation markup is included at layout level, with page-level schema available in templates.
+
+## Core rendering primitive
+
+`JsonLdScript` renders JSON-LD with:
+
+- `type="application/ld+json"`
+- Escaping of `<` characters to avoid unsafe inline script parsing
+- Deterministic JSON serialisation
+
+All structured data components compose through this primitive.
+
+## Implemented schema components
+
+Available components:
+
+- `WebsiteJsonLd` (`WebSite`)
+- `OrganizationJsonLd` (`Organization` or subtype)
+- `WebPageJsonLd` (`WebPage`)
+- `ArticleJsonLd` (`Article`)
+- `FaqJsonLd` (`FAQPage`)
+
+Website and organisation schema are rendered from layout (`WebsiteJsonLd` in site/language layout). `WebPageJsonLd` is used in the default `Blank` page template. `ArticleJsonLd` and `FaqJsonLd` are provided for route/template opt-in.
+
+## Configuration and data sources
+
+Structured data comes from:
+
+- `apps/web/config/seo.ts` (`seo.jsonLd.website` and `seo.jsonLd.organization`)
+- Site-aware URL utilities (`urlFromSiteId`, `urlFromSanityPathname`, `urlFromPath`)
+- Optional CMS-provided values (for example social links and logos in organisation output)
+
+Site and language context are validated before URL construction where relevant, which is important for multi-site and multilingual accuracy.
+
+## Recommended implementation pattern
+
+For enterprise rollouts:
+
+1. Keep `website` and `organisation` schema in config for global consistency.
+2. Add page-level schema (`WebPageJsonLd`, `ArticleJsonLd`, `FaqJsonLd`) in route templates where content shape is stable.
+3. Validate output in search tooling after deployment, especially when changing site domains, locales, or schema fields.

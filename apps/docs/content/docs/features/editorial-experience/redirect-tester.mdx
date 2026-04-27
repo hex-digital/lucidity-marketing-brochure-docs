@@ -1,0 +1,34 @@
+---
+title: Redirect Tester
+description: Test redirect matching in Studio before shipping changes to production.
+---
+
+## Overview
+
+Redirect Tester is a custom Studio pane that evaluates a path against current redirect rules and shows which rule would apply.
+
+## Why it matters
+
+Redirect logic can include pattern rules and overlaps. Testing in Studio reduces guesswork and prevents accidental route regressions.
+
+## How Lucidity implements it
+
+Lucidity adds a `Test redirect` view backed by `RedirectTesterPane`. It fetches redirect rules, normalises user input, calculates the primary match, and lists additional matching rules.
+
+The pane shows:
+
+- whether any redirect applies
+- resulting target URL
+- permanence status
+- links back to matching redirect documents
+
+## Editorial workflow
+
+1. Open redirect configuration.
+2. Enter a candidate path.
+3. Run the test.
+4. Confirm the expected rule is primary and resolve conflicts before publish.
+
+## What it does not replace
+
+This tool validates matching logic, not full browser behaviour. Keep route-level verification in staging for critical migrations.

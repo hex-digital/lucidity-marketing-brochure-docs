@@ -1,0 +1,81 @@
+---
+title: Agents Directory with Skills and Sub-agents
+description: Organise repeatable AI workflows with on-demand skills and specialist sub-agents so engineering teams can scale quality and delivery consistency.
+---
+
+## Overview
+
+Lucidity projects support an agent-first development workflow where reusable automation is stored in-repo and versioned like any other engineering asset.
+
+In practice, teams split this into two layers:
+
+- **Skills** for repeatable procedures and standards (for example in `.claude/skills/`)
+- **Sub-agents** for specialist execution roles (for example in `.claude/agents/`)
+
+This gives you a practical balance between broad guidance and focused execution.
+
+## Evidence in the codebase
+
+In the enterprise starter, specialist reviewers are defined as discrete sub-agent files:
+
+- `.claude/agents/code-quality-reviewer.md`
+- `.claude/agents/performance-reviewer.md`
+- `.claude/agents/security-code-reviewer.md`
+- `.claude/agents/test-coverage-reviewer.md`
+- `.claude/agents/documentation-accuracy-reviewer.md`
+
+Those sub-agents are then orchestrated by reusable review commands:
+
+- `.claude/commands/review-pr.md`
+- `.claude/commands/review-local-changes.md`
+
+In this docs repository, skills are stored as standalone capability modules:
+
+- `.claude/skills/next-best-practices/SKILL.md`
+- `.claude/skills/turborepo/SKILL.md`
+- `.claude/skills/vercel-react-best-practices/SKILL.md`
+- `.claude/skills/authoring-skills/SKILL.md`
+
+## Why this matters for enterprise teams
+
+- **Consistency at scale:** review and implementation standards become explicit files rather than tribal knowledge.
+- **Safer delegation:** complex checks (security, performance, quality) run through dedicated specialist prompts.
+- **Faster onboarding:** new engineers and AI agents inherit proven workflows immediately from the repository.
+- **Governance and auditability:** changes to agent behaviour are code-reviewed and tracked through git history.
+
+## How the pattern works
+
+### 1) Define specialist sub-agents
+
+Each sub-agent file declares:
+
+- a clear name and purpose
+- when the agent should be used
+- allowed tools and expected review structure
+
+For example, the enterprise starter’s security and performance reviewers define narrow scopes and output formats, which reduces noisy feedback and encourages actionable findings.
+
+### 2) Orchestrate them with commands
+
+`review-pr.md` and `review-local-changes.md` coordinate multiple specialists in one workflow. This creates a repeatable quality gate without rebuilding the process each time.
+
+### 3) Capture reusable skills
+
+In this repository, `.claude/skills/README.md` and `authoring-skills/SKILL.md` show the expected skill format, including frontmatter fields such as:
+
+- `name`
+- `description`
+- optional tool/model/context controls
+
+This keeps procedural knowledge composable and discoverable.
+
+## Recommended implementation approach
+
+When introducing this feature into a delivery project:
+
+1. Start with 3-5 high-value sub-agents (for example quality, security, testing).
+2. Add command wrappers for common workflows (`review-pr`, `review-local-changes`).
+3. Extract recurring guidance into focused skills rather than growing one large instruction file.
+4. Review and refine agent outputs during sprint retrospectives.
+
+This approach keeps your AI tooling maintainable as your codebase and team both grow.

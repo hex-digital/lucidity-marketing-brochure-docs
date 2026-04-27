@@ -1,0 +1,66 @@
+---
+title: URL and Routing Config
+description: Resolve site and language from incoming requests, rewrite to internal route namespaces, and keep URL generation consistent across Studio and web.
+---
+
+## Overview
+
+The starter uses a routing model where public hostnames resolve to an internal route namespace:
+
+- Public request: `https://fr.example.com/about`
+- Internal route: `/~s/[siteId]/[languageCode]/...`
+
+Key code paths:
+
+- `apps/web/src/proxy.ts` (proxy pipeline order)
+- `apps/web/src/proxy/setup-site.ts` (site/language resolution + rewrite)
+- `apps/web/src/server/utilities/extract-subdomain.ts` and `extract-language-code.ts`
+- `apps/web/src/utilities/makeUrl.ts` (URL generation)
+
+## Request flow
+
+### Proxy pipeline
+
+`apps/web/src/proxy.ts` composes ordered proxies:
+
+1. password gate
+2. transliteration
+3. site setup rewrite
+4. CMS redirects
+5. security and response headers
+
+This order ensures route canonicalisation and site context are established before downstream redirect and page logic.
+
+### Site and language detection
+
+`extractSubdomain(...)` supports several resolver strategies, including:
+
+- exact match against configured site URLs
+- localhost subdomain handling (for local multisite testing)
+- apex domain override for development/staging
+
+`setupSite(...)` then derives language from URL prefix when present, otherwise falls back to the site primary language.
+
+### Internal rewrite
+
+When the site is valid, `setupSite(...)` rewrites to:
+
+- `/~s/${siteId}/${languageCode}${path}`
+
+It also adds site/language headers for downstream logic.
+
+## URL generation consistency
+
+`apps/web/src/utilities/makeUrl.ts` centralises URL construction:
+
+- builds fully-qualified URLs per site domain
+- prefixes language only when required
+- honours `translations.hidePrimaryLanguage` so primary locale can remain unprefixed
+
+Studio preview links reuse the same site URL strategy via `urlFromSite(...)` in `apps/sanity/features/sites/helpers/urlFromSite.ts`.
+
+## Operational benefits
+
+- One consistent routing contract for page routes, feeds, and sitemaps
+- Safer local and staging verification through domain override config
+- Predictable SEO URL behaviour across primary and secondary languages

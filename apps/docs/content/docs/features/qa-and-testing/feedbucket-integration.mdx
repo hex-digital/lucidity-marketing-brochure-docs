@@ -1,0 +1,124 @@
+---
+title: Feedbucket Integration
+description: Enable visual QA feedback in production-like environments with a guarded Feedbucket script, explicit environment flags, and CSP-safe configuration.
+---
+
+## Overview
+
+The enterprise starter includes a built-in Feedbucket integration for collecting page-level feedback during QA and UAT.
+
+It is designed to be:
+
+- opt-in per environment,
+- safe by default when not configured, and
+- compatible with a strict Content Security Policy (CSP).
+
+## What this feature does
+
+When enabled, the website injects the Feedbucket client script after the page becomes interactive. This gives testers a low-friction way to submit feedback in context, directly on the page they are reviewing.
+
+Implementation touchpoints:
+
+- `apps/web/config/testing.ts`
+- `apps/web/src/lib/feedbucket/FeedbucketScript.tsx`
+- `apps/web/src/app/(website)/~s/[siteId]/[languageCode]/layout.tsx`
+- `apps/web/config/csp.ts`
+
+## Why this implementation is enterprise-friendly
+
+- **Controlled rollout:** Feature flags (`NEXT_PUBLIC_FEEDBUCKET_ENABLED`) let you enable Feedbucket only where needed.
+- **Fail-safe behaviour:** If Feedbucket is enabled without an ID, the script is not injected and a warning is logged.
+- **Security alignment:** Required Feedbucket domains are already included in CSP directives.
+- **Centralised wiring:** Script loading lives in a dedicated component and is mounted once in the website layout.
+
+## How it works
+
+### 1) Runtime configuration
+
+Feedbucket settings are read from environment variables in `apps/web/config/testing.ts`:
+
+- `NEXT_PUBLIC_FEEDBUCKET_ENABLED`
+- `NEXT_PUBLIC_FEEDBUCKET_ID`
+
+`asBool(...)` is used for defensive parsing so values like `"true"` and `"false"` are handled consistently.
+
+### 2) Script injection guardrails
+
+`FeedbucketScript` enforces two checks before injecting the script:
+
+1. Feedbucket must be enabled.
+2. Feedbucket ID must be present.
+
+If the ID is missing, the component logs a warning and exits early, preventing a partial or broken client integration.
+
+### 3) Global availability in website routes
+
+The component is rendered in the website layout (`~s/[siteId]/[languageCode]/layout.tsx`), so Feedbucket is available across site and language routes without page-by-page duplication.
+
+### 4) CSP compatibility
+
+Feedbucket domains are allowlisted in CSP config:
+
+- `script-src`: `*.feedbucket.app`
+- `style-src`: `*.feedbucket.app`
+- `img-src`: `*.feedbucket.app`
+- `connect-src`: `*.feedbucket.app`, `*.feedbucket.com`
+
+The CSP header is then applied via proxy middleware (`src/proxy/csp.ts`), so the policy is enforced consistently for responses.
+
+## Setup and operational usage
+
+### Enable Feedbucket in an environment
+
+Add environment variables for the target deployment:
+
+```bash
+NEXT_PUBLIC_FEEDBUCKET_ENABLED=true
+NEXT_PUBLIC_FEEDBUCKET_ID=<your-feedbucket-id>
+```
+
+Recommended pattern:
+
+- **Preview/UAT:** enabled
+- **Production:** enabled only if your QA process requires in-live feedback
+- **Local developer machines:** optional, usually disabled unless reproducing QA issues
+
+### Disable Feedbucket quickly
+
+Set:
+
+```bash
+NEXT_PUBLIC_FEEDBUCKET_ENABLED=false
+```
+
+No code changes are required to disable it.
+
+## Verification checklist
+
+After configuration:
+
+1. Open a website page and confirm script tag injection for `https://cdn.feedbucket.app/assets/feedbucket.js`.
+2. Confirm the script has `data-feedbucket="<id>"`.
+3. Validate there are no CSP violations for Feedbucket domains in browser console/network logs.
+4. Submit a test feedback item to confirm end-to-end operation.
+
+## Troubleshooting
+
+- **Feedbucket does not appear**
+  - Check `NEXT_PUBLIC_FEEDBUCKET_ENABLED=true`.
+  - Check `NEXT_PUBLIC_FEEDBUCKET_ID` is set and non-empty.
+  - Confirm you are testing website routes covered by the website layout.
+
+- **CSP errors in console**
+  - Verify Feedbucket domains are still present in `apps/web/config/csp.ts`.
+  - Confirm proxy CSP middleware is active and setting the `Content-Security-Policy` header.
+
+- **Enabled but still no widget**
+  - Review server/client logs for the warning emitted by `FeedbucketScript` when ID is missing.
+  - Confirm environment variables are available in the deployed runtime and not just local `.env` files.
+
+## Operational guidance
+
+- Treat Feedbucket as a QA support channel, not a replacement for formal issue tracking.
+- Keep enablement explicit per environment so teams can control feedback noise.
+- Include a quick verification step in release checklists for environments where Feedbucket is expected to run.

@@ -1,0 +1,5 @@
+{
+  "title": "Content",
+  "icon": "FileText",
+  "pages": ["announcement-bar", "editable-404", "headers-and-footers"]
+}

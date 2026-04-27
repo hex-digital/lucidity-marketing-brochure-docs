@@ -1,0 +1,11 @@
+{
+  "title": "Developer Experience",
+  "icon": "Code",
+  "pages": [
+    "dev-helpers",
+    "documentation",
+    "helpers-for-validation-hidden-readonly-structure-singletons-and-more",
+    "nextjs-middleware-proxy-pipeline",
+    "turborepo-with-turbo-generators"
+  ]
+}

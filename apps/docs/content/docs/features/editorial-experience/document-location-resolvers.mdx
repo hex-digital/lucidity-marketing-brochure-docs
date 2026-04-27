@@ -1,0 +1,32 @@
+---
+title: Document Location Resolvers
+description: Map Sanity documents to website URLs for Presentation and contextual editing.
+---
+
+## Overview
+
+Document Location Resolvers tell Sanity Presentation where a document appears on the website. Lucidity uses this to power contextual preview navigation and related-location lists.
+
+## Why it matters
+
+Editors can immediately see where a piece of content is rendered, including primary and referenced locations, instead of manually searching routes.
+
+## How Lucidity implements it
+
+The Studio config passes `resolve` from `presentation/locationResolver.ts` into the pages tool.
+
+Lucidity defines:
+
+- `mainDocuments` mappings for route-based resolution
+- a `locations` resolver that chooses a resolver per schema type
+- a fallback resolver for previewable document types
+
+Resolver logic listens to draft-perspective queries (`listenQuery`), maps results into location entries, and appends static resolver entries where configured.
+
+## URL construction
+
+`getDocumentPath` converts `pathname` into a route and optionally prefixes language segments based on site/language rules. This keeps Presentation links consistent with front-end routing.
+
+## Extending resolvers
+
+Add schema-specific resolver definitions under `apps/sanity/presentation/resolvers`, then register them in the resolver index.

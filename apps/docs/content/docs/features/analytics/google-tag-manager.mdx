@@ -1,0 +1,92 @@
+---
+title: Google Tag Manager
+description: Enable Google Tag Manager with environment-driven toggles, automatic page view and 404 tracking, and draft-mode-safe behaviour grounded in the enterprise starter implementation.
+---
+
+## Overview
+
+The enterprise starter includes a full Google Tag Manager (GTM) integration built for App Router projects.
+
+It injects the GTM snippet, pushes route-change page views, tracks 404 events, and gates all tracking behind runtime configuration and draft mode.
+
+## Where it is implemented
+
+Primary files in `lucidity-next-sanity-enterprise-starter`:
+
+- `apps/web/config/analytics.ts`
+- `apps/web/src/lib/analytics/AnalyticsContainer.tsx`
+- `apps/web/src/lib/gtm/components/GtmContainer.tsx`
+- `apps/web/src/lib/gtm/components/GoogleTagManager.tsx`
+- `apps/web/src/lib/gtm/hooks/useTrackPageView.ts`
+- `apps/web/src/lib/gtm/hooks/useTrack404.ts`
+- `apps/web/src/lib/gtm/index.ts`
+- `apps/web/config/csp.ts`
+
+## Configuration model
+
+GTM config is centralised in `apps/web/config/analytics.ts`:
+
+- `NEXT_PUBLIC_GTM_ENABLED`: explicit feature toggle.
+- `NEXT_PUBLIC_GTM_ID`: container ID (`GTM-XXXX`) used to inject snippet and send events.
+- `NEXT_PUBLIC_GTM_DEBUG`: enables local debug logging for dataLayer pushes and setup notices.
+
+Practical behaviour:
+
+- If `NEXT_PUBLIC_GTM_ENABLED` is unset, GTM still enables when `NEXT_PUBLIC_GTM_ID` is present.
+- If GTM is enabled without an ID, the integration logs an error and skips snippet injection.
+- Debug mode is intended for development and troubleshooting, not normal production operation.
+
+## Runtime behaviour
+
+### Snippet injection
+
+`GoogleTagManager.tsx` uses `@next/third-parties/google` to inject GTM only when both conditions pass:
+
+- tracking is enabled
+- a valid container ID is available
+
+If either condition fails, it returns early and does not load the GTM script.
+
+### Draft mode suppression
+
+`GtmContainer.tsx` and `AnalyticsContainer.tsx` read Next.js draft mode and force analytics off when draft mode is enabled. This prevents preview activity polluting analytics data.
+
+### Automatic page tracking
+
+`useTrackPageView.ts` watches `pathname` and `searchParams` changes, then pushes a `page_view` payload including:
+
+- `gtm.newUrl`
+- `gtm.oldUrl` (when available)
+
+### 404 tracking
+
+`useTrack404.ts` triggers a dedicated `404_page` event (via `gtm.notFound()`) for not-found experiences.
+
+### Event helper API
+
+`gtm/index.ts` exposes helpers for:
+
+- generic event sending (`send`)
+- page views (`pageView`)
+- 404 events (`notFound`)
+
+The helper initialises `window.dataLayer` when needed so events can queue before GTM fully initialises.
+
+## Security and CSP considerations
+
+The enterprise starter’s CSP includes Google and GTM domains in `apps/web/config/csp.ts` (`script-src`, `style-src`, `img-src`, `child-src`, and related directives). If you harden CSP further, keep these allowlist entries aligned with your tag setup.
+
+## Practical implementation guidance
+
+- Keep GTM wiring inside the top-level analytics container, rather than scattering snippet logic across routes.
+- Keep draft mode suppression enabled unless you have a separate preview analytics strategy.
+- Use typed wrappers around `gtm.send(...)` for high-value events (for example, lead form submissions or key CTA clicks).
+- Turn on `NEXT_PUBLIC_GTM_DEBUG=true` only while validating event flow.
+
+## Verification checklist
+
+- Confirm `NEXT_PUBLIC_GTM_ID` is set in the target environment.
+- Load a page and verify GTM snippet presence in DevTools.
+- Navigate client-side and confirm `page_view` events in `window.dataLayer`.
+- Trigger a 404 route and confirm `404_page` is pushed.
+- Run GTM Preview mode to verify events are received and mapped to tags.

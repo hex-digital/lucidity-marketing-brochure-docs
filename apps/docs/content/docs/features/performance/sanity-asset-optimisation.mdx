@@ -1,0 +1,94 @@
+---
+title: Sanity Asset Optimisation
+description: Serve Sanity images efficiently with structured GROQ image payloads, responsive sizing, and URL transforms that reduce payload and preserve visual quality.
+---
+
+## Overview
+
+The starter’s media path optimises performance by combining:
+
+- schema-level image metadata (alt, hotspot, fit mode, caption)
+- query-level image partials (including low-quality preview data)
+- component-level responsive rendering with explicit `sizes`
+- URL builder transforms for automatic format negotiation
+
+Primary touchpoints in the enterprise starter:
+
+- `packages/sanity-toolkit/studio/schema/fields/defineImageField.tsx`
+- `apps/web/src/lib/sanity/query-partials/ImagePartial.ts`
+- `apps/web/src/components/primitives/images/SanityImage.tsx`
+- `apps/web/src/components/primitives/images/BaseImage.tsx`
+- `apps/web/src/lib/sanity/data/urlFor.ts`
+- `apps/web/src/features/seo/utilities/images.ts`
+
+## Asset strategy
+
+### 1) Capture useful image metadata in Studio
+
+`defineImageField(...)` enables:
+
+- hotspot-based art direction
+- optional alt text and captions
+- fit mode (`cover`/`contain`) controls
+- optional AI-assisted alt text generation
+
+This gives frontend components enough metadata to crop and render correctly without ad-hoc per-component rules.
+
+### 2) Query a stable image payload shape
+
+`IMAGE_GROQ_PARTIAL` standardises image fields across queries:
+
+- `id` from `asset._ref`
+- `preview` from `asset->metadata.lqip`
+- filename and fit mode
+- inherited crop/hotspot/alt/caption fields via spread
+
+A stable payload shape keeps rendering components simple and reusable.
+
+### 3) Render through shared primitives
+
+`BaseImage` routes Sanity-backed images through `<SanityImage />` and falls back to native `<img>` for plain URLs.
+
+`SanityImage` then:
+
+- injects Sanity project/dataset automatically
+- sanitises crop/hotspot values
+- requires `sizes` for responsive optimisation (warns when missing)
+- supports mode-aware rendering (`cover` or `contain`)
+
+This consolidates optimisation logic in one place instead of duplicating it across blocks.
+
+### 4) Optimise delivery URLs
+
+`urlFor(...)` and `urlForImage(...)` build transformed Sanity CDN URLs with settings such as:
+
+- `auto('format')` for modern format negotiation
+- `fit('max')` to avoid unnecessary over-cropping
+- targeted dimensions for Open Graph and favicon assets
+
+The result is smaller payloads with predictable dimensions for metadata surfaces.
+
+## Implementation touchpoints in page components
+
+Performance-sensitive components pass explicit `sizes` values based on layout intent, for example:
+
+- full-bleed backgrounds use `sizes="100vw"`
+- split layouts use breakpoint-aware `sizes` expressions
+- above-the-fold hero media can use `loading="eager"` deliberately
+
+These choices ensure browsers fetch the right asset size for each viewport rather than downloading oversized images.
+
+## Practical implementation guidance
+
+- Always include image partial fields in GROQ when adding a new visual block.
+- Always pass a `sizes` prop when using `SanityImage` or `BaseImage`.
+- Keep fit decisions (`cover` vs `contain`) in content model or block config, not hardcoded in multiple components.
+- Use URL helper utilities for SEO images instead of constructing strings manually.
+- Treat preview/LQIP as progressive enhancement, not a substitute for correct responsive sizing.
+
+## Operational benefits
+
+- Lower image transfer sizes and faster paint times.
+- Consistent rendering rules across modular blocks and Portable Text.
+- Better accessibility via centralised alt text support.
+- Fewer media regressions because query, schema, and render layers share one contract.

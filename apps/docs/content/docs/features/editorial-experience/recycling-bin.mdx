@@ -1,0 +1,35 @@
+---
+title: Recycling Bin
+description: Capture deleted documents for recovery workflows and operational auditability.
+---
+
+## Overview
+
+The Recycling Bin is a dedicated Sanity document that logs deleted content IDs and deletion metadata so teams can inspect or recover accidentally removed entries.
+
+## Why it matters
+
+Enterprise teams need a safer deletion story than permanent hard-delete. Recycling Bin provides a practical safety net and traceability for editorial operations.
+
+## How Lucidity implements it
+
+Lucidity defines a `recycling.bin` document schema with read-only arrays for:
+
+- deleted document IDs
+- deletion logs (`docId`, `deletedAt`, type, title, user)
+
+A Sanity webhook writes delete events into this singleton log. The toolkit includes a webhook template (`webhookExample.ts`) showing the required mutation payload and auth header pattern.
+
+## Cleanup behaviour
+
+A custom input action (`Remove restored Document from Logs`) checks which logged IDs now exist again, then removes those entries from log arrays to keep the bin useful.
+
+## Setup requirements
+
+To use this feature fully:
+
+1. add the recycling bin singleton document
+2. configure the delete-event webhook
+3. provide a writable token for webhook mutations
+
+Without the webhook, the schema exists but no deletion events are captured.

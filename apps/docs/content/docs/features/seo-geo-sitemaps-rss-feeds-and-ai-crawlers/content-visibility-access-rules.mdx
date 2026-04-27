@@ -1,0 +1,46 @@
+---
+title: Content Visibility and Access Rules
+description: How Lucidity controls search engine indexing, sitemap/feed inclusion, and request access at schema and runtime levels.
+---
+
+This starter uses explicit visibility controls in Sanity and enforces them in web queries. Editors can decide whether a document is indexable by search engines, appears in `sitemap.xml`, and appears in feeds, while runtime access can also be restricted with password protection.
+
+## What is controlled
+
+Visibility options are defined in `visibilityOptions` and include:
+
+- Internal site search (`includeInInternalSearch`)
+- External search engines (`includeInSearchEngines`)
+- Sitemap inclusion (`includeInSitemap`)
+- RSS feed inclusion (`includeInRssFeeds`)
+
+These fields are created via `defineVisibilityOptionsFieldType()` and attached to page documents with `defineVisibilityOptionsField()`.
+
+## Where controls are applied
+
+The visibility model is not only editorial metadata. It is used in runtime logic:
+
+- **Metadata robots:** `generatePageMetadataFromPageSeo()` sets `robots: { index: false }` when `includeInSearchEngines` is `false`.
+- **Sitemaps:** sitemap queries filter out documents where `visibilityOptions.includeInSitemap == false`.
+- **Feeds:** feed queries filter out documents where `visibilityOptions.includeInRssFeeds == false`.
+
+This keeps behaviour consistent across SERP indexing and machine-readable discovery endpoints.
+
+## Document-type scoping
+
+Visibility options are scoped by schema type:
+
+- `DOCUMENTS_IN_SITEMAP` controls which document types can appear in sitemaps.
+- `DOCUMENTS_IN_RSS_FEED` controls which types can appear in feeds.
+- The visibility object can hide irrelevant switches per document type, using `documentsInSitemap` and `documentsInRssFeed`.
+
+This prevents editors seeing toggles that do nothing for a given schema type.
+
+## Access rules at request level
+
+Indexing visibility and request access are separate concerns:
+
+- Visibility options affect discoverability and listing behaviour.
+- Route access control is handled in the proxy pipeline, for example by `passwordGateProxy`.
+
+Use both when you need private-but-reachable content for authenticated users, staging, or controlled launches.

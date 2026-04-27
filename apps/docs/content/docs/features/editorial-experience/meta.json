@@ -1,0 +1,19 @@
+{
+  "title": "Editorial Experience",
+  "icon": "PencilRuler",
+  "pages": [
+    "deep-image-video-and-file-integrations",
+    "document-location-resolvers",
+    "live-previews",
+    "modular-content-blocks",
+    "page-templates",
+    "portable-text-editor-configuration",
+    "redirect-tester",
+    "redirect-tracking",
+    "redirect-warnings",
+    "recycling-bin",
+    "reusable-global-modular-blocks",
+    "shareable-preview-links",
+    "visual-editing"
+  ]
+}

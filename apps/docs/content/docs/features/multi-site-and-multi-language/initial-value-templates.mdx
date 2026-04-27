@@ -1,0 +1,51 @@
+---
+title: Initial Value Templates
+description: Automatically prefill `site` and `language` on new documents, using static and dynamic templates tuned for multisite and multilingual workflows.
+---
+
+## Overview
+
+Initial Value Templates are used to remove manual setup when editors create new content. In this starter, templates pre-populate `site` and `language` so new documents are correctly scoped from the first save.
+
+Core implementation lives in:
+
+- `apps/sanity/templates/singleLanguageTemplates.ts`
+- `apps/sanity/templates/multiLanguageTemplates.ts`
+- `apps/sanity/structure/helpers/initialValueTemplates.ts`
+- `apps/sanity/sanity.config.ts`
+
+## How templates are applied
+
+In `apps/sanity/sanity.config.ts`, template handling happens in order:
+
+1. existing templates are modified for single-language site behaviour
+2. multi-language defaults are adjusted
+3. extra templates are appended (including site/language templates and page alias templates)
+
+This keeps creation flows consistent across different site setups in the same project.
+
+## Static vs dynamic templates
+
+`apps/sanity/templates/multiLanguageTemplates.ts` provides two template styles:
+
+- **Static templates**: pre-composed IDs and friendly titles (preferred in editor menus)
+- **Dynamic templates**: parameterised templates for programmatic or contextual creation flows
+
+Both variants can populate:
+
+- `site` for site-specific document types
+- `site` + `language` for translatable document types
+
+Template IDs and params are centralised in `apps/sanity/constants/templates.ts`.
+
+## Editor UX safeguards
+
+`modifyNewDocumentOptions(...)` in `multiLanguageTemplates.ts` removes less useful template entries from the create menu, reducing noise and avoiding duplicate options.
+
+In the structure layer, `apps/sanity/structure/helpers/initialValueTemplates.ts` attaches the relevant template items directly to list panes, so “new document” actions inherit site/language context automatically.
+
+## Why teams use this
+
+- Fewer editorial mistakes from wrong site or locale assignment
+- Faster document creation in large multi-market programmes
+- Consistent governance without requiring editor training on internal field semantics

@@ -1,0 +1,44 @@
+---
+title: SEO and Metadata
+description: Metadata generation strategy for site-level defaults, page overrides, canonical URLs, alternates, and robots directives.
+---
+
+Lucidity uses Next.js metadata APIs with Sanity-backed SEO fields to produce predictable, environment-aware metadata. Site defaults come from site config, and page metadata overrides are generated per route.
+
+## Metadata flow
+
+Two layers are generated:
+
+- **Site-level defaults:** `generateMetadataFromConfigSeo()` is called from the site/language layout.
+- **Page-level overrides:** `generatePageMetadataFromPageSeo()` is called from page route `generateMetadata()`.
+
+This gives a stable baseline for titles, descriptions, favicons, Open Graph image defaults, and robots defaults, while still allowing page-specific SEO control.
+
+## Canonical and alternate links
+
+Canonical URLs are generated from CMS pathname and route context (`siteId`, `languageCode`) using `urlFromSanityPathname()`.
+
+`sharedMeta()` defines feed alternates and is reused in both layout and page metadata generation to avoid shallow merge issues in nested metadata objects.
+
+## Robots and noindex behaviour
+
+Robots behaviour is controlled at two levels:
+
+- **Environment/site-wide:** `appConfig.metadata.noIndex` (from `NEXT_PUBLIC_NO_INDEX`) sets default indexability.
+- **Per page:** `includeInSearchEngines: false` sets `robots.index = false` for that page.
+
+This supports safe pre-launch environments while allowing selective page suppression where needed.
+
+## Media metadata
+
+The metadata utilities support:
+
+- Open Graph images from Sanity assets (`urlForOpenGraphImage()`).
+- Light/dark favicons from config SEO (`generateFaviconFromConfigSeo()`).
+- Title templates (`append`, `prepend`, or `off`) from `withSiteTitle`.
+
+## Enterprise notes
+
+- Metadata generation validates site and language early (`validSiteId`, `validLanguageCodeForSite`) and returns `notFound()` for invalid routes.
+- Authors metadata points to `/humans.txt` from site base URL.
+- Feed alternates differ for multilingual and single-locale sites, so consumers can discover the right feed endpoints automatically.

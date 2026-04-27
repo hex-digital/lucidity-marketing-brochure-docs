@@ -1,0 +1,57 @@
+---
+title: Deep Structure Integration and Helpers
+description: Use site/language-aware structure helpers to build cleaner Sanity desk structures with consistent filters, intents, and template wiring.
+---
+
+## Overview
+
+This feature focuses on reusable **helper APIs** for Sanity Structure Builder, so teams can add document panes without rewriting site/language logic each time.
+
+Primary helper implementation is in:
+
+- `apps/sanity/structure/helpers/languageSiteStructure.ts`
+- `apps/sanity/structure/helpers/filters.ts`
+- `apps/sanity/structure/helpers/initialValueTemplates.ts`
+
+## What the helpers provide
+
+### Drop-in list item replacements
+
+`makeLanguageSiteHelpers(...)` returns:
+
+- `siteDocListItem(...)` for types with `site` only
+- `languageSiteDocListItem(...)` for types with both `site` and `language`
+
+These act as wrappers around `S.documentTypeListItem(...)`, but include:
+
+- consistent GROQ filters
+- intent handling (`canHandleIntent(...)`)
+- default ordering hooks
+- correct initial value templates
+
+### Shared filter primitives
+
+`structureFilters(...)` defines canonical filter fragments:
+
+- `SITE_FILTER`
+- `LANGUAGE_SITE_FILTER`
+
+This prevents drift where different sections accidentally query different scoping conditions.
+
+### Template binding at pane level
+
+`structureInitialValueTemplates(...)` generates static and dynamic template items for use in structure panes, keeping “new document” actions aligned with the current site/language context.
+
+## Why this matters at scale
+
+Without helpers, each structure section must manually manage filters, templates, and intent behaviour. That creates duplication and increases the risk of inconsistent editorial outcomes.
+
+With these helpers, adding a new site-aware content type is usually one helper call plus optional ordering/filter overrides.
+
+## Typical extension workflow
+
+1. Add `defineSiteField()` and optionally `defineLanguageField()` in schema.
+2. In structure, choose `siteDocListItem(...)` or `languageSiteDocListItem(...)`.
+3. Add ordering or extra templates only where needed.
+
+This keeps customisation local while preserving global multisite conventions.

@@ -1,0 +1,86 @@
+---
+title: Scalability and Operational Headroom
+description: Scale one codebase across multiple sites, languages, and content volumes through proxy-based tenancy, tag-scoped caching, and monorepo task orchestration.
+---
+
+## Overview
+
+The starter is designed to scale through architecture choices, not by duplicating apps.
+
+At a high level, it combines:
+
+- multi-tenant request routing in one deployment
+- site and language aware cache boundaries
+- composable request pipeline steps in Next.js proxy
+- monorepo task orchestration and caching for larger teams
+
+This gives you a practical path from one site to many sites without forking infrastructure or repeating implementation work.
+
+## Runtime scaling pattern
+
+### 1) Multi-tenant routing in a single deployment
+
+The web app rewrites public URLs into internal, site-scoped routes. In the enterprise starter, `apps/web/src/proxy.ts` runs `setupSite` inside a proxy pipeline, and tenant-aware routes live under `apps/web/src/app/(website)/~s/[siteId]/[languageCode]/...`.
+
+This matters because Next.js caching is URL-oriented. By rewriting to deterministic site-aware paths, caches naturally isolate content per tenant without separate codebases.
+
+### 2) Keep proxy work focused and cheap
+
+`apps/web/src/proxy.ts` defines a strict matcher that excludes static assets and common file extensions. That avoids running expensive proxy logic for requests that do not need it.
+
+In high-traffic environments this reduces unnecessary edge/runtime work and preserves throughput for dynamic page and API requests.
+
+### 3) Use a pipeline instead of one oversized middleware function
+
+Proxy concerns are split into ordered, single-purpose steps such as:
+
+- password gating
+- transliteration
+- site setup
+- CMS redirects
+- content security policy
+
+Because each step is isolated, teams can add or replace behaviour with lower regression risk than editing one monolithic middleware block.
+
+## Data and cache scaling pattern
+
+### 1) Tag every cacheable concern with shared conventions
+
+`apps/web/src/constants/cacheTags.ts` defines canonical tags such as `page`, `redirect`, `manifest`, `rssFeed`, and `sanity:all`, plus `makeCacheTag(...)` for site/language composition.
+
+This keeps invalidation addressable at the right scope:
+
+- global
+- per-site
+- per-site-and-language
+
+### 2) Pick strategy by context (draft vs published vs tagged)
+
+`apps/web/src/lib/sanity/data/utilities/caching.ts` centralises strategy selection:
+
+- draft mode: `no-cache`, immediate freshness
+- published mode: timed revalidation
+- published tagged mode: long-lived caches with on-demand invalidation support
+
+The helper also appends default tags and logs cache-disabled conditions for debugging.
+
+## Delivery scaling pattern (teams and CI)
+
+The root `turbo.json` and `package.json` scripts (`g:lint`, `g:typecheck`, `g:test:unit`, `g:build`) let work run by workspace and by dependency graph rather than as one flat job.
+
+In CI workflows, path filters limit runs to impacted areas, and cache restore keys reduce repeated work when dependency state is unchanged.
+
+This helps maintain predictable lead time as repository size and team count grow.
+
+## Practical guidance for enterprise adoption
+
+- Start with one site in shared site config, then add sites without introducing parallel apps.
+- Treat cache tag naming as API design; keep it stable and shared across teams.
+- Keep proxy steps narrow and ordered; avoid cross-cutting side effects in every step.
+- Use Turbo filters in CI and local workflows so teams run only what changed.
+
+## What this gives you
+
+- One platform that can serve many brands and locales.
+- Lower operational overhead than multi-repo, per-market deployments.
+- Clear scaling knobs in routing, caching, and CI without rewriting core architecture.

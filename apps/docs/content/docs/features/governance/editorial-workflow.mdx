@@ -1,0 +1,87 @@
+---
+title: Editorial Workflow
+description: Follow the end-to-end editorial lifecycle in the starter, from document creation and localisation to review states and publication in Sanity Studio.
+---
+
+## Overview
+
+The starter's editorial workflow is designed around Sanity's native draft and published model, with additional structure and action customisations to make status and localisation clearer for teams.
+
+It does not ship with a mandatory multi-step approval engine. Instead, it provides clear lifecycle states in Studio views, safer creation templates, and translation-aware actions.
+
+Primary implementation touchpoints in the enterprise starter:
+
+- `apps/sanity/structure/index.ts`
+- `packages/sanity-toolkit/studio/structure/publishStatusListItems.ts`
+- `apps/sanity/actions/index.ts`
+- `packages/sanity-toolkit/studio/actions/changePublishText.ts`
+- `apps/sanity/templates/newDocumentOptions.ts`
+- `apps/sanity/templates/singleLanguageTemplates.ts`
+- `apps/sanity/templates/multiLanguageTemplates.ts`
+- `apps/sanity/sanity.config.ts`
+
+## Lifecycle model
+
+### Draft, modified, and published states
+
+Studio list panes are generated with `publishStatusListItems(...)`, which creates filtered views for:
+
+- `Published` (documents without a draft counterpart)
+- `Modified` (published documents with newer draft changes)
+- `Draft` (draft-only documents not yet published)
+
+This gives editors a practical queue model without requiring custom workflow infrastructure.
+
+### Publish action labelling
+
+The default publish action is modified so already-published documents show **Update** instead of **Publish**.
+
+This is implemented via `changePublishText(...)` in the document actions pipeline and helps editors understand they are updating live content, not creating first publication.
+
+## Creation workflow
+
+### Site and language defaults
+
+New document templates are adjusted so documents are created with the correct `site` and, where relevant, `language`.
+
+For multilingual setups, static site+language templates are generated with human-friendly names (for example, language-labelled entries), while noisy template variants from upstream plugins are hidden from the creation menu.
+
+### Cleaner "new document" menu
+
+`newDocumentOptionsFn(...)` filters out templates that should not be created manually, including internal metadata and duplicate translation template variants. This reduces operator error during content creation.
+
+## Translation workflow
+
+The Studio enables `@sanity/document-internationalization` and adds translation-aware actions for translatable document types:
+
+- `DeleteTranslationAction` (with keyboard shortcut `mod+alt+d`)
+- `DuplicateWithTranslationsAction`
+
+The default delete action is removed for translatable document types in the actions pipeline, so translation-safe actions are used instead of generic destructive behaviour.
+
+## How this supports enterprise operations
+
+- Editors can triage work quickly by status list (draft/modified/published).
+- Localisation teams get predictable creation flows across site and language dimensions.
+- Publication intent is clearer because action labels reflect first publish versus update.
+- Document action customisation stays centralised in one pipeline, making future governance rules easier to add.
+
+## Current boundaries and extension points
+
+### Not included by default
+
+- No mandatory approval chain (for example, legal sign-off stage gates) is wired by default.
+- No required reviewer assignment workflow is enforced in code.
+
+### Available extension point
+
+`handleAccessToActions(...)` can be used to disable actions by role and allow publication only when workflow metadata reaches `readyToPublish`.
+
+That helper is present in the toolkit but is not currently connected in `apps/sanity/actions/index.ts`, so treat it as an opt-in enhancement rather than active enforcement.
+
+## Practical rollout guidance
+
+- Start with the built-in draft/modified/published queues and translation actions.
+- Keep template curation strict so editors see only actionable creation options.
+- Add role-based publish restrictions through the actions pipeline only after role names and responsibilities are finalised.
+- Pair Studio-side workflow enhancements with Sanity project permissions for hard enforcement.

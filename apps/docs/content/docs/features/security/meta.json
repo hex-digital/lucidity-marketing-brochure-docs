@@ -1,0 +1,5 @@
+{
+  "title": "Security",
+  "icon": "Shield",
+  "pages": ["password-protection", "security-headers-and-csp"]
+}

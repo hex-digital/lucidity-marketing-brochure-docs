@@ -1,0 +1,52 @@
+---
+title: AGENTS.md that Describes the Codebase
+description: Keep AI assistants aligned to your architecture, workflows, and safety constraints by maintaining a concise AGENTS.md entry point for repository-specific guidance.
+---
+
+## Overview
+
+`AGENTS.md` is the always-loaded instruction layer for coding agents. It should provide the shortest possible route to repository context: structure, constraints, commands, and links to deeper guidance.
+
+In this repository, `AGENTS.md` points directly to `CLAUDE.md`, which acts as the central operational guide. That keeps the entry file simple while preserving a detailed rule set in one maintained location.
+
+## Evidence in the codebase
+
+- `AGENTS.md` delegates to `@AGENTS.md` -> `CLAUDE.md` as the primary rule source.
+- `CLAUDE.md` documents:
+  - monorepo structure (`apps/*`, `packages/*`)
+  - build/test/lint/typecheck command conventions (`pnpm g:*`)
+  - safety and environment handling standards
+  - local development expectations (including dev server workflow)
+
+Related guidance in `.claude/skills/README.md` and `.claude/skills/authoring-skills/SKILL.md` reinforces the boundary:
+
+- **AGENTS.md / core guide:** always-on guardrails
+- **Skills:** on-demand deep procedures
+
+## Why this matters
+
+- **Lower ambiguity:** agents can make better decisions when project boundaries are explicit.
+- **Reduced regressions:** command and verification conventions are encoded, not guessed.
+- **Stronger operational hygiene:** sensitive environment handling and git safety rules are consistently applied.
+- **Portable delivery quality:** teams moving between repos can rely on a familiar, documented control plane.
+
+## What to include in AGENTS.md (or its linked core guide)
+
+At enterprise scale, prioritise high-signal instructions:
+
+- **Repository map:** key apps/packages and ownership boundaries.
+- **Canonical commands:** dev, lint, test, typecheck, build.
+- **Verification expectations:** what to run after substantive changes.
+- **Safety rules:** secrets, destructive commands, and commit/PR constraints.
+- **Extension points:** where skills and sub-agents live and when to use them.
+
+Avoid long-form tutorials in this file. Link out to targeted docs or skill files when detail is needed.
+
+## Practical maintenance pattern
+
+1. Keep `AGENTS.md` as a stable entry point.
+2. Consolidate substantial guidance in one source file (for example `CLAUDE.md`) to reduce drift.
+3. Move task-specific complexity into skills under `.claude/skills/`.
+4. Revisit guidance when scripts, project structure, or CI expectations change.
+
+This pattern gives AI agents enough context to act confidently, while keeping instruction maintenance lightweight for engineering teams.

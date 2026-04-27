@@ -1,0 +1,8 @@
+{
+  "title": "Developing with AI Agents",
+  "icon": "Bot",
+  "pages": [
+    "agents-directory-with-skills-and-sub-agents",
+    "agents-md-that-describes-the-codebase"
+  ]
+}

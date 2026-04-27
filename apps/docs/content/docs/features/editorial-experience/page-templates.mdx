@@ -1,0 +1,28 @@
+---
+title: Page Templates
+description: Resolve routes to template components and keep page rendering patterns consistent.
+---
+
+## Overview
+
+Page templates define how CMS page documents are rendered on the website. Lucidity uses a resolver pattern so routing logic and template selection stay centralised.
+
+## Why it matters
+
+As sites grow, different page types need different rendering strategies. A resolver keeps this predictable, testable, and easier to extend than scattering logic across routes.
+
+## How Lucidity implements it
+
+`PageResolver` is the entry point and currently delegates to `DefaultPageResolver`.
+
+`DefaultPageResolver` fetches page data by pathname, site, and language. It returns `notFound()` when no page exists. Otherwise it selects a template component by page type.
+
+The default implementation renders the `Blank` template, which outputs modular content blocks and page-level JSON-LD metadata.
+
+## Relationship with CMS structure
+
+Sanity templates and new-document options prefill site and language values. This ensures new pages are created with the metadata needed for resolver-based routing.
+
+## Extending templates
+
+To introduce a new template, add a branch in `DefaultPageResolver`, implement the template component, and ensure page query data includes the required fields.

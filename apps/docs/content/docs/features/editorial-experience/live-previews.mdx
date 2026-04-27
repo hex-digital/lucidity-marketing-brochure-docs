@@ -1,0 +1,33 @@
+---
+title: Live Previews
+description: See draft and published content updates in real time while editing in Sanity.
+---
+
+## Overview
+
+Live Previews keep the website and Sanity in sync while editors work. In Lucidity, this is powered by `defineLive` from `next-sanity/live`, plus Draft Mode-aware fetch behaviour.
+
+## Why it matters
+
+Editors can validate structure, spacing, and wording before publishing. Developers also get faster feedback loops when testing content models.
+
+## How Lucidity implements it
+
+Lucidity defines `sanityFetch` and `SanityLive` via `defineLive`, with server and browser tokens configured for preview sessions.
+
+The site layout renders `<SanityLive />`, which subscribes to content changes. Data loading paths check Draft Mode and switch caching strategy accordingly:
+
+- Draft Mode: uncached draft perspective with stega support
+- Published: cached published perspective
+- Tagged published: long-lived cache with invalidation tags
+
+## Editorial workflow
+
+1. Open content in Sanity Presentation.
+2. Enable preview mode (Draft Mode).
+3. Edit content in Studio.
+4. See changes reflected immediately on the site.
+
+## Operational notes
+
+If preview updates do not appear, first verify Draft Mode is enabled, then verify read-token and preview route configuration.

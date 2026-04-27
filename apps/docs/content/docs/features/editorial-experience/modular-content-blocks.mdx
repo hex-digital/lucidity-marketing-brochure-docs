@@ -1,0 +1,39 @@
+---
+title: Modular Content Blocks
+description: Build pages from composable outer and inner blocks with shared schema and rendering infrastructure.
+---
+
+## Overview
+
+Modular Content Blocks are Lucidity's primary page-building system. Editors compose pages from **outer blocks** (major sections) and **inner blocks** (content within sections).
+
+## Why it matters
+
+This model gives editors flexibility without requiring bespoke templates for every page variant. It also keeps implementation scalable by separating schema, query, and rendering concerns.
+
+## Block model in Lucidity
+
+A block is defined in three places:
+
+- Sanity schema (`apps/sanity/features/modular-content-blocks/blocks`)
+- web component and query (`apps/web/src/features/modular-content-blocks/blocks`)
+- shared constants (`packages/common/constants`)
+
+Lucidity uses generated block registries and block queries (`blocks.gen.ts`, `blocks-query.gen.ts`) to keep rendering and data loading aligned.
+
+## Rendering behaviour
+
+`ModularContentRenderer` resolves block `_type` values to registered components, skips hidden blocks, and applies block-level wrappers and anchor IDs. Outer blocks are also wrapped with semantic region behaviour for heading hierarchy.
+
+## Editorial experience
+
+In Studio, fields use a modular content object (`defineModularContentField`) so pages and reusable content areas share the same editing interaction.
+
+## Extending safely
+
+When adding a block:
+
+1. define schema with block helpers
+2. add matching web component and query
+3. regenerate block/query artefacts
+4. verify rendering in real page content

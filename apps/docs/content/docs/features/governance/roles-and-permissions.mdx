@@ -1,0 +1,88 @@
+---
+title: Roles and Permissions
+description: Understand how the starter applies role-based guardrails in Sanity Studio, what is enforced by default, and where to extend access controls safely.
+---
+
+## Overview
+
+The starter uses role-aware checks in Sanity Studio to reduce accidental changes to sensitive fields and internal tooling.
+
+It does not attempt to replace Sanity's own dataset-level permission model. Instead, it adds implementation-level guardrails in schema fields and Studio structure so day-to-day editorial work stays safe.
+
+Primary implementation touchpoints in the enterprise starter:
+
+- `packages/sanity-toolkit/studio/constants/roles.ts`
+- `packages/sanity-toolkit/studio/utilities/roles/index.ts`
+- `apps/sanity/structure/index.ts`
+- `packages/sanity-toolkit/studio/singletons/schema.ts`
+- `apps/sanity/schema/types/singletons/configSeo.ts`
+- `packages/sanity-toolkit/features/redirects/schema/defineRedirectFields.ts`
+
+## What is enforced by default
+
+### Role names are centralised
+
+`ROLE` provides canonical role names used by Studio-side checks:
+
+- `administrator`
+- `developer`
+- `editor`
+- `global-content-admin`
+
+These names must align with your Sanity project role configuration.
+
+### Access helper for privileged actions
+
+`isDeveloperOrAdmin(currentUser)` returns `true` for:
+
+- `developer`
+- `administrator`
+- `global-content-admin`
+
+The helper is reused across structure and schema code so privilege checks are consistent.
+
+### Privileged-only UI in Studio structure
+
+The desk structure only renders the `Skeleton Key` pane for developer/admin users. This keeps diagnostic or low-level content views away from standard editors.
+
+### Field-level write restrictions
+
+Sensitive fields are marked `readOnly` (and in some cases `hidden`) for non-privileged users, for example:
+
+- singleton search-support fields (`[Dev] Singleton Title`) are hidden and read-only for non-admin/developer users
+- SEO `siteUrl` is read-only for non-admin/developer users
+- redirect analytics-style `count` is read-only for non-admin/developer users
+
+This pattern protects operational fields while still allowing editors to manage content fields.
+
+## Why this model works for enterprise teams
+
+- It is explicit in code, which makes audits and reviews easier.
+- It narrows risky edits without blocking normal content production.
+- It keeps role logic reusable instead of scattering one-off checks in many schemas.
+- It complements, rather than duplicates, Sanity's organisation-level permissions.
+
+## What is not enforced by default
+
+- There is no custom role matrix per document type in this repository by default.
+- There is no mandatory publish-approval workflow gate wired into document actions by default.
+- There is no tenant-specific permissions engine beyond Sanity's native access controls.
+
+If you need stricter governance (for example, only specific roles can publish certain schemas), add those rules through document action wrappers and Sanity project roles together.
+
+## Implementation guidance
+
+- Keep role names in sync with your Sanity project settings before shipping.
+- Reuse `isDeveloperOrAdmin` (or adjacent helpers) instead of duplicating role checks inline.
+- Restrict only the fields that are operationally sensitive; avoid over-restricting editorial content fields.
+- Prefer schema-level `readOnly`/`hidden` for UX-level safety and Sanity project permissions for hard access boundaries.
+
+## Extension point for stricter action permissions
+
+The toolkit includes `handleAccessToActions(...)` in:
+
+- `packages/sanity-toolkit/studio/actions/handleAccessToActions.ts`
+
+This helper can disable document actions for selected roles and optionally allow action access when a document reaches `readyToPublish` workflow metadata state.
+
+In the current starter, this helper exists as an extension point and is not wired into `apps/sanity/actions/index.ts` by default.

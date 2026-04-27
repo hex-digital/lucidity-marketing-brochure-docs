@@ -1,0 +1,5 @@
+{
+  "title": "Observability and Monitoring",
+  "icon": "Activity",
+  "pages": ["error-monitoring-ready", "observability-tooling-ready"]
+}

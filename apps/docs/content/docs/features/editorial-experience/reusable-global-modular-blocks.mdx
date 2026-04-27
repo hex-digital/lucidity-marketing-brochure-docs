@@ -1,0 +1,30 @@
+---
+title: Reusable Global Modular Blocks
+description: Create centrally managed modular content groups and reuse them across multiple pages.
+---
+
+## Overview
+
+Reusable Blocks are document-level modular content groups that can be referenced from page content. Update once, then propagate changes wherever the reusable block is used.
+
+## Why it matters
+
+This is ideal for repeated editorial units such as campaign banners, signpost sections, legal notices, or evergreen CTAs.
+
+## How Lucidity implements it
+
+Lucidity defines a dedicated `config.reusableBlock` document type with:
+
+- internal title and site scoping
+- optional internal image for CMS identification
+- a required modular content field powered by the standard modular block system
+
+In the web layer, reusable content is handled as a modular outer block type (`outer.reusable-content`) so it fits the same rendering pipeline as other sections.
+
+## Authoring model
+
+Editors manage reusable block documents centrally, then reference them in page-level modular content. This balances governance with composition flexibility.
+
+## Governance tips
+
+Treat reusable blocks as shared assets. Apply naming conventions and ownership rules so teams can safely reuse them without ambiguity.

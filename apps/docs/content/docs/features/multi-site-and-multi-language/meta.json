@@ -1,0 +1,12 @@
+{
+  "title": "Multi-site and Multi-language",
+  "icon": "Globe",
+  "pages": [
+    "deep-structure-integration",
+    "deep-structure-integration-and-helpers",
+    "i18n",
+    "initial-value-templates",
+    "multisite",
+    "url-and-routing-config"
+  ]
+}

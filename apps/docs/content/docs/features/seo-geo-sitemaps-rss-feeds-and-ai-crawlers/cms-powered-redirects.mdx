@@ -1,0 +1,46 @@
+---
+title: CMS-Powered Redirects
+description: Redirect resolution pipeline using Sanity-managed rules, Next.js proxy orchestration, and cache-aware API resolution.
+---
+
+Redirect rules are authored in Sanity and executed in the web proxy pipeline. This separates editorial ownership of URL changes from deployment cycles, while preserving runtime performance through caching.
+
+## Runtime architecture
+
+Redirect execution happens in three layers:
+
+1. `proxy.ts` includes `cmsRedirects` in the proxy pipeline.
+2. `cmsRedirects` checks skip prefixes and requests redirect resolution from `/api/redirects/cms`.
+3. API route resolves matching rule and returns redirect payload, then proxy issues `NextResponse.redirect()`.
+
+The proxy adds diagnostic headers (`X-Redirected-From`, `X-Redirected-By`, `X-Redirects-Retrieved`) to redirected responses.
+
+## Rule source and matching
+
+Rules come from the Sanity redirects document type (`DOCUMENT.CONFIG_REDIRECT`), filtered by site.
+
+The API route:
+
+- Fetches CMS redirect rules via `REDIRECTS_QUERY(...)`.
+- Appends optional `extraRedirects` from code config.
+- Resolves matches with `redirectResolver(...)`.
+- Converts page-target redirects with `resolveRedirectUrl(...)` (using site/language-aware URL helpers).
+
+## Query strings and tracking
+
+`resolveCmsRedirect()` merges original request query parameters into the final redirect target via `combinePathAndQuery()`.
+
+When `dontTrack` is not set, redirect hit counts are incremented asynchronously with `incrementRedirectRuleCount()` using a server token (`SANITY_API_REDIRECT_WRITE_TOKEN`).
+
+## Caching strategy
+
+Caching is split for efficiency:
+
+- **Rule set cache:** redirect documents are cached by site and invalidated by redirect tags.
+- **Path resolution cache:** resolved redirect results are cached per path.
+
+This keeps redirect lookup fast while still reflecting CMS updates after invalidation.
+
+## Studio tooling
+
+In Sanity Studio, redirect documents get a dedicated **Test redirect** view (`redirectTesterPane`) so editors can validate matching behaviour without leaving the CMS.

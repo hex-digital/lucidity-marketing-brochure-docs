@@ -1,0 +1,49 @@
+---
+title: Announcement Bar
+description: Configure site-wide, language-aware announcements in Sanity and render them at the top of every page.
+---
+
+The announcement bar is a global banner rendered above the header. It is driven by Sanity content and selected per site and language.
+
+## What this gives you
+
+- A reusable announcement document model with rich text messages
+- Site-aware and language-aware announcement assignment
+- Optional scheduling fields (`startDate` and `endDate`) for campaign windows
+- Cache-tagged data fetching for safer revalidation and rollout
+
+## How it works
+
+The website layout renders `ManifestAnnouncementBar` before the header. That component fetches announcements from Sanity using the current `siteId` and `languageCode`, then passes the result into the `AnnouncementBar` UI component.
+
+The data source is the Active Theme singleton:
+
+- `activeAnnouncements` stores per-language references to Announcement documents
+- the frontend query dereferences those references and fetches `message`, `startDate`, and `endDate`
+- the UI currently renders only the first announcement in the returned array
+
+## Configure announcements in Sanity
+
+1. Create one or more `Announcement` documents with:
+   - `site`
+   - `language`
+   - `message` (required minimal Portable Text)
+   - optional `startDate` / `endDate`
+2. Open **Site Config: Active Theme** for the same site.
+3. In **Active Announcements**, select announcement references for each language.
+4. Publish both the Announcement documents and the Active Theme singleton.
+
+## Rendering behaviour and guardrails
+
+- No announcements selected: the bar is not rendered.
+- Empty or invalid Portable Text message: the bar is not rendered.
+- Multiple selected announcements: only the first is shown.
+- Styling forces high contrast (dark background, white text), and Portable Text colours are overridden for consistency.
+
+## Implementation notes
+
+- Studio schema: `apps/sanity/schema/types/documents/announcements.ts`
+- Active Theme selection: `apps/sanity/schema/types/singletons/activeTheme.tsx`
+- Active announcement query: `apps/web/src/features/announcements/queries/activeAnnouncements.query.ts`
+- Layout integration: `apps/web/src/app/(website)/~s/[siteId]/[languageCode]/layout.tsx`
+- Render component: `apps/web/src/components/primitives/announcement-bar/AnnouncementBar.tsx`

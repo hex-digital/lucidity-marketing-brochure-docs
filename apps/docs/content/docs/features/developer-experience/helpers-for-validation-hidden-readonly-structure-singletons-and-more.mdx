@@ -1,0 +1,81 @@
+---
+title: Sanity Toolkit Helpers for Validation, Hidden/Read-only Logic, Structure, and Singletons
+description: Use shared Sanity Toolkit helpers to keep schema validation, conditional fields, desk structure composition, and singleton handling consistent across a multi-site Studio.
+---
+
+## Overview
+
+The enterprise starter includes a set of helper utilities that reduce repeated schema and structure code in Sanity Studio. These helpers are opinionated towards multi-site, multi-language setups where consistency matters more than one-off flexibility.
+
+The most important helper areas are:
+
+- validation helpers for reusable `rule.custom(...)` logic
+- hidden/read-only helpers for conditional field behaviour
+- structure helpers for composing desk structure safely
+- singleton helpers for predictable, site-scoped singleton documents
+
+## Validation helpers
+
+Validation helpers live in `packages/sanity-toolkit/studio/schema/validation/` and are re-exported from `index.tsx`.
+
+Common examples used in the starter include:
+
+- `onlyWhenParentIs(...)` to run a validator only when parent fields match one or more conditions
+- `requiredIfParentIs(...)` for conditional required fields
+- `matchesRegex(...)` for constrained string formats
+- `mustStartWith(...)` for URL-like fields that must use approved prefixes
+
+In real schema usage, `apps/sanity/features/generic/schema/defineLinkField.ts` combines these helpers to enforce link rules for different link types, rather than duplicating inline validators in every field.
+
+## Hidden and read-only helpers
+
+The toolkit provides conditional hidden helpers in `packages/sanity-toolkit/studio/schema/hidden.ts`:
+
+- `ifParentIs(...)`
+- `ifParentIsNot(...)`
+- `ifParentArrayEmpty(...)`
+- `ifParentArrayNotEmpty(...)`
+
+These are used directly in schema fields to keep authoring forms clean and context-aware. For example, the link field helper hides irrelevant fields until the user chooses a matching link type.
+
+Read-only and hidden logic is also controlled by site-level field definitions:
+
+- `apps/sanity/features/sites/schema/defineSiteField.ts`
+- `apps/sanity/features/translations/schema/defineLanguageField.ts`
+
+Those field definitions use environment-driven debug config so site/language fields can be hidden or locked once valid values are set.
+
+## Structure composition helpers
+
+Desk structure helpers in the toolkit are designed for composability and typing:
+
+- `defineStructure(...)` in `packages/sanity-toolkit/studio/structure/utilities/defineStructure.ts`
+- `skeletonKey(...)` in `packages/sanity-toolkit/studio/structure/skeletonKey.ts`
+
+In the app-level structure (`apps/sanity/structure/index.ts`), these helpers are used to:
+
+- build site-scoped content trees
+- conditionally expose developer-only structure items
+- keep structure logic readable as feature areas grow
+
+This is especially useful for enterprise teams with multiple editor roles and content domains.
+
+## Singleton helpers
+
+Singleton handling is split into two concerns:
+
+1. **Deterministic IDs** with `singletonDocId(...)` in `packages/sanity-toolkit/studio/singletons/structure.ts`
+2. **Structure wiring** with `singletonListItem(...)` helpers in both:
+   - `packages/sanity-toolkit/studio/structure/singletonListItem.ts`
+   - `apps/sanity/structure/helpers/singletonListItem.ts`
+
+The app-level helper appends site and language context to singleton IDs, so each site can have isolated singleton instances (for example, per-site SEO or theme config).
+
+The toolkit also provides `defineSingletonTitle(...)` in `packages/sanity-toolkit/studio/singletons/schema.ts`, which adds a developer/admin-only hidden title field to improve global Studio searchability of singleton documents.
+
+## Why this matters in enterprise projects
+
+- It standardises schema behaviour across teams and content types.
+- It keeps logic centralised, so policy changes happen in one place.
+- It supports multi-site scaling without copy-paste structure code.
+- It lowers onboarding time because field and structure behaviour follows predictable patterns.

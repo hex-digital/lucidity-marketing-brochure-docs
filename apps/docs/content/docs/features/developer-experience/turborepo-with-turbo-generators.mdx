@@ -1,0 +1,58 @@
+---
+title: Turborepo with Turbo-powered Generators
+description: Coordinate code generation across apps with Turborepo tasks and script pipelines, including modular block registries and Sanity type generation.
+---
+
+## Overview
+
+The starter uses Turborepo as the orchestration layer for generation tasks across the monorepo. Rather than relying on ad-hoc local commands, generation is wired into repeatable scripts and hooks.
+
+In this codebase, “generators” are implemented as app scripts (for example TSX scripts that emit files), then run through Turbo task pipelines.
+
+## Task orchestration
+
+At repo root:
+
+- `package.json` provides global commands such as `g:generate:types`, `g:dev`, and `g:lint`.
+- `turbo.json` defines the shared task graph, including a `generate:types` task.
+
+In the web app (`apps/web/package.json`):
+
+- `generate:blocks` runs `generate-web-blocks.ts`
+- `generate:block-query` runs `generate-web-query.ts`
+- `generate:types` runs `sanity typegen generate`
+- `generate` chains all generation tasks through Turbo
+
+This split keeps generation logic close to feature code, while Turbo handles sequencing and workspace-level execution.
+
+## Concrete generator scripts
+
+Two important generator scripts live in `apps/web/src/features/modular-content-blocks/lib/scripts/`:
+
+- `generate-web-blocks.ts` scans modular block `web.ts` files and writes `blocks.gen.ts`
+- `generate-web-query.ts` builds a static modular-block GROQ partial and writes `blocks-query.gen.ts`
+
+Both generated files include explicit “auto-generated” headers and reference the `pnpm turbo generate:types` workflow in comments.
+
+## Integration with quality gates
+
+Generation is not only a manual step:
+
+- `.husky/pre-commit` runs `pnpm turbo generate:types`
+- the hook then stages generated outputs such as:
+  - `apps/web/src/features/modular-content-blocks/blocks.gen.ts`
+  - `apps/web/src/features/modular-content-blocks/blocks-query.gen.ts`
+  - Sanity query/type artefacts
+
+This helps prevent stale generated files from reaching CI or production branches.
+
+## Why this pattern scales
+
+- Teams can add new modular blocks without manually updating central registries.
+- Generated contracts stay aligned with schema and query changes.
+- Turbo provides one consistent orchestration mechanism across apps and packages.
+- CI and local pre-commit use the same generation pathway, reducing “works on my machine” drift.
+
+## Implementation caveat
+
+This starter does not currently expose template-style `turbo gen` scaffolding files. The “generator” model here is script-driven generation orchestrated by Turbo tasks, which is often a better fit for deterministic code artefacts in enterprise repos.

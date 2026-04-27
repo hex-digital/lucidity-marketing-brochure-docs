@@ -1,0 +1,62 @@
+---
+title: Observability Tooling Ready
+description: Enable Vercel Analytics, Speed Insights, and GTM via config and environment flags, with draft-mode safeguards and shared app logging.
+---
+
+## Overview
+
+The starter provides observability wiring points and feature flags so teams can turn on runtime and product telemetry in a controlled way.
+
+The implementation is split between:
+
+- config-driven toggles in `apps/web/config/analytics.ts`
+- rendering containers in `apps/web/src/lib/analytics/VercelContainer.tsx` and `apps/web/src/lib/gtm/components/GtmContainer.tsx`
+- shared app logging through `apps/web/src/lib/logger/logger.ts` and `packages/logger/logger.ts`
+
+## Vercel telemetry toggles
+
+`apps/web/config/analytics.ts` defines two Vercel flags:
+
+- `NEXT_PUBLIC_VERCEL_ENABLE_ANALYTICS`
+- `NEXT_PUBLIC_VERCEL_ENABLE_SPEED_INSIGHTS`
+
+`apps/web/src/lib/analytics/VercelContainer.tsx` reads those flags and conditionally renders:
+
+- `Analytics` from `@vercel/analytics/react`
+- `SpeedInsights` from `@vercel/speed-insights/next`
+
+This keeps activation explicit and environment-driven.
+
+## Draft-mode safeguards
+
+Both telemetry containers check `draftMode()` and suppress tracking when draft mode is enabled:
+
+- `apps/web/src/lib/analytics/VercelContainer.tsx`
+- `apps/web/src/lib/gtm/components/GtmContainer.tsx`
+
+This prevents preview/editorial sessions from polluting production analytics.
+
+## GTM support and controls
+
+The same config file also exposes GTM controls:
+
+- `NEXT_PUBLIC_GTM_ID`
+- `NEXT_PUBLIC_GTM_ENABLED`
+- `NEXT_PUBLIC_GTM_DEBUG`
+
+`GtmContainer` passes these values through a provider and only injects `GoogleTagManager` when enabled and not in draft mode.
+
+## Baseline operational logging
+
+The app logger is intentionally simple and shared:
+
+- `apps/web/src/lib/logger/logger.ts` instantiates `createLogger({ level: 4 })`
+- `packages/logger/logger.ts` maps log levels to console methods (`error`, `warn`, `log`, `info`, `debug`)
+
+This gives a common logging interface today, and a clear extension point if you later forward logs to a managed observability platform.
+
+## Implementation notes for enterprise teams
+
+- Keep feature flags default-off for production until dashboards and alerting are validated.
+- Enable telemetry per environment (dev/staging/prod) by setting env vars in deployment config rather than hardcoding.
+- Route new instrumentation through shared containers/wrappers so compliance and redaction controls stay centralised.

@@ -1,0 +1,60 @@
+---
+title: Multisite
+description: Run multiple branded sites from one codebase and one Sanity dataset, with workspace and runtime isolation by site.
+---
+
+## Overview
+
+The starter is built to run multiple sites from a single repository and dataset, without mixing content between editorial teams.
+
+Each site is defined once in shared config, then reused by both Studio and web runtime:
+
+- `packages/common/config/sites/index.ts` defines each site ID, title, domain, primary language, and enabled languages
+- `apps/sanity/sanity.config.ts` creates one Sanity workspace per site with `sitesArray.map(...)`
+- `apps/web/src/proxy/setup-site.ts` resolves incoming requests to a site and rewrites to site-scoped routes
+
+## Why this matters
+
+- You keep one deployable platform, but can operate distinct regional or brand sites.
+- Editors only see content for the workspace they are in.
+- Runtime routing, metadata, and data fetching stay site-aware by default.
+
+## How it works
+
+### 1) Central site registry
+
+The `sites` object in `packages/common/config/sites/index.ts` is the source of truth. Each site carries:
+
+- `name` (internal ID used in routes and document fields)
+- `url` (site domain)
+- `primaryLanguage` and `languages`
+- optional feature flags and domain-override behaviour
+
+This enables consistent validation via helpers like `validSiteId(...)` and `validLanguageCodeForSite(...)`.
+
+### 2) One Studio workspace per site
+
+In `apps/sanity/sanity.config.ts`, the Studio config is generated per site:
+
+- workspace name and title are site-specific
+- `basePath` includes the site
+- structure, templates, and plugins receive the current site context
+
+This pattern isolates editorial UI while keeping one shared schema and dataset.
+
+### 3) Site-aware web routing
+
+In `apps/web/src/proxy/setup-site.ts`, the proxy:
+
+- extracts a site ID from hostname/subdomain
+- validates it with `validSiteId(...)`
+- rewrites requests to internal routes under `/~s/[siteId]/[languageCode]/...`
+- forwards site and language through headers for downstream use
+
+## Enterprise usage pattern
+
+- Add a new entry to `packages/common/config/sites/index.ts`.
+- Confirm domain and languages.
+- Start Studio and web; the new workspace and runtime route resolution are generated from config.
+
+This keeps multisite rollout mostly configuration-led rather than copy-paste implementation.

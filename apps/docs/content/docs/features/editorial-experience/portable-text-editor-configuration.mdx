@@ -1,0 +1,34 @@
+---
+title: Portable Text Editor Configuration
+description: Configure rich text fields with minimal, simple, or advanced Portable Text setups.
+---
+
+## Overview
+
+Lucidity ships with structured Portable Text presets so teams can choose the right editing capability per field, from lightweight captions to fully featured rich content.
+
+## Why it matters
+
+A single rich text setup is usually too broad. Purpose-specific configurations keep authoring focused and reduce invalid or overly complex content.
+
+## Built-in presets
+
+Lucidity provides three primary helpers:
+
+- `defineMinimalPteField` for basic formatting and links
+- `defineSimplePteField` for richer text styles and lists
+- `defineAdvancedPteField` for richer content plus media blocks
+
+Each helper maps to explicit schema object types and `defineSuperPTEField` wiring.
+
+## Advanced media support
+
+Advanced Portable Text includes image and video blocks. Image blocks can include max-width and editorial metadata; video blocks support embedded media patterns defined in the PTE feature.
+
+## Rendering implications
+
+Web rendering paths should validate expected Portable Text structure and handle custom block types explicitly. Lucidity includes utility guards for Portable Text shape checking.
+
+## Practical guidance
+
+Use the smallest preset that meets the field's editorial need. Reserve advanced configurations for body content where embedded media and richer layout control are genuinely required.

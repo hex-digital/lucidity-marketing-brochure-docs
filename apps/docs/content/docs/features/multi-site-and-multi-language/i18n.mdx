@@ -1,0 +1,56 @@
+---
+title: i18n
+description: Model language per site in both Studio and web runtime, with validation, language-aware previews, and route-safe resolution.
+---
+
+## Overview
+
+Internationalisation is implemented as site-scoped language support, not a global language list. Each site declares its supported languages and primary language in `packages/common/config/sites/index.ts`.
+
+That single model is reused in schema validation, editor UX, routing, and frontend data queries.
+
+## What is included
+
+### Site-specific language model
+
+`packages/common/config/sites/index.ts` defines:
+
+- `primaryLanguage` for fallback and default URL behaviour
+- `languages` available for that site
+- helpers such as `primaryLanguageFromSite(...)` and `validLanguageCodeForSite(...)`
+
+This allows the same codebase to run multilingual and single-language sites together.
+
+### Schema-level language enforcement
+
+In `apps/sanity/features/translations/schema/defineLanguageField.ts`, the language field:
+
+- offers only languages valid for the current site
+- validates against `validLanguageCodeForSite(...)`
+- can be hidden/read-only once valid values are set (configurable for editorial safety)
+
+Document types that need localisation include this field directly (for example `apps/sanity/schema/types/documents/page.ts` and `announcements.ts`).
+
+### Translation workflows in Studio
+
+`apps/sanity/sanity.config.ts` wires translation tooling:
+
+- `documentInternationalization(...)` for translatable document types
+- `internationalizedArray(...)` for localised object/field values
+
+Language is also surfaced in previews via helpers like `withLanguagePreview(...)`, so editors can distinguish locale variants quickly.
+
+### Runtime language resolution
+
+At request time, `apps/web/src/proxy/setup-site.ts` determines language by:
+
+1. checking the first URL segment (via `extractLanguageCode(...)`), then
+2. falling back to the site primary language (`primaryLanguageFromSite(...)`)
+
+Routes under `apps/web/src/app/(website)/~s/[siteId]/[languageCode]/...` validate site/language pairs before rendering, preventing invalid combinations.
+
+## Practical outcome
+
+- Editors can only select valid locale values per site.
+- Frontend queries remain site and language scoped.
+- Default-language URLs and prefixed-language URLs are handled consistently.

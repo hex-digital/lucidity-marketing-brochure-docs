@@ -1,0 +1,41 @@
+---
+title: SEO Preview Pane
+description: Sanity Studio document view that previews Google, X/Twitter, and Facebook share output from merged SEO settings.
+---
+
+The SEO Preview Pane gives editors a practical view of how content is likely to appear in search and social surfaces before publishing.
+
+## Where it appears
+
+The pane is wired into Studio default document views:
+
+- `defaultViews(...)` appends `seoPreviewPane(...)` for schema types listed in `SEO_PREVIEW_DOCUMENT_TYPES`.
+- `seoPreviewPane(...)` mounts `SeoPreviewPaneFn(...)` with the API version and SEO singleton reference.
+
+This keeps preview behaviour type-aware and centralised in the structure layer.
+
+## What is previewed
+
+`SeoPreviewPane` renders three cards:
+
+- Google search result preview
+- X/Twitter card preview
+- Facebook share preview
+
+Each card is powered by components from `@pkg/sanity-toolkit/features/seo-preview/components`.
+
+## Data composition model
+
+Preview values are merged through `combineSeo(...)`, combining:
+
+- Site-level SEO config
+- Current document SEO fields
+- Current pathname
+
+This mirrors how metadata is layered at runtime (global defaults + page overrides), reducing surprises between Studio previews and live page output.
+
+## Practical limits
+
+- The pane is a representation, not a guarantee of third-party rendering.
+- Social and search platforms can apply their own truncation, caching, and override rules.
+- The pane focuses on core fields (title, description, URL, image, favicon) and is best used as a pre-publish quality gate.
