@@ -410,6 +410,9 @@ importers:
       '@pkg/brand':
         specifier: workspace:*
         version: link:../../packages/brand
+      '@pkg/common':
+        specifier: workspace:*
+        version: link:../../packages/common
       '@pkg/next-config':
         specifier: workspace:*
         version: link:../../packages/next-config

@@ -16,6 +16,7 @@
     "@lottiefiles/dotlottie-react": "catalog:frontend",
     "@pkg/analytics": "workspace:*",
     "@pkg/brand": "workspace:*",
+    "@pkg/common": "workspace:*",
     "@pkg/next-config": "workspace:*",
     "@pkg/next-proxy": "workspace:*",
     "@pkg/notifications": "workspace:*",

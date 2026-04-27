@@ -26,15 +26,9 @@ export const docsPoints = [
   },
   {
     key: crypto.randomUUID(),
-    heading: 'Structures',
-    content:
-      'A high-level map of the application structure, content model, and delivery flow.',
-    bulletColor: '--color-blush-dark',
-  },
-  {
-    key: crypto.randomUUID(),
     heading: 'Guides',
     content: 'Guides on core concepts within Lucidity.js',
-    bulletColor: '--color-rose-dark',
+    bulletColor: '--color-blush-dark',
+    // bulletColor: '--color-rose-dark',
   },
 ] as const;

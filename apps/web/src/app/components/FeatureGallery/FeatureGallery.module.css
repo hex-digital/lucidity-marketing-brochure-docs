@@ -1,9 +1,10 @@
 .featureGallery {
   display: grid;
-  gap: 12px;
+  gap: 18px;
   grid-template-columns: 1fr 1fr;
 
   @media screen and (min-width: 56.25rem) {
+    gap: 64px;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(8, 150px);
   }

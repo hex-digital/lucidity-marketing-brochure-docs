@@ -19,7 +19,7 @@ export function Hero() {
               <strong>Cut 6 months off your delivery timeline</strong> with a codebase
               that&apos;s documented and ready to extend.
             </p>
-            <div className="flex gap-4 mt-2">
+            <div className="flex gap-4 mt-2 mb-8">
               <Button
                 href="mailto:dev@hexdigital.com?subject=Lucidity.js%20-%20Let's%20talk%20about%20what%20you're%20building"
                 variant="primary"

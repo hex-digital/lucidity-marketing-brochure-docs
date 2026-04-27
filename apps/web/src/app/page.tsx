@@ -34,7 +34,7 @@ export default function Home() {
           <div className="flex flex-col gap-4 items-center relative z-4">
             <Eyebrow label="What you get" />
             <h2 className="text-page-title-l-desktop text-center">
-              A year of development.
+              6 months of development.
               <br />
               Ready on day one.
             </h2>
@@ -69,8 +69,7 @@ export default function Home() {
                 <div className="prose">
                   <p>
                     Lucidity.js is built for engineering and product teams at organisations
-                    where content infrastructure is business-critical. Pricing is tailored to
-                    your team size and onboarding requirements.
+                    where content infrastructure is business-critical.
                   </p>
                   <p>
                     <strong>What's included:</strong>
@@ -80,18 +79,21 @@ export default function Home() {
                       The full source code is yours to own, modify and deploy indefinitely
                     </li>
                     <li>One year of updates, bug fixes, and compatibility releases</li>
-                    <li>GitHub access for raising issues and tracking fixes</li>
+                    <li>GitHub access for tracking issues</li>
+                    <li>A dedicated Technical Account Manager (TAM)</li>
+                    <li>A Slack Connect channel with our support engineers</li>
+                    <li>Onboarding sessions to get you set up</li>
+                    <li>Monthly check-in sessions</li>
                   </ul>
 
                   <p>
                     <strong>Available separately:</strong>
                   </p>
                   <ul>
-                    <li>
-                      The full source code is yours to own, modify and deploy indefinitely
-                    </li>
-                    <li>One year of updates, bug fixes, and compatibility releases</li>
-                    <li>GitHub access for raising issues and tracking fixes</li>
+                    <li>Forward deployed engineers to ship alongside your team</li>
+                    <li>Architecture and review sessions</li>
+                    <li>Migration and launch support</li>
+                    <li>Training and enablement</li>
                   </ul>
                 </div>
                 <Button
@@ -172,7 +174,7 @@ export default function Home() {
                 </p>
               </div>
               <Image
-                src="/images/cms-view-2-light.jpg"
+                src="/images/cms-view-2-dark.jpg"
                 width={1200}
                 height={700}
                 alt="Screenshot of Sanity studio showing multi-lang pages"
@@ -356,7 +358,7 @@ export default function Home() {
               <h2 className="text-page-title-l-desktop text-center">
                 Let’s talk about what you’re building
               </h2>
-              <p className="text-center max-w-[600px] mt-6">
+              <p className="text-center max-w-[600px] mt-4 mb-6">
                 We'll take the time to understand your stack, your team, and your editorial
                 requirements, and give you an honest view of whether Lucidity.js is the right
                 fit.

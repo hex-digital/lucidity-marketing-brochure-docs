@@ -3,7 +3,7 @@ export const enterprisePoints = [
     key: crypto.randomUUID(),
     heading: 'Turnkey adoption',
     content:
-      'Clone the repo, configure your environments, and deploy. Most teams have a working foundation within a week.',
+      'Clone the repo, configure your environments, add your branding, and deploy. Most teams deploy to production within a week.',
     borderColor: '--color-dew-dark',
   },
   {
