@@ -4,12 +4,12 @@ import type { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: `${appConfig.protocolBaseUrl}/`,
+      url: `${appConfig.baseUrl}/`,
       changeFrequency: 'daily' as const,
       priority: 1,
     },
     {
-      url: `${appConfig.protocolBaseUrl}/sales`,
+      url: `${appConfig.baseUrl}/sales`,
       changeFrequency: 'daily' as const,
       priority: 1,
     },
