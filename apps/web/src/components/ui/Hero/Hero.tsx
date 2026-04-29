@@ -1,5 +1,6 @@
 import { Wrapper } from '@/components/layout/Wrapper/Wrapper';
 import { Button } from '@/components/ui/Buttons/Button';
+import { appConfig } from '@/config/app';
 
 export function Hero() {
   return (
@@ -23,10 +24,7 @@ export function Hero() {
               <Button href="/sales" className="w-fit">
                 Talk to sales
               </Button>
-              <Button
-                href="https://lucidityjs-docs.hexlabs.uk/get-started"
-                variant="secondary"
-              >
+              <Button href={`${appConfig.docsUrl}/get-started`} variant="secondary">
                 View the docs
               </Button>
             </div>

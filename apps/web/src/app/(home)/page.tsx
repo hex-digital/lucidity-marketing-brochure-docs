@@ -19,6 +19,7 @@ import { FeatureGallery } from '@/components/ui/FeatureGallery/FeatureGallery';
 import { Hero } from '@/components/ui/Hero/Hero';
 import { LogoGrid } from '@/components/ui/LogoGrid/LogoGrid';
 import { StatsRow } from '@/components/ui/StatsRow/StatsRow';
+import { appConfig } from '@/config/app';
 
 export const dynamic = 'force-static';
 
@@ -47,7 +48,7 @@ export default function Home() {
           <StatsRow stats={stats} />
           <ContentGrid content={featureCards} />
           <Button
-            href="https://lucidityjs-docs.hexlabs.uk/get-started"
+            href={`${appConfig.docsUrl}/get-started`}
             icon={true}
             target="_blank"
             rel="noopener noreferrer"
@@ -306,7 +307,7 @@ export default function Home() {
                 configured properly.
               </p>
               <Button
-                href="https://lucidityjs-docs.hexlabs.uk/get-started"
+                href={`${appConfig.docsUrl}/get-started`}
                 variant="secondary"
                 icon={true}
               >
