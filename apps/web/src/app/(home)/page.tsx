@@ -48,7 +48,7 @@ export default function Home() {
           <StatsRow stats={stats} />
           <ContentGrid content={featureCards} />
           <Button
-            href={`${appConfig.docsUrl}/get-started`}
+            href={`${appConfig.docsUrl}/features`}
             icon={true}
             target="_blank"
             rel="noopener noreferrer"
