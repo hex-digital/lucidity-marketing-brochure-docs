@@ -12,13 +12,13 @@ export function Hero() {
               The best start your Sanity project <br className="hidden md:block" /> can get.
             </h1>
             <p className="max-w-[50ch] md:max-w-[450px]">
-              Lucidity.js is an enterprise-grade monorepo framework for engineering teams
-              building on Next.js and Sanity. Multisite, multi-lang, visual editing, caching,
-              security and 40+ features, all from day one.
+              Lucidity.js is the best way to start any enterprise-grade Sanity project.
+              Multi-site, multi-language, editorial experience, security, and 40+ features, all
+              from day one.
             </p>
             <p className="max-w-[50ch] md:max-w-[450px]">
               <strong>Cut 6 months off your delivery timeline</strong> with a codebase
-              that&apos;s documented and ready to extend.
+              that&apos;s built for high-performance and huge scale.
             </p>
             <div className="flex gap-4 mt-2 mb-8">
               <Button href="/sales" className="w-fit">
