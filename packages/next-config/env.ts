@@ -20,6 +20,7 @@ export const env = () =>
       NEXT_PUBLIC_NO_INDEX: z.enum(['true', 'false']),
       NEXT_PUBLIC_WEB_URL: z.url(),
       NEXT_PUBLIC_DOCS_URL: z.url(),
+      NEXT_PUBLIC_HTTP_PROTOCOL: z.enum(['http://', 'https://']),
     },
     runtimeEnv: {
       ANALYZE: process.env.ANALYZE,
@@ -32,5 +33,6 @@ export const env = () =>
       NEXT_PUBLIC_NO_INDEX: process.env.NEXT_PUBLIC_NO_INDEX,
       NEXT_PUBLIC_WEB_URL: process.env.NEXT_PUBLIC_WEB_URL,
       NEXT_PUBLIC_DOCS_URL: process.env.NEXT_PUBLIC_DOCS_URL,
+      NEXT_PUBLIC_HTTP_PROTOCOL: process.env.NEXT_PUBLIC_HTTP_PROTOCOL,
     },
   });
