@@ -4,15 +4,22 @@ import { config, withAnalyzer } from '@pkg/next-config';
 import { withLogging, withSentry } from '@pkg/observability/next-config';
 import type { NextConfig } from 'next';
 
+const docsBasePath = env.NEXT_PUBLIC_DOCS_BASE_PATH;
+
 const withMDX = createMDX();
 
 let nextConfig: NextConfig = withLogging(
   withMDX({
     ...config,
+
+    basePath: docsBasePath,
+
     serverExternalPackages: ['@takumi-rs/image-response'],
     reactStrictMode: true,
-    async redirects() {
+
+    redirects() {
       return [
+        // Serve docs homepage as /get-started
         {
           source: '/',
           destination: '/get-started',
@@ -20,6 +27,7 @@ let nextConfig: NextConfig = withLogging(
         },
       ];
     },
+
     async rewrites() {
       return [
         {

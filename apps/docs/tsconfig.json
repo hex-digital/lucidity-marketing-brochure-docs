@@ -26,6 +26,7 @@
       "collections/*": [".source/*"],
       "@/config/*": ["./config/*"],
       "@/env": ["./env.ts"],
+      "@/public/*": ["./public/*"],
       "@/*": ["./src/*"]
     },
     "types": ["vitest/globals"]

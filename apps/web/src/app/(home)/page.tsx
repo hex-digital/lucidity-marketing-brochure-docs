@@ -20,6 +20,7 @@ import { Hero } from '@/components/ui/Hero/Hero';
 import { LogoGrid } from '@/components/ui/LogoGrid/LogoGrid';
 import { StatsRow } from '@/components/ui/StatsRow/StatsRow';
 import { appConfig } from '@/config/app';
+import { env } from '@/env';
 
 export const dynamic = 'force-static';
 
@@ -48,7 +49,7 @@ export default function Home() {
           <StatsRow stats={stats} />
           <ContentGrid content={featureCards} />
           <Button
-            href={`${appConfig.docsUrl}/features`}
+            href={`${env.NEXT_PUBLIC_DOCS_BASE_PATH}/features`}
             icon={true}
             target="_blank"
             rel="noopener noreferrer"

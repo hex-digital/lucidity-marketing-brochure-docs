@@ -3,6 +3,7 @@ import './global.css';
 import { appConfig } from '@/config/app';
 import { seoConfig } from '@/config/seo';
 import { env } from '@/env';
+import { joinPublicDocsUrl } from '@/lib/join-public-docs-url';
 import { AnalyticsProvider } from '@pkg/analytics/provider';
 import { fonts } from '@pkg/brand/fonts';
 import { PerformanceMonitorProvider } from '@pkg/observability/provider';
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     default: seoConfig.title,
   },
   description: seoConfig.description,
-  authors: { url: `${appConfig.baseUrl}/humans.txt` },
+  authors: { url: joinPublicDocsUrl(appConfig.baseUrl, '/humans.txt') },
   robots: { index: !seoConfig.noIndex },
   icons: {
     icon: [

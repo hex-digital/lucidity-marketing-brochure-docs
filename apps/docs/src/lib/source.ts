@@ -3,15 +3,16 @@ import { type InferPageType, loader } from 'fumadocs-core/source';
 import { icons } from 'lucide-react';
 import { createElement } from 'react';
 import { HexDigitalSidebarIcon } from '@/components/HexDigitalSidebarIcon';
+import { env } from '@/env';
 import { normalizePathname, slugFromPathname } from '@/helpers';
 
 const localIcons = {
   HexLogo: HexDigitalSidebarIcon,
 } as const;
 
-// See https://fumadocs.dev/docs/headless/source-api for more info
+// See https://fumadocs.dev/docs/headless/source-api for more info.
 export const source = loader({
-  baseUrl: '/',
+  baseUrl: '',
   source: docs.toFumadocsSource(),
   icon(icon) {
     if (!icon) return;
@@ -45,6 +46,11 @@ ${processed}`;
 }
 
 export function getDocsPageByPathname(pathname: string): InferPageType<typeof source> | null {
-  const slugs = slugFromPathname(normalizePathname(pathname));
+  const withoutBase =
+    pathname === env.NEXT_PUBLIC_DOCS_BASE_PATH ||
+    pathname.startsWith(`${env.NEXT_PUBLIC_DOCS_BASE_PATH}/`)
+      ? pathname.slice(env.NEXT_PUBLIC_DOCS_BASE_PATH.length) || '/'
+      : pathname;
+  const slugs = slugFromPathname(normalizePathname(withoutBase));
   return source.getPage(slugs) ?? null;
 }

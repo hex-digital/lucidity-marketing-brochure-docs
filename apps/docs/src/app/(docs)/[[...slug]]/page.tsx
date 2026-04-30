@@ -6,10 +6,10 @@ import { HexDigitalTocAd } from '@/components/HexDigitalTocAd';
 import { getMDXComponents } from '@/components/mdx';
 import { appConfig } from '@/config/app';
 import { DocsFeedbackWidget } from '@/features/feedback/components/DocsFeedbackWidget';
+import { joinPublicDocsUrl } from '@/lib/join-public-docs-url';
 import { buildDocsJsonLdGraph } from '@/lib/jsonld/build-docs-graph';
 import { docsJsonLdDocument } from '@/lib/jsonld/docs-json-ld-document';
 import { JsonLd } from '@/lib/jsonld/json-ld';
-import { normalizeBaseUrl } from '@/lib/jsonld/normalize-base-url';
 import { getPageImage, source } from '@/lib/source';
 import { createBaseLink } from '@/mdx/createBaseLink';
 import type { Metadata } from 'next';
@@ -70,8 +70,7 @@ export async function generateMetadata(props: PageProps<'/[[...slug]]'>): Promis
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
-  const canonicalBase = normalizeBaseUrl(appConfig.baseUrl);
-  const canonical = `${canonicalBase}${page.url}`;
+  const canonical = joinPublicDocsUrl(appConfig.baseUrl, page.url);
 
   return {
     title: page.data.pageTitle ?? page.data.title,
