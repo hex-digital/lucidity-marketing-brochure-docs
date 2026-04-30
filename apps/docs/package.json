@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3001",
+    "dev": "next dev --port $(microfrontends port)",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . && pnpm prettier",
@@ -38,7 +38,8 @@
     "react-medium-image-zoom": "catalog:docs",
     "rooks": "catalog:utility",
     "tailwind-merge": "catalog:utility",
-    "zod": "catalog:types"
+    "zod": "catalog:types",
+    "@vercel/microfrontends": "catalog:frontend"
   },
   "devDependencies": {
     "@pkg/common": "workspace:*",

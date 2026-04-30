@@ -28,6 +28,7 @@
   "dependencies": {
     "@next/bundle-analyzer": "catalog:bundling",
     "@t3-oss/env-nextjs": "catalog:dev",
-    "zod": "catalog:types"
+    "zod": "catalog:types",
+    "@vercel/microfrontends": "catalog:frontend"
   }
 }

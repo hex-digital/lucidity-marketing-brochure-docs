@@ -6,10 +6,7 @@ export function isExternalLink(url: string): boolean {
   }
 
   try {
-    const currentHost = appConfig.baseUrl
-      .replace(/^https?:\/\//, '')
-      .replace(/^www\./, '')
-      .toLowerCase();
+    const currentHost = new URL(appConfig.baseUrl).hostname.replace(/^www\./, '').toLowerCase();
     const targetHost = new URL(url).hostname.replace(/^www\./, '').toLowerCase();
 
     return targetHost !== currentHost && !targetHost.endsWith(`.${currentHost}`);

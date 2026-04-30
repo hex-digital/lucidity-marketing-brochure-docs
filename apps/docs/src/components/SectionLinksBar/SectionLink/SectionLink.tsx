@@ -2,11 +2,18 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { normalizePathname } from '@/helpers';
 import { cn } from '@/lib/cn';
 import styles from './styles.module.css';
 
+/** Section URLs are app-relative; `usePathname()` also omits Next.js `basePath` (same space). */
 function isActive(pathname: string, url: string) {
-  return pathname === url || pathname.startsWith(`${url}/`);
+  const p = normalizePathname(pathname);
+  if (url === '/get-started') {
+    return p === '/' || p === '/get-started' || p.startsWith('/get-started/');
+  }
+  const prefix = url === '/' ? '/' : url;
+  return p === prefix || p.startsWith(`${prefix}/`);
 }
 
 interface Props {

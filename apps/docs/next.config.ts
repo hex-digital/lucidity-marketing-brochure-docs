@@ -9,22 +9,19 @@ const withMDX = createMDX();
 let nextConfig: NextConfig = withLogging(
   withMDX({
     ...config,
+    basePath: env.NEXT_PUBLIC_DOCS_BASE_PATH.replace(/\/+$/, ''),
     serverExternalPackages: ['@takumi-rs/image-response'],
     reactStrictMode: true,
-    async redirects() {
-      return [
-        {
-          source: '/',
-          destination: '/get-started',
-          permanent: false,
-        },
-      ];
-    },
     async rewrites() {
       return [
         {
           source: '/:path*.mdx',
           destination: '/llms.mdx/docs/:path*',
+        },
+        // Serve docs homepage as /get-started
+        {
+          source: '/',
+          destination: '/get-started',
         },
       ];
     },

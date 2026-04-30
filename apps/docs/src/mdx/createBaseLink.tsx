@@ -1,6 +1,7 @@
 import { BaseLink } from '@/components/BaseLink/BaseLink';
 import { appConfig } from '@/config/app';
 import { isExternalLink } from '@/helpers';
+import { joinPublicDocsUrl } from '@/lib/join-public-docs-url';
 import {
   getDocsPageByPathname,
   type LucidityDocsPage,
@@ -62,7 +63,7 @@ function buildBaseLinkProps({ href, page }: BuildBaseLinkPropsOptions): Resolved
     linkKind: 'internal',
     title: linkedPage.data.pageTitle ?? linkedPage.data.title,
     description: linkedPage.data.description,
-    absoluteUrl: `${appConfig.baseUrl}${linkedPage.url}`,
+    absoluteUrl: joinPublicDocsUrl(appConfig.baseUrl, linkedPage.url),
   };
 }
 

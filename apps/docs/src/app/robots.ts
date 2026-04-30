@@ -1,4 +1,5 @@
 import { appConfig } from '@/config/app';
+import { joinPublicDocsUrl } from '@/lib/join-public-docs-url';
 import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: `${appConfig.baseUrl}/sitemap.xml`,
+    sitemap: joinPublicDocsUrl(appConfig.baseUrl, '/sitemap.xml'),
   };
 }

@@ -3,15 +3,18 @@ import { type InferPageType, loader } from 'fumadocs-core/source';
 import { icons } from 'lucide-react';
 import { createElement } from 'react';
 import { HexDigitalSidebarIcon } from '@/components/HexDigitalSidebarIcon';
+import { DOCS_BASE_PATH } from '@/config/docs-base-path';
 import { normalizePathname, slugFromPathname } from '@/helpers';
 
 const localIcons = {
   HexLogo: HexDigitalSidebarIcon,
 } as const;
 
-// See https://fumadocs.dev/docs/headless/source-api for more info
+// See https://fumadocs.dev/docs/headless/source-api for more info.
+// `baseUrl` must be empty when Next.js `basePath` is set: `usePathname()` omits `basePath`,
+// so page URLs must be app-relative (e.g. `/get-started/...`) to match Fumadocs UI + sidebar state.
 export const source = loader({
-  baseUrl: '/',
+  baseUrl: '',
   source: docs.toFumadocsSource(),
   icon(icon) {
     if (!icon) return;
@@ -45,6 +48,10 @@ ${processed}`;
 }
 
 export function getDocsPageByPathname(pathname: string): InferPageType<typeof source> | null {
-  const slugs = slugFromPathname(normalizePathname(pathname));
+  const withoutBase =
+    pathname === DOCS_BASE_PATH || pathname.startsWith(`${DOCS_BASE_PATH}/`)
+      ? pathname.slice(DOCS_BASE_PATH.length) || '/'
+      : pathname;
+  const slugs = slugFromPathname(normalizePathname(withoutBase));
   return source.getPage(slugs) ?? null;
 }

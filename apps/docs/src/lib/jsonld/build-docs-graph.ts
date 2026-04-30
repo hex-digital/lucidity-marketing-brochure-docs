@@ -1,5 +1,6 @@
 import { appConfig } from '@/config/app';
 import { seoConfig } from '@/config/seo';
+import { joinPublicDocsUrl } from '@/lib/join-public-docs-url';
 import { normalizeBaseUrl } from '@/lib/jsonld/normalize-base-url';
 import { organizationId, softwareId, websiteId } from '@/lib/jsonld/schema-ids';
 import type { LucidityDocsPage, LucidityDocsSource } from '@/lib/source';
@@ -60,7 +61,7 @@ function buildBreadcrumbListFromSource(
     const prefixSlugs = page.slugs.slice(0, i + 1);
     const p = source.getPage(prefixSlugs);
     const path = prefixSlugs.join('/');
-    const itemUrl = p ? `${base}${p.url}` : `${base}/${path}`;
+    const itemUrl = p ? joinPublicDocsUrl(appConfig.baseUrl, p.url) : joinPublicDocsUrl(appConfig.baseUrl, `/${path}`);
     const name = p?.data.title ?? path;
     items.push({ name, item: itemUrl });
   }
@@ -103,7 +104,7 @@ export function buildDocsJsonLdGraph(options: {
 }): Record<string, unknown>[] {
   const { source, page } = options;
   const base = normalizeBaseUrl(appConfig.baseUrl);
-  const canonicalUrl = `${base}${page.url}`;
+  const canonicalUrl = joinPublicDocsUrl(appConfig.baseUrl, page.url);
 
   const siteTitle =
     seoConfig.title.replace(/\s*\|\s*.*/, '').trim() || 'Lucidity.js documentation';

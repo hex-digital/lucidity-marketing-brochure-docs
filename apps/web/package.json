@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port $(microfrontends port)",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . && pnpm prettier",
@@ -37,7 +37,8 @@
     "rss": "catalog:frontend",
     "tailwind-merge": "catalog:utility",
     "tailwindcss": "catalog:frontend",
-    "zod": "catalog:types"
+    "zod": "catalog:types",
+    "@vercel/microfrontends": "catalog:frontend"
   },
   "devDependencies": {
     "@pkg/eslint-plugin": "workspace:*",

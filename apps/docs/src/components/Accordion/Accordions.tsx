@@ -2,6 +2,7 @@ import { Accordions as FumaAccordions } from 'fumadocs-ui/components/accordion';
 import { appConfig } from '@/config/app';
 import { buildFaqPageJsonLdRoot } from '@/lib/jsonld/faq-page-jsonld';
 import { JsonLd } from '@/lib/jsonld/json-ld';
+import { joinPublicDocsUrl } from '@/lib/join-public-docs-url';
 import { normalizeBaseUrl } from '@/lib/jsonld/normalize-base-url';
 import { accordionChildrenToFaqEntries } from '@/lib/react-node-to-plain-text';
 import { source } from '@/lib/source';
@@ -44,7 +45,7 @@ export function Accordions({ withJsonLd, faqPageSlugs, children, ...rest }: Acco
     emitFaqLd && faqPage && entries.length > 0
       ? buildFaqPageJsonLdRoot({
           base: normalizeBaseUrl(appConfig.baseUrl),
-          canonicalUrl: `${normalizeBaseUrl(appConfig.baseUrl)}${faqPage.url}`,
+          canonicalUrl: joinPublicDocsUrl(appConfig.baseUrl, faqPage.url),
           name: faqPage.data.pageTitle ?? faqPage.data.title,
           description: faqPage.data.description,
           mainEntity: entries,

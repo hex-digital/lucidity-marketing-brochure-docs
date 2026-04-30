@@ -20,6 +20,8 @@ export const env = () =>
       NEXT_PUBLIC_NO_INDEX: z.enum(['true', 'false']),
       NEXT_PUBLIC_WEB_URL: z.url(),
       NEXT_PUBLIC_DOCS_URL: z.url(),
+      NEXT_PUBLIC_WEB_BASE_PATH: z.string(),
+      NEXT_PUBLIC_DOCS_BASE_PATH: z.string(),
     },
     runtimeEnv: {
       ANALYZE: process.env.ANALYZE,
@@ -32,5 +34,10 @@ export const env = () =>
       NEXT_PUBLIC_NO_INDEX: process.env.NEXT_PUBLIC_NO_INDEX,
       NEXT_PUBLIC_WEB_URL: process.env.NEXT_PUBLIC_WEB_URL,
       NEXT_PUBLIC_DOCS_URL: process.env.NEXT_PUBLIC_DOCS_URL,
+      
+      /** Must match path in apps/web/microfrontends.json */
+      NEXT_PUBLIC_WEB_BASE_PATH: '',
+      /** Must match path in apps/web/microfrontends.json */
+      NEXT_PUBLIC_DOCS_BASE_PATH: '/docs',
     },
   });
