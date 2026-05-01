@@ -17,6 +17,14 @@ let nextConfig: NextConfig = withLogging(
 
       redirects() {
         return [
+          // Canonicalise the legacy docs subdomain to the multizone docs path.
+          {
+            source: '/:path*',
+            has: [{ type: 'host', value: 'docs.lucidityjs.hexdigital.com' }],
+            destination: 'https://lucidityjs.hexdigital.com/docs/:path*',
+            permanent: true,
+            basePath: false,
+          },
           // Serve docs homepage as /get-started
           {
             source: '/',
