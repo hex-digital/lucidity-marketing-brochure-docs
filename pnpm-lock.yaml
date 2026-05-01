@@ -277,6 +277,9 @@ importers:
       '@pkg/next-config':
         specifier: workspace:*
         version: link:../../packages/next-config
+      '@pkg/next-multizone':
+        specifier: workspace:*
+        version: link:../../packages/next-multizone
       '@pkg/next-proxy':
         specifier: workspace:*
         version: link:../../packages/next-proxy
@@ -376,7 +379,7 @@ importers:
         version: 9.39.2(jiti@2.6.1)
       eslint-config-next:
         specifier: catalog:lint
-        version: 16.1.7(@typescript-eslint/parser@8.57.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.57.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
+        version: 16.1.7(@typescript-eslint/parser@8.56.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.57.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       eslint-config-prettier:
         specifier: catalog:lint
         version: 10.1.8(eslint@9.39.2(jiti@2.6.1))
@@ -416,6 +419,9 @@ importers:
       '@pkg/next-config':
         specifier: workspace:*
         version: link:../../packages/next-config
+      '@pkg/next-multizone':
+        specifier: workspace:*
+        version: link:../../packages/next-multizone
       '@pkg/next-proxy':
         specifier: workspace:*
         version: link:../../packages/next-proxy
@@ -503,7 +509,7 @@ importers:
         version: 9.39.2(jiti@2.6.1)
       eslint-config-next:
         specifier: catalog:lint
-        version: 16.1.7(@typescript-eslint/parser@8.56.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.57.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
+        version: 16.1.7(@typescript-eslint/parser@8.57.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.57.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       eslint-config-prettier:
         specifier: catalog:lint
         version: 10.1.8(eslint@9.39.2(jiti@2.6.1))
@@ -831,6 +837,58 @@ importers:
       prettier:
         specifier: catalog:lint
         version: 3.8.1
+      vitest:
+        specifier: catalog:testing
+        version: 4.0.18(@opentelemetry/api@1.9.1)(@types/node@25.3.3)(@vitest/ui@4.0.18)(happy-dom@20.8.3)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.31.1)(sass@1.99.0)(stylus@0.62.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.2)
+
+  packages/next-multizone:
+    dependencies:
+      '@t3-oss/env-nextjs':
+        specifier: catalog:dev
+        version: 0.13.11(typescript@5.9.3)(zod@4.3.6)
+      next:
+        specifier: catalog:frontend
+        version: 16.1.7(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.99.0)
+      react:
+        specifier: catalog:frontend
+        version: 19.2.4
+      server-only:
+        specifier: catalog:utility
+        version: 0.0.1
+      zod:
+        specifier: catalog:types
+        version: 4.3.6
+    devDependencies:
+      '@pkg/eslint-plugin':
+        specifier: workspace:*
+        version: link:../eslint-plugin
+      '@types/node':
+        specifier: catalog:types
+        version: 25.3.3
+      '@types/react':
+        specifier: catalog:types
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: catalog:types
+        version: 19.2.3(@types/react@19.2.14)
+      eslint:
+        specifier: catalog:lint
+        version: 9.39.2(jiti@2.6.1)
+      eslint-config-next:
+        specifier: catalog:lint
+        version: 16.1.7(@typescript-eslint/parser@8.56.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.57.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
+      eslint-config-prettier:
+        specifier: catalog:lint
+        version: 10.1.8(eslint@9.39.2(jiti@2.6.1))
+      eslint-plugin-react-compiler:
+        specifier: catalog:lint
+        version: 19.1.0-rc.2(eslint@9.39.2(jiti@2.6.1))
+      prettier:
+        specifier: catalog:lint
+        version: 3.8.1
+      typescript:
+        specifier: catalog:dev
+        version: 5.9.3
       vitest:
         specifier: catalog:testing
         version: 4.0.18(@opentelemetry/api@1.9.1)(@types/node@25.3.3)(@vitest/ui@4.0.18)(happy-dom@20.8.3)(jiti@2.6.1)(less@4.6.4)(lightningcss@1.31.1)(sass@1.99.0)(stylus@0.62.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.2)

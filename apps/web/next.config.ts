@@ -1,20 +1,19 @@
 import { env } from '@/env';
 import { config, withAnalyzer } from '@pkg/next-config';
+import { withMultizone } from '@pkg/next-multizone/next-config';
 import { withLogging, withSentry } from '@pkg/observability/next-config';
 import type { NextConfig } from 'next';
 
 /* eslint-disable import-x/no-mutable-exports */
-let nextConfig: NextConfig = withLogging({
-  ...config,
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'picsum.photos',
-      },
-    ],
-  },
-});
+let nextConfig: NextConfig = withLogging(
+  withMultizone(
+    'web',
+    {
+      ...config,
+    },
+    { default: true },
+  ),
+);
 
 if (env.VERCEL) {
   nextConfig = withSentry(nextConfig);

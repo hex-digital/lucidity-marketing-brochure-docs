@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/cn';
+import hexDigitalLogoWhite from '@/public/hex-digital-logo-white.png';
+import hexDigitalTeamGroupSmall from '@/public/hex-digital-team-group-small.jpg';
 
 interface HexDigitalTocAdProps {
   className?: string;
@@ -20,7 +22,7 @@ export function HexDigitalTocAd({ className }: HexDigitalTocAdProps) {
         </p>
         <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-fd-border bg-fd-muted/10">
           <Image
-            src="/hex-digital-team-group-small.jpg"
+            src={hexDigitalTeamGroupSmall}
             alt="Hex Digital team group photo outdoors in the city"
             fill
             className="object-cover"
@@ -28,7 +30,7 @@ export function HexDigitalTocAd({ className }: HexDigitalTocAdProps) {
           />
           <div className="absolute bottom-2 left-2 w-full max-w-[30px]">
             <Image
-              src="/hex-digital-logo-white.png"
+              src={hexDigitalLogoWhite}
               alt="Hex Digital logo"
               width={30}
               height={30}

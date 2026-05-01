@@ -2,12 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { urlIsActive } from '@/helpers';
 import { cn } from '@/lib/cn';
 import styles from './styles.module.css';
-
-function isActive(pathname: string, url: string) {
-  return pathname === url || pathname.startsWith(`${url}/`);
-}
 
 interface Props {
   link: { text: string; url: string };
@@ -15,7 +12,7 @@ interface Props {
 
 export function SectionLink({ link }: Props) {
   const pathname = usePathname();
-  const active = isActive(pathname, link.url);
+  const active = urlIsActive(pathname, link.url);
 
   return (
     <Link

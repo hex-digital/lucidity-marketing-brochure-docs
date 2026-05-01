@@ -7,7 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    // Prefer the root sitemap index hub served by the web app.
-    sitemap: `${appConfig.webUrl.replace(/\/+$/, '')}/sitemap.xml`,
+    sitemap: `${appConfig.baseUrl.replace(/\/+$/, '')}/sitemap.xml`,
   };
 }

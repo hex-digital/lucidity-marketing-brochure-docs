@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . && pnpm prettier",
@@ -18,6 +18,7 @@
     "@pkg/brand": "workspace:*",
     "@pkg/common": "workspace:*",
     "@pkg/next-config": "workspace:*",
+    "@pkg/next-multizone": "workspace:*",
     "@pkg/next-proxy": "workspace:*",
     "@pkg/notifications": "workspace:*",
     "@pkg/observability": "workspace:*",
