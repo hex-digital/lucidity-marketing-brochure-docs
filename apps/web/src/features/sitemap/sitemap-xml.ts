@@ -30,7 +30,12 @@ export function buildUrlsetSitemap(entries: UrlsetEntry[]): string {
       if (e.changefreq) {
         parts.push(`<changefreq>${e.changefreq}</changefreq>`);
       }
-      if (e.priority != null) {
+      if (
+        e.priority != null &&
+        Number.isFinite(e.priority) &&
+        e.priority >= 0 &&
+        e.priority <= 1
+      ) {
         parts.push(`<priority>${e.priority}</priority>`);
       }
       return `<url>${parts.join('')}</url>`;

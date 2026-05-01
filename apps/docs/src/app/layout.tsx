@@ -9,6 +9,8 @@ import { fonts } from '@pkg/brand/fonts';
 import { PerformanceMonitorProvider } from '@pkg/observability/provider';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-static';
+
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={fonts.inter.className} suppressHydrationWarning>
