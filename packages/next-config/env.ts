@@ -15,15 +15,11 @@ export const env = () =>
       VERCEL_URL: z.string().optional(),
       VERCEL_REGION: z.string().optional(),
       VERCEL_PROJECT_PRODUCTION_URL: z.string().optional(),
-
-      /** Docs deployment origin for `apps/web` rewrites (multi-zone). Omit when docs run same origin. */
-      NEXT_PRIVATE_DOCS_ZONE_ORIGIN: z.url().optional(),
     },
     client: {
       NEXT_PUBLIC_NO_INDEX: z.enum(['true', 'false']),
       NEXT_PUBLIC_WEB_URL: z.url(),
       NEXT_PUBLIC_DOCS_URL: z.url(),
-      NEXT_PUBLIC_DOCS_BASE_PATH: z.string(),
     },
     runtimeEnv: {
       ANALYZE: process.env.ANALYZE,
@@ -36,7 +32,5 @@ export const env = () =>
       NEXT_PUBLIC_NO_INDEX: process.env.NEXT_PUBLIC_NO_INDEX,
       NEXT_PUBLIC_WEB_URL: process.env.NEXT_PUBLIC_WEB_URL,
       NEXT_PUBLIC_DOCS_URL: process.env.NEXT_PUBLIC_DOCS_URL,
-      NEXT_PUBLIC_DOCS_BASE_PATH: '/docs',
-      NEXT_PRIVATE_DOCS_ZONE_ORIGIN: process.env.NEXT_PRIVATE_DOCS_ZONE_ORIGIN,
     },
   });

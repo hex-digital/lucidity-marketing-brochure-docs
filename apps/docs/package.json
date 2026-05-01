@@ -17,6 +17,7 @@
     "@pkg/analytics": "workspace:*",
     "@pkg/brand": "workspace:*",
     "@pkg/next-config": "workspace:*",
+    "@pkg/next-multizone": "workspace:*",
     "@pkg/next-proxy": "workspace:*",
     "@pkg/notifications": "workspace:*",
     "@pkg/observability": "workspace:*",

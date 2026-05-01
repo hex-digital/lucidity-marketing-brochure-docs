@@ -19,8 +19,7 @@ import { FeatureGallery } from '@/components/ui/FeatureGallery/FeatureGallery';
 import { Hero } from '@/components/ui/Hero/Hero';
 import { LogoGrid } from '@/components/ui/LogoGrid/LogoGrid';
 import { StatsRow } from '@/components/ui/StatsRow/StatsRow';
-import { appConfig } from '@/config/app';
-import { env } from '@/env';
+import { zoneUrl } from '@pkg/next-multizone/helpers/zoneUrl';
 
 export const dynamic = 'force-static';
 
@@ -49,7 +48,7 @@ export default function Home() {
           <StatsRow stats={stats} />
           <ContentGrid content={featureCards} />
           <Button
-            href={`${env.NEXT_PUBLIC_DOCS_BASE_PATH}/features`}
+            href={zoneUrl('docs', '/features')}
             icon={true}
             target="_blank"
             rel="noopener noreferrer"
@@ -307,11 +306,7 @@ export default function Home() {
                 experimental dependencies, no niche frameworks. Just the right tools,
                 configured properly.
               </p>
-              <Button
-                href={`${appConfig.docsUrl}/get-started`}
-                variant="secondary"
-                icon={true}
-              >
+              <Button href={zoneUrl('docs', '/get-started')} variant="secondary" icon={true}>
                 View the docs
               </Button>
             </div>
