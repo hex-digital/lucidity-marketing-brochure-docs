@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Wrapper } from '@/components/layout/Wrapper/Wrapper';
 import { Button } from '@/components/ui/Buttons/Button';
 import { appConfig } from '@/config/app';
@@ -30,7 +31,7 @@ export function Hero() {
             </div>
           </div>
           <div className="relative">
-            <img
+            <Image
               src="/images/codebase-view-2-dark.jpg"
               alt="Lucidity.js dashboard preview"
               width={750}
@@ -38,7 +39,7 @@ export function Hero() {
               className="relative z-hero-image-primary md:absolute rounded-md max-w-none w-full md:w-[50vw] md:left-[25%] md:top-[-4vw]"
               loading="eager"
             />
-            <img
+            <Image
               src="/images/cms-view-2-dark.jpg"
               alt="Render of Lucidity.js' studio in Sanity"
               width={720}
