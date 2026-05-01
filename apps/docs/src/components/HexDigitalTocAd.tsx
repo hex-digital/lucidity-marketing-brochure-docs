@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/components/Link';
 import { cn } from '@/lib/cn';
 import hexDigitalLogoWhite from '@/public/hex-digital-logo-white.png';
 import hexDigitalTeamGroupSmall from '@/public/hex-digital-team-group-small.jpg';

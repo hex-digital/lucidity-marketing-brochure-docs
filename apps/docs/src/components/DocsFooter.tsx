@@ -1,5 +1,5 @@
 import { SquarePen } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/components/Link';
 import { cn } from '@/lib/cn';
 import type { ComponentPropsWithoutRef } from 'react';
 

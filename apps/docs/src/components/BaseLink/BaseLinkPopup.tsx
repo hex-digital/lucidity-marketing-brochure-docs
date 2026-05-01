@@ -1,7 +1,7 @@
 import { ExternalLink, FileText } from 'lucide-react';
-import Link from 'next/link';
 import React from 'react';
 import styles from '@/components/BaseLink/styles.module.css';
+import { Link } from '@/components/Link';
 import { cn } from '@/lib/cn';
 
 export function BaseLinkPopup(props: {

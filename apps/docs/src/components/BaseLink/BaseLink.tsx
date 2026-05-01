@@ -1,12 +1,13 @@
 'use client';
 
 import { ExternalLink, Link2 as LinkIcon } from 'lucide-react';
-import Link from 'next/link';
 import React from 'react';
 import { BaseLinkPopup } from '@/components/BaseLink/BaseLinkPopup';
 import { useHoverPopup } from '@/components/HoverPopup/hooks/useHoverPopup';
 import { HoverPopup } from '@/components/HoverPopup/HoverPopup';
+import { Link } from '@/components/Link';
 import styles from './styles.module.css';
+import type { AppName } from '@pkg/next-multizone/config/apps';
 
 type BaseLinkKind = 'internal' | 'external' | 'same-page-anchor' | 'special';
 
@@ -15,6 +16,7 @@ interface BaseLinkProps extends Omit<
   'href' | 'children' | 'title'
 > {
   href: string;
+  targetAppName?: AppName;
   linkKind?: BaseLinkKind;
   hoverPreview?: boolean;
   title?: string;
@@ -29,6 +31,7 @@ interface BaseLinkProps extends Omit<
 export function BaseLink({
   href,
   linkKind,
+  targetAppName,
   hoverPreview = true,
   title,
   description,
@@ -103,6 +106,7 @@ export function BaseLink({
         href={href}
         className={className}
         target={resolvedTarget}
+        targetAppName={targetAppName}
         rel={sanitizedRel}
         aria-describedby={enablePreview && isOpen ? popupId : undefined}
         onMouseEnter={enablePreview ? scheduleOpen : undefined}

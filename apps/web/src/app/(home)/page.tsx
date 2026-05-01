@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { architecturePoints } from '@/app/(home)/content/architecturePoints';
 import { directorFaqs } from '@/app/(home)/content/directorFaqs';
 import { directorsGrid } from '@/app/(home)/content/directorsGrid';
@@ -10,6 +9,7 @@ import { generalFaqs } from '@/app/(home)/content/generalFaqs';
 import { stats } from '@/app/(home)/content/stats';
 import { techPoints } from '@/app/(home)/content/techPoints';
 import { Wrapper } from '@/components/layout/Wrapper/Wrapper';
+import { Link } from '@/components/Link';
 import { BrandAnimation } from '@/components/ui/BrandAnimation/BrandAnimation';
 import { Button } from '@/components/ui/Buttons/Button';
 import { ContentGrid } from '@/components/ui/ContentGrid/ContentGrid';

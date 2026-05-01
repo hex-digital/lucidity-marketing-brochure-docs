@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { CheckboxField } from '@/components/form/components/CheckboxField';
 import { TextArea } from '@/components/form/components/TextArea';
 import { TextInput } from '@/components/form/components/TextInput';
+import { Link } from '@/components/Link';
 import { talkToSalesFormSchema } from '@/forms/talk-to-sales/talkToSales.schema';
 import { cn } from '@/lib/cn';
 

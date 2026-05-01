@@ -7,6 +7,7 @@ import {
   type LucidityDocsPage,
   type LucidityDocsSource,
 } from '@/lib/source';
+import type { AppName } from '@pkg/next-multizone/config/apps';
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 type MdxAnchorProps = ComponentPropsWithoutRef<'a'>;
@@ -20,6 +21,7 @@ interface BuildBaseLinkPropsOptions {
 
 interface ResolvedBaseLinkProps {
   href: string;
+  targetAppName?: AppName;
   linkKind: BaseLinkKind;
   title?: string;
   description?: string;
@@ -60,6 +62,7 @@ function buildBaseLinkProps({ href, page }: BuildBaseLinkPropsOptions): Resolved
 
   return {
     href,
+    targetAppName: 'docs',
     linkKind: 'internal',
     title: linkedPage.data.pageTitle ?? linkedPage.data.title,
     description: linkedPage.data.description,

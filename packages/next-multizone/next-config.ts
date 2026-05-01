@@ -1,3 +1,4 @@
+import { appOriginsMap } from './config/appOrigins';
 import { appMap, type AppName } from './config/apps';
 import type { NextConfig } from 'next';
 
@@ -34,7 +35,9 @@ function defaultConfig(appName: AppName) {
           continue;
         }
 
-        rewrites.push(...rewriteMultizonePaths(appConfig.origin(), appConfig.path));
+        rewrites.push(
+          ...rewriteMultizonePaths(appOriginsMap.get(otherAppName), appConfig.path),
+        );
       }
 
       return rewrites;

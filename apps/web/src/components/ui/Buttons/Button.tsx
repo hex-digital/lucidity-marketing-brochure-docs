@@ -1,17 +1,16 @@
-import Link from 'next/link';
+import { Link } from '@/components/Link';
 import { cn } from '@/lib/cn';
 import styles from './Buttons.module.css';
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps } from 'react';
+
+type LinkProps = ComponentProps<typeof Link>;
 
 type ButtonVariant = 'primary' | 'secondary';
 
-type ButtonProps = {
-  href: ComponentProps<typeof Link>['href'];
-  children: ReactNode;
+interface ButtonProps extends LinkProps {
   variant?: ButtonVariant;
-  className?: string;
   icon?: boolean;
-} & Omit<ComponentProps<typeof Link>, 'href' | 'className' | 'children'>;
+}
 
 const variantClassMap = {
   primary: styles.primaryBtn ?? '',

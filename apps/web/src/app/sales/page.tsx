@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { Wrapper } from '@/components/layout/Wrapper/Wrapper';
+import { Link } from '@/components/Link';
 import { Eyebrow } from '@/components/ui/Eyebrow/Eyebrow';
 import { appConfig } from '@/config/app';
 import { TalkToSalesForm } from '@/forms/talk-to-sales/TalkToSalesForm';

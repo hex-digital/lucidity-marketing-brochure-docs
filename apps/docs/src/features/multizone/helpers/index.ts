@@ -1,4 +1,3 @@
-import { env } from '@/env';
 import { multizoneBaseStripperFactory } from '@pkg/next-multizone/helpers';
 
 /**
@@ -6,6 +5,4 @@ import { multizoneBaseStripperFactory } from '@pkg/next-multizone/helpers';
  * @param path - The path to strip the multizone base from.
  * @returns The path without the multizone base.
  */
-export const pathWithoutMultizoneBase = multizoneBaseStripperFactory(
-  env.NEXT_PUBLIC_DOCS_BASE_PATH,
-);
+export const pathWithoutMultizoneBase = multizoneBaseStripperFactory('docs');
