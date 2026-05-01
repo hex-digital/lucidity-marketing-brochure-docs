@@ -1,24 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "redirects": [
-    {
-      "source": "/docs",
-      "has": [{ "type": "host", "value": "docs.lucidityjs.hexdigital.com" }],
-      "destination": "https://lucidityjs.hexdigital.com/docs",
-      "permanent": false
-    },
-    {
-      "source": "/docs/:path*",
-      "has": [{ "type": "host", "value": "docs.lucidityjs.hexdigital.com" }],
-      "destination": "https://lucidityjs.hexdigital.com/docs/:path*",
-      "permanent": false
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "docs.lucidityjs.hexdigital.com" }],
-      "destination": "https://lucidityjs.hexdigital.com/docs/:path*",
-      "permanent": false
-    }
-  ],
   "ignoreCommand": "node scripts/skip-ci.js"
 }
