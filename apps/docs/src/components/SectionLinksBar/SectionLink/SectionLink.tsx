@@ -18,6 +18,7 @@ export function SectionLink({ link }: Props) {
     <Link
       key={link.url}
       href={link.url}
+      targetAppName="docs"
       className={cn(styles.link, active ? styles.active : styles.inactive)}
     >
       {link.text}
