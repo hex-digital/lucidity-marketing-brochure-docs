@@ -4,9 +4,9 @@ description: A high-level map of the application structure, content model, and d
 icon: Blocks
 ---
 
-Lucidity.js is a monorepo, which means it contains multiple applications and packages in a single repository.
-This is a common pattern for modern web applications, as it allows you to share code between different parts
-of the application, and manage them all together.
+Lucidity.js is a monorepo. This means it has several applications and packages that live in a single repository.
+This structure is widely used in modern web applications because it lets you reuse code across different parts of
+the application, while managing it altogether.
 
 The monorepo is managed by pnpm workspaces and Turborepo, which are tools for managing monorepos.
 They provide a simple way to manage multiple packages in a single repository, and are designed to
@@ -14,17 +14,17 @@ work with modern web applications.
 
 ## Applications
 
-Out of the box, Lucidity.js contains three apps. These are found under `apps/`.
+Out of the box, Lucidity.js has three apps, found under `apps/`.
 Each app is self-contained and can be [deployed independently](../../deploy/index.mdx).
 
-Each app must be self-contained and not depend on any other apps. They may depend on one or more packages.
+Apps must stay independent of one another and not import code from other apps.
 
 ## Packages
 
 Lucidity.js also comes with a number of packages, found under `packages/`. These packages isolate shared code from
 the apps, making it easier to manage, update, and re-use.
 
-Additionally, it makes it easier to swap out parts of the app for different implementations.
+That separation also makes it straightforward to replace an implementation when required.
 
-Each package must be self-contained and not depend on other packages. They should export everything that is needed by the app,
-such as middleware, hooks, and components.
+Packages must be self-contained and avoid depending on other packages. They should expose what apps need,
+such as middleware, hooks, and components. Packages may be imported into any apps.
