@@ -20,10 +20,6 @@ export const appConfig = {
       url: '/features',
     },
     {
-      text: 'Reference',
-      url: '/reference',
-    },
-    {
       text: 'Enterprise',
       url: '/enterprise',
     },
