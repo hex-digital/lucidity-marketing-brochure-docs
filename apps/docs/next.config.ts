@@ -19,10 +19,33 @@ let nextConfig: NextConfig = withLogging(
         return [
           // Canonicalise the legacy docs subdomain to the multizone docs path.
           {
-            source: '/:path*',
-            has: [{ type: 'host', value: 'docs.lucidityjs.hexdigital.com' }],
+            source: '/docs/:path*',
+            has: [
+              { type: 'host', value: 'docs.lucidityjs.hexdigital.com' },
+              // Avoid redirecting multizone-proxied requests from the web app.
+              {
+                type: 'header',
+                key: 'x-forwarded-host',
+                value: 'docs.lucidityjs.hexdigital.com',
+              },
+            ],
             destination: 'https://lucidityjs.hexdigital.com/docs/:path*',
-            permanent: true,
+            permanent: false,
+            basePath: false,
+          },
+          {
+            source: '/:path*',
+            has: [
+              { type: 'host', value: 'docs.lucidityjs.hexdigital.com' },
+              // Avoid redirecting multizone-proxied requests from the web app.
+              {
+                type: 'header',
+                key: 'x-forwarded-host',
+                value: 'docs.lucidityjs.hexdigital.com',
+              },
+            ],
+            destination: 'https://lucidityjs.hexdigital.com/docs/:path*',
+            permanent: false,
             basePath: false,
           },
           // Serve docs homepage as /get-started
