@@ -13,7 +13,11 @@ export function zoneUrl(zone: AppName, url: string): string {
     return url;
   }
 
-  return `${app.baseUrl}${app.path}${url}`;
+  const baseUrl = app.baseUrl.replace(/\/+$/, '');
+  const path = url.startsWith('/') ? url : `/${url}`;
+  const basePathAlreadyApplied = baseUrl.endsWith(app.path);
+
+  return `${baseUrl}${basePathAlreadyApplied ? '' : app.path}${path}`;
 }
 
 /**
