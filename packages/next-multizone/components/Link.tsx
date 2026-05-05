@@ -1,5 +1,5 @@
 import NextLink from 'next/link';
-import { pathInZone } from '../helpers/zoneUrl';
+import { pathInZone, zoneUrl } from '../helpers/zoneUrl';
 import type { AppName } from '../config/apps';
 import type { ComponentProps } from 'react';
 
@@ -16,7 +16,7 @@ export type MultizoneLinkProps = NextLinkProps & {
  */
 export function MultizoneLink({ appName, targetAppName, href, ...props }: MultizoneLinkProps) {
   if (shouldUseAnchorTag(href, appName, targetAppName)) {
-    return <a href={hrefToString(href)} {...props} />;
+    return <a href={hrefForAnchor(href, targetAppName)} {...props} />;
   }
 
   return <NextLink href={href} {...props} />;
@@ -40,10 +40,20 @@ function shouldUseAnchorTag(
   return !pathInZone(pathname, appName);
 }
 
+function hrefForAnchor(href: NextLinkProps['href'], targetAppName?: AppName): string {
+  const hrefString = hrefToString(href);
+
+  if (!targetAppName || isAbsoluteHref(hrefString)) {
+    return hrefString;
+  }
+
+  return zoneUrl(targetAppName, hrefString);
+}
+
 /** Build a string pathname from next/link 'href' prop, in case a non-string is passed to it. */
 function pathnameFromHref(href: NextLinkProps['href']): string | undefined {
   if (typeof href === 'string') {
-    return href;
+    return isAbsoluteHref(href) ? new URL(href).pathname : href;
   }
 
   if (href instanceof URL) {
@@ -56,6 +66,15 @@ function pathnameFromHref(href: NextLinkProps['href']): string | undefined {
   }
 
   return undefined;
+}
+
+function isAbsoluteHref(href: string): boolean {
+  try {
+    const _url = new URL(href);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 /** Build a string href from next/link 'href' prop, for use on an <a> tag. */
