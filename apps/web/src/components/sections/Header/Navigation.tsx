@@ -7,6 +7,11 @@ export function Navigation(props: ComponentProps<'nav'>) {
     <nav {...props}>
       <ul className="flex items-center gap-4">
         <li>
+          <Link className={styles.navItem} href="/built-for-ai">
+            Built for AI
+          </Link>
+        </li>
+        <li>
           <Link className={styles.navItem} href="/get-started" targetAppName="docs">
             Documentation
           </Link>
