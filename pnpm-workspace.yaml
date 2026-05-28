@@ -21,7 +21,7 @@ catalogs:
     node-plop: ^0.32.3
     postcss: 8.5.8
     tsx: 4.21.0
-    turbo: 2.8.16
+    turbo: 2.9.14
     typescript: 5.9.3
   docs:
     '@radix-ui/react-collapsible': 1.1.12
